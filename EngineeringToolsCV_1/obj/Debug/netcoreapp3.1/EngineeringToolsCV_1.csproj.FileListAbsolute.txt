@@ -1,0 +1,136 @@
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1_MarkupCompile.cache
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\ucRoundButton.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1_MarkupCompile.lref
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\MainWindow.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\EngineeringToolsCV_1.exe
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\EngineeringToolsCV_1.deps.json
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\EngineeringToolsCV_1.runtimeconfig.json
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\EngineeringToolsCV_1.runtimeconfig.dev.json
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\EngineeringToolsCV_1.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\EngineeringToolsCV_1.pdb
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\MainWindow.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\ucRoundButton.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.g.resources
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.AssemblyInfoInputs.cache
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.AssemblyInfo.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.csproj.CoreCompileInputs.cache
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.pdb
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.genruntimeconfig.cache
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\ucWindowStyle.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\ucWindowStyle.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.csprojAssemblyReference.cache
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\Syncfusion.Licensing.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\Syncfusion.SfChart.WPF.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.csproj.CopyComplete
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\App.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Themes\Generic.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Themes\Geometry.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\BerufView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\DashboardView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\InformationView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\LoginView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\NewPasswordView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\RegisterView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\BerufView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\DashboardView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\InformationView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\LoginView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\NewPasswordView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\RegisterView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\HomeView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\HomeView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.csproj.GenerateResource.cache
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Components\Layout.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Components\Layout.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Components\NavigationBar.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Components\NavigationBar.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\ModalControl.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Language\Language_DE.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Language\Language_EN.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Style\Style.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\MessageDialog.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\MessageDialog.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\UserResetView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\UserResetView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\SQLServerView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\SQLServerView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.Images.Images.resources
+C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\EngineeringToolsCV_1.dll.config
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\EngineeringToolsCV_1.exe
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\EngineeringToolsCV_1.dll.config
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\EngineeringToolsCV_1.deps.json
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\EngineeringToolsCV_1.runtimeconfig.json
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\EngineeringToolsCV_1.runtimeconfig.dev.json
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\EngineeringToolsCV_1.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\EngineeringToolsCV_1.pdb
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\ModalControl.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\Syncfusion.Licensing.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\Syncfusion.SfChart.WPF.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Language\Language_DE.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Language\Language_EN.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Style\Style.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Themes\Geometry.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\App.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Components\Layout.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Components\NavigationBar.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\BerufView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\DashboardView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\HomeView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\InformationView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\LoginView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\MainWindow.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\MessageDialog.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\NewPasswordView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\RegisterView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\SQLServerView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\ucRoundButton.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\ucWindowStyle.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\UserResetView.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1_MarkupCompile.cache
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1_MarkupCompile.lref
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Components\Layout.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Components\NavigationBar.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Themes\Generic.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\BerufView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\DashboardView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\HomeView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\InformationView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\LoginView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\MainWindow.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\MessageDialog.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\NewPasswordView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\RegisterView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\SQLServerView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\ucRoundButton.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\ucWindowStyle.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\UserResetView.baml
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.g.resources
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.Images.Images.resources
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.csproj.GenerateResource.cache
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.AssemblyInfoInputs.cache
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.AssemblyInfo.cs
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.csproj.CoreCompileInputs.cache
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.csproj.CopyComplete
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.dll
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.pdb
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.genruntimeconfig.cache
+C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.csprojAssemblyReference.cache

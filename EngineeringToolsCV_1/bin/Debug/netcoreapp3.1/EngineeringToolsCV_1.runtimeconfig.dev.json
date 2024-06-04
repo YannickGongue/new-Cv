@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\vamic\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\vamic\\.nuget\\packages"
+    ]
+  }
+}

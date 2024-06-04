@@ -1,0 +1,84 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\vamic\\source\\repos\\Project_Engeneering_Tools\\EngineeringToolsCV_1\\EngineeringToolsCV_1.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\vamic\\source\\repos\\Project_Engeneering_Tools\\EngineeringToolsCV_1\\EngineeringToolsCV_1.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\vamic\\source\\repos\\Project_Engeneering_Tools\\EngineeringToolsCV_1\\EngineeringToolsCV_1.csproj",
+        "projectName": "EngineeringToolsCV_1",
+        "projectPath": "C:\\Users\\vamic\\source\\repos\\Project_Engeneering_Tools\\EngineeringToolsCV_1\\EngineeringToolsCV_1.csproj",
+        "packagesPath": "C:\\Users\\vamic\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vamic\\source\\repos\\Project_Engeneering_Tools\\EngineeringToolsCV_1\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\vamic\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.syncfusion.com/nuget_wpf/nuget/getsyncfusionpackages/wpf.": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "SimpleModal.WPF": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "Syncfusion.SfChart.WPF": {
+              "target": "Package",
+              "version": "[20.4.0.38, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
