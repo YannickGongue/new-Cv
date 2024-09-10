@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Windows.Input;
+using EngineeringToolsCV_1.Command;
+using EngineeringToolsCV_1.Models;
+using EngineeringToolsCV_1.Repositories;
 
 namespace EngineeringToolsCV_1.ViewModels
 {
@@ -12,8 +16,11 @@ namespace EngineeringToolsCV_1.ViewModels
         private string passwort;
         private string confirmPassword;
         private string emailAdresse;
+        private LoginViewModel VmLogin;
+        private User userRepositories;
+        private MUser mUser;
 
-       
+
 
         public string Username
         {
@@ -71,9 +78,40 @@ namespace EngineeringToolsCV_1.ViewModels
             }
         }
 
-        public RegisterViewModel()
+        public ICommand regCommand { get; }
+        public ICommand CancelCommand { get; }
+
+        public RegisterViewModel(LoginViewModel _vmLogin, MUser _mUser)
         {
-           
+            this.mUser = _mUser;
+            this.userRepositories = new User();
+            
+            this.VmLogin = _vmLogin;
+            this.regCommand = new DelegateCommand( regExecut, CanExecute);
+            this.CancelCommand = new DelegateCommand(CancelExecut, CanExecute);
+
         }
+
+        private void regExecut(object obj)
+        {
+            this.mUser.Id = this.Username;
+            this.mUser.Email = this.EmailAdress;
+            this.mUser.Passwort = this.Password;
+            this.mUser.ConfirmPasswort = this.ConfirmPassword;
+
+            this.userRepositories.AddUser(mUser);
+        }
+
+        private void CancelExecut(object obj)
+        {
+            
+        }
+
+        private bool CanExecute(object obj)
+        {
+            return true;
+        }
+
+       
     }
 }

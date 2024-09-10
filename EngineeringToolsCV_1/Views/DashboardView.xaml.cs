@@ -32,8 +32,8 @@ namespace EngineeringToolsCV_1.Views
         {
             //this.VmDashboard = new DashboardViewModel();
             ListOfPages = new List<Page>();
-            this.pageInformation = new InformationView();
-            this.PageBeruf = new BerufView();
+            //this.pageInformation = new InformationView();
+            //this.PageBeruf = new BerufView();
 
             InitializeComponent();
 

@@ -26,6 +26,7 @@ namespace EngineeringToolsCV_1.Views
     public partial class SQLServerView : Window
     {
         private MStudentInformations _mStudent;
+        private MUser _mUser;
         private MainWindow mainWindow;
         private RegisterViewModel _userRegister;
         private UserResetViewModel _vmUserReset;
@@ -36,16 +37,17 @@ namespace EngineeringToolsCV_1.Views
         SqlCommand com = new SqlCommand();
         SqlDataReader dr;
 
-        public SQLServerView(RegisterViewModel userRegister ,UserResetViewModel vmUserReset,MStudentInformations mStudent)
+        public SQLServerView(RegisterViewModel userRegister ,UserResetViewModel vmUserReset,MStudentInformations mStudent, MUser mUser)
         {
             InitializeComponent();
             this._userRegister = userRegister;
             this._vmUserReset = vmUserReset;
             this._mStudent = mStudent;
-            navigationStore = new NavigationStore();
-            mainWindow = new MainWindow();
-            _NavigationBar = new NavigationBarViewModel("Home");
-            ServerViewModel = new SQLServerViewModel();
+            this._mUser = mUser;
+            this.navigationStore = new NavigationStore();
+            this.mainWindow = new MainWindow();
+            this._NavigationBar = new NavigationBarViewModel("Home");
+            this.ServerViewModel = new SQLServerViewModel();
            
             this.cmbServerTyp.ItemsSource = ServerViewModel.ListServerTyp;
             this.CmbServername.ItemsSource = ServerViewModel.ListServerName;
@@ -169,9 +171,9 @@ namespace EngineeringToolsCV_1.Views
         private void CreateHomeView()
         {
             INavigateService<HomeViewModel> homeNavigationService = new LayoutNavigationService<HomeViewModel>(navigationStore,
-                        () => new HomeViewModel(navigationStore,this._userRegister,this._vmUserReset,this._mStudent), _NavigationBar);
+                        () => new HomeViewModel(navigationStore,this._userRegister,this._vmUserReset,this._mStudent, this._mUser), _NavigationBar);
             homeNavigationService.Navigate();
-            mainWindow.DataContext = new mainViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent);
+            mainWindow.DataContext = new mainViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent,this._mUser);
             mainWindow.Show();
         }
 

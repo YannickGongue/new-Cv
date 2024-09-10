@@ -23,6 +23,7 @@ namespace EngineeringToolsCV_1.ViewModels
         private ObservableCollection<Culture> cultureList;
         private Culture selectedCulture;
         private MStudentInformations _mStudent;
+        private MUser _mUser;
 
         //add a SelectedCulture property
         public Culture SelectedCulture
@@ -69,12 +70,13 @@ namespace EngineeringToolsCV_1.ViewModels
         public ViewModelBase CurrentViewModels => _navigationstore.CurrentViewModels;
 
         public mainViewModel(NavigationStore navigationStore, RegisterViewModel userRegister,
-                             UserResetViewModel vmUserReset, MStudentInformations mStudent)
+                             UserResetViewModel vmUserReset, MStudentInformations mStudent, MUser mUser)
         {
             this._navigationstore = navigationStore;
             this._userRegister = userRegister;
             this._vmUserReset = vmUserReset;
             this._mStudent = mStudent;
+            this._mUser = mUser;
 
             this.executeCommand(navigationStore);
 
@@ -104,7 +106,7 @@ namespace EngineeringToolsCV_1.ViewModels
                 this.SetEnable = true;
                 HomeNavigationCommand = new NavigateCommand<HomeViewModel>(
                                         new LayoutNavigationService<HomeViewModel>(navigationStore,
-                                        () => new HomeViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent), _NavigationBar));
+                                        () => new HomeViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent, this._mUser), _NavigationBar));
             }
            
         }

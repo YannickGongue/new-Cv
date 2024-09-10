@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\
+C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\
 EngineeringToolsCV_1
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\Users\vamic\source\repos\EngineeringToolsCV- Kopie\EngineeringToolsCV_1\App.xaml
-20-1938481577
+C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\App.xaml
+27427568983
 
-51-514471380
+65172289668
 19737549183
-Components\Layout.xaml;Components\NavigationBar.xaml;Language\Language_DE.xaml;Language\Language_EN.xaml;Style\Style.xaml;Themes\Generic.xaml;Themes\Geometry.xaml;Views\BerufView.xaml;Views\DashboardView.xaml;Views\HomeView.xaml;Views\InformationView.xaml;Views\LoginView.xaml;Views\MainWindow.xaml;Views\MessageDialog.xaml;Views\NewPasswordView.xaml;Views\RegisterView.xaml;Views\SQLServerView.xaml;Views\ucRoundButton.xaml;Views\ucWindowStyle.xaml;Views\UserResetView.xaml;
+Components\Layout.xaml;Components\NavigationBar.xaml;Language\Language_DE.xaml;Language\Language_EN.xaml;Style\Style.xaml;Themes\Generic.xaml;Themes\Geometry.xaml;Views\ActivitiesView.xaml;Views\BerufView.xaml;Views\ConfigView.xaml;Views\DashboardView.xaml;Views\FormationView.xaml;Views\HomeView.xaml;Views\InformationView.xaml;Views\InteresseView.xaml;Views\LoginView.xaml;Views\MainWindow.xaml;Views\MessageDialog.xaml;Views\NewPasswordView.xaml;Views\ProjektView.xaml;Views\QualificationView.xaml;Views\RegisterView.xaml;Views\SocialMediaView.xaml;Views\SQLServerView.xaml;Views\ucRoundButton.xaml;Views\ucWindowStyle.xaml;Views\UserResetView.xaml;
 
 False
 

@@ -153,7 +153,8 @@
                 HorizontalAlignment="Left" 
                 Margin="10,0,0,0" 
                 FontSize="18" 
-                Click="CancelButton_Click" />
+                Click="CancelButton_Click" 
+                Command="{Binding CancelCommand}"/>
             <Controls:IconButton  
                 Grid.Column="1" 
                 Grid.Row="5" 
@@ -169,6 +170,7 @@
                 HorizontalAlignment="Right"
                 Margin="10,0,10,0" 
                 FontSize="18" 
+                Command="{Binding regCommand }"
                 Click="RegisterButton_Click" 
                 Cursor="Hand"/>
         </Grid>

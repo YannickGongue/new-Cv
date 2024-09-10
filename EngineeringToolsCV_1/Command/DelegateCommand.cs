@@ -6,11 +6,11 @@ namespace EngineeringToolsCV_1.Command
 {
     class DelegateCommand : ViewModelCommand
     {
-        private readonly Predicate<object> _canExecute;
+        private readonly Func<object, bool> _canExecute;
         private readonly Action<object> _execute;
 
         public DelegateCommand(Action<object> execute,
-                               Predicate<object> canExecute)
+                               Func<object,bool> canExecute)
         {
             _execute = execute;
             _canExecute = canExecute;

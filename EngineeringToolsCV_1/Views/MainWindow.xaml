@@ -34,6 +34,27 @@
             <DataTemplate DataType="{x:Type viewModel:BerufViewModel}">
                 <local:BerufView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ProjektViewModel}">
+                <local:ProjektView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:SocialMediaViewModel}">
+                <local:SocialMediaView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:InteresseViewModel}">
+                <local:InteresseView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:QualificationViewModel}">
+                <local:QualificationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ConfigViewModel}">
+                <local:ConfigView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:FormationViewModel}">
+                <local:FormationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ActivitiesViewModel}">
+                <local:ActivitiesView/>
+            </DataTemplate>
         </Grid.Resources>
         <controls:IconButton  
             Width="90" 

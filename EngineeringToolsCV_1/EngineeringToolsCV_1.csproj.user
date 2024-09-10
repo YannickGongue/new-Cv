@@ -34,6 +34,9 @@
     <Compile Update="Views\LoginView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\SocialMediaView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\SQLServerView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -72,6 +75,24 @@
     <Page Update="Themes\Geometry.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\ActivitiesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ConfigView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\InteresseView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\QualificationView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\FormationView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ProjektView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\BerufView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -94,6 +115,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SocialMediaView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\SQLServerView.xaml">

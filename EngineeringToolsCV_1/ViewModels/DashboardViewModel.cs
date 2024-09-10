@@ -57,15 +57,30 @@ namespace EngineeringToolsCV_1.ViewModels
 
         private NavigationBarViewModel navigationBar;
         private MStudentInformations _mStudent;
-        public ICommand InfoCommand { get; set; }
-
+        public ICommand  InfoCommand { get; set; }
         public ICommand BerufCommand{ get; set; }
+        public ICommand ProjektCommand { get; set; }
+        public ICommand FormationCommand { get; set; }
+        public ICommand QualifCommand { get; set; }
+        public ICommand MediaCommand { get; set; }
+        public ICommand ActivitiesCommand { get; set; }
+        public ICommand ConfigCommand { get; set; }
+        public ICommand InterestCommand { get; set; }
 
-        public DashboardViewModel(NavigationStore navigationStore, MStudentInformations mStudent)
+        public DashboardViewModel(NavigationStore navigationStore, 
+                                  MStudentInformations mStudent)
         {
             this._mStudent = mStudent;
             this.executeInfoCommand(navigationStore);
             this.executeBerufCommand(navigationStore);
+            this.executeProjektCommand(navigationStore);
+            this.executeFormationCommand(navigationStore);
+            this.executeSocialMediaCommand(navigationStore);
+            this.executeQualifCommand(navigationStore);
+            this.executeActivitiesCommand(navigationStore);
+            this.executeConfigCommand(navigationStore);
+            this.executeInterestCommand(navigationStore);
+
             this.init();
         }
 
@@ -85,6 +100,69 @@ namespace EngineeringToolsCV_1.ViewModels
             BerufCommand = new NavigateCommand<BerufViewModel>(
                new LayoutNavigationService<BerufViewModel>(navigationStore,
                () => new BerufViewModel(navigationStore), navigationBar));
+        }
+
+        private void executeProjektCommand(NavigationStore navigationStore)
+        {
+            navigationBar = new NavigationBarViewModel("Home -> Dashboard -> Projekt");
+
+            ProjektCommand = new NavigateCommand<ProjektViewModel>(
+               new LayoutNavigationService<ProjektViewModel>(navigationStore,
+               () => new ProjektViewModel(navigationStore), navigationBar));
+        }
+
+        private void executeFormationCommand(NavigationStore navigationStore)
+        {
+            navigationBar = new NavigationBarViewModel("Home -> Dashboard -> Ausbildung");
+
+            FormationCommand = new NavigateCommand<FormationViewModel>(
+               new LayoutNavigationService<FormationViewModel>(navigationStore,
+               () => new FormationViewModel(navigationStore), navigationBar));
+        }
+
+        private void executeSocialMediaCommand(NavigationStore navigationStore)
+        {
+            navigationBar = new NavigationBarViewModel("Home -> Dashboard -> Medien");
+
+            MediaCommand = new NavigateCommand<SocialMediaViewModel>(
+               new LayoutNavigationService<SocialMediaViewModel>(navigationStore,
+               () => new SocialMediaViewModel(navigationStore), navigationBar));
+        }
+
+        private void executeQualifCommand(NavigationStore navigationStore)
+        {
+            navigationBar = new NavigationBarViewModel("Home -> Dashboard -> Qualification");
+
+            QualifCommand = new NavigateCommand<QualificationViewModel>(
+               new LayoutNavigationService<QualificationViewModel>(navigationStore,
+               () => new QualificationViewModel(navigationStore), navigationBar));
+        }
+
+        private void executeActivitiesCommand(NavigationStore navigationStore)
+        {
+            navigationBar = new NavigationBarViewModel("Home -> Dashboard -> Activities");
+
+            this.ActivitiesCommand = new NavigateCommand<ActivitiesViewModel>(
+               new LayoutNavigationService<ActivitiesViewModel>(navigationStore,
+               () => new ActivitiesViewModel(navigationStore), navigationBar));
+        }
+
+        private void executeConfigCommand(NavigationStore navigationStore)
+        {
+            navigationBar = new NavigationBarViewModel("Home -> Dashboard -> Configuration");
+
+            this.ConfigCommand = new NavigateCommand<ConfigViewModel>(
+               new LayoutNavigationService<ConfigViewModel>(navigationStore,
+               () => new ConfigViewModel(navigationStore), navigationBar));
+        }
+
+        private void executeInterestCommand(NavigationStore navigationStore)
+        {
+            navigationBar = new NavigationBarViewModel("Home -> Dashboard -> Interesse");
+
+            this.InterestCommand = new NavigateCommand<InteresseViewModel>(
+               new LayoutNavigationService<InteresseViewModel>(navigationStore,
+               () => new InteresseViewModel(navigationStore), navigationBar));
         }
 
         private void init()
@@ -123,6 +201,7 @@ namespace EngineeringToolsCV_1.ViewModels
             this.SetEnableHobby = true;
             this.SetEnableMedia = true;
             this.SetEnableConfig = true;
+            this.SetEnableQualication = true;
         }
 
         public Brush SetBackColor

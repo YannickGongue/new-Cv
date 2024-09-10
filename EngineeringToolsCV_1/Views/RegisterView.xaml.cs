@@ -21,9 +21,9 @@ namespace EngineeringToolsCV_1.Views
     /// </summary>
     public partial class RegisterView : Window
     {
-        private User userRepositories;
+       
         private LoginViewModel _vmLogin;
-        private MUser mUser;
+       
         
         public RegisterView(LoginViewModel vmLogin)
         {
@@ -49,15 +49,7 @@ namespace EngineeringToolsCV_1.Views
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            this.userRepositories = new User();            
-            this.mUser = new MUser();
-
-            this.mUser.Id = this.Username.Text;
-            this.mUser.Email = this.Email.Text;
-            this.mUser.Passwort = this.Password.Text;
-            this.mUser.ConfirmPasswort = this.ConfirmPasswort.Text;
-
-            this.userRepositories.AddUser(mUser);
+           
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

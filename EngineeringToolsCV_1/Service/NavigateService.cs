@@ -17,7 +17,6 @@ namespace EngineeringToolsCV_1.Service
             _createViewModel = createViewModel;
         }
 
-
         public void Navigate()
         {
             _navigationStore.CurrentViewModels = _createViewModel();

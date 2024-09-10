@@ -17,14 +17,16 @@ namespace EngineeringToolsCV_1.ViewModels
     {
         private string password;
         private string username;
+       
         private bool setActivedWindow;
         private bool userResetEnabled;
         private RegisterView register;
         private UserResetView UserResetView;
-        private RegisterViewModel _vmRegister;
+        //private RegisterViewModel _vmRegister;
         private UserResetViewModel _vmUserReset;
         private IUser userRepository;
         private MStudentInformations _mStudent;
+        private MUser mUser;
         private NavigationBarViewModel navigationBar;
 
         public ViewModelCommand NavigateLoginCommand { get; }
@@ -43,6 +45,7 @@ namespace EngineeringToolsCV_1.ViewModels
                 }
             }
         }
+
         public bool SetActivedWindow
         {
             get { return this.setActivedWindow; }
@@ -84,12 +87,12 @@ namespace EngineeringToolsCV_1.ViewModels
             }
         }
 
-        public LoginViewModel(NavigationStore navigateStore, RegisterViewModel vmRegister, 
+        public LoginViewModel(NavigationStore navigateStore, MUser _mUser,
                               UserResetViewModel vmUserReset, MStudentInformations mStudent)
-        {
-            this._vmRegister = vmRegister;
+        {          
             this._vmUserReset = vmUserReset;
             this._mStudent = mStudent;
+            this.mUser = _mUser;
             this.navigationBar = new NavigationBarViewModel("Home -> Dashboard");
 
             this.SetActivedWindow = true;
@@ -121,8 +124,8 @@ namespace EngineeringToolsCV_1.ViewModels
         {
             this.register = new RegisterView(this);
             this.SetActivedWindow = false;
-            this.register.DataContext = new RegisterViewModel();
-             register.Show();               
+            this.register.DataContext = new RegisterViewModel(this, this.mUser);
+            this.register.Show();               
            
         }
     }

@@ -31,6 +31,7 @@ namespace EngineeringToolsCV_1.Views
 
         public InformationView()
         {
+            this.userInfosRepositories = new UserInfos();
             InitializeComponent();
             
         }

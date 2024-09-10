@@ -14,7 +14,7 @@ namespace EngineeringToolsCV_1.Repositories
 {
     public class User : Setting, IUser
     {
-        private RegisterViewModel registerModelView;
+        //private RegisterViewModel registerModelView;
         private ErrorMessageViewModel ErrorMessageView;
         private MessageDialog dialogMessage;
         private DBName constante; 
@@ -22,13 +22,14 @@ namespace EngineeringToolsCV_1.Repositories
         private SqlDataAdapter sqladDataAdapter;
         private string connectionString;
         private SqlCommand sqlcmdManager;         
-        private SqlConnection sqlconManager;      
+        private SqlConnection sqlconManager;    
+        
 
         public void AddUser(MUser mUser)
         {
             int iCount;                   
             string strQueryRegister;
-            this.registerModelView = new RegisterViewModel();
+            //this.registerModelView = new RegisterViewModel();
             this.ErrorMessageView = new ErrorMessageViewModel();
             this.dialogMessage = new MessageDialog();
             this.sqlconManager = new SqlConnection();

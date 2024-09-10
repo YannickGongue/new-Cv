@@ -53,7 +53,7 @@ namespace EngineeringToolsCV_1.Components {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/EngineeringToolsCV_1;V1.0.0.0;component/components/navigationbar.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EngineeringToolsCV_1;component/components/navigationbar.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Components\NavigationBar.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

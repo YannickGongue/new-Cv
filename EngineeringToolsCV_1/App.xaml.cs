@@ -31,17 +31,21 @@ namespace EngineeringToolsCV_1
         private RegisterViewModel _vmRegister;
         private UserResetViewModel _vmUserReset;
         private MStudentInformations _mStudent;
+        private MUser mUser;
+        private LoginViewModel VmLogin;
+
        
         public App()
         {
-           
+            this.mUser = new MUser();
+            this.VmLogin = new LoginViewModel(navigationStore,this.mUser, _vmUserReset, _mStudent);
             this._mStudent = new MStudentInformations();
-            this._vmRegister = new RegisterViewModel();
+            this._vmRegister = new RegisterViewModel(this.VmLogin, this.mUser);
             this._vmUserReset = new UserResetViewModel();
             this.navigationStore = new NavigationStore();
             this.mainWindow = new MainWindow();
             this._NavigationBar = new NavigationBarViewModel("Home");
-            this.ServerView = new SQLServerView(this._vmRegister,this._vmUserReset,this._mStudent);
+            this.ServerView = new SQLServerView(this._vmRegister,this._vmUserReset,this._mStudent,this.mUser);
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
@@ -66,9 +70,9 @@ namespace EngineeringToolsCV_1
         private void CreateHomeView()
         {
             INavigateService<HomeViewModel> homeNavigationService = new LayoutNavigationService<HomeViewModel>(navigationStore,
-                        () => new HomeViewModel(navigationStore, this._vmRegister, this._vmUserReset,this._mStudent), _NavigationBar);
+                        () => new HomeViewModel(navigationStore, this._vmRegister, this._vmUserReset,this._mStudent,this.mUser), _NavigationBar);
             homeNavigationService.Navigate();
-            this.mainWindow.DataContext = new mainViewModel(navigationStore, this._vmRegister,this._vmUserReset,this._mStudent);
+            this.mainWindow.DataContext = new mainViewModel(navigationStore, this._vmRegister,this._vmUserReset,this._mStudent,this.mUser);
             this.mainWindow.Show();
         }
         
