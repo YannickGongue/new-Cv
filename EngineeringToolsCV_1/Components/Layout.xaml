@@ -45,11 +45,12 @@
             FontSize="15" 
             Text="{Binding Path=StrUserEmail}" />
 
-        <ContentControl
+            <ContentControl
              Content="{ Binding ContentViewModels}" 
              HorizontalAlignment="Center" 
              VerticalAlignment="Center" 
              BorderBrush="Transparent"
              Width="710" Height="490"/>
+     
     </Grid>
 </UserControl>

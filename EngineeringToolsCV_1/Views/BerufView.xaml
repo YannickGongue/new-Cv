@@ -4,10 +4,77 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EngineeringToolsCV_1.Views"
+      xmlns:Controls="clr-namespace:EngineeringToolsCV_1"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
-        <TextBlock Text="Berufserfahrung" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" Width="402"/>
+        <Border BorderBrush="CornflowerBlue"
+                BorderThickness="1"
+                Margin="0,2,0,208"
+                Height="40"
+                CornerRadius="10"
+                VerticalAlignment="Top"/>
+        <TextBlock Text="Experience" 
+                   VerticalAlignment ="Top" 
+                   HorizontalAlignment="Center"  
+                   FontSize="22"
+                   Width="150" 
+                   Foreground="CornflowerBlue"
+                   Margin="28,5,0,0"/>
+            
+            <Controls:IconButton 
+                        Command="{Binding NavigateAddCommand }"
+                        CornerRadius="1" 
+                        Width="80"                  
+                        Height="45" 
+                        
+                        PathData="{StaticResource add-new}"
+                         
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                       
+                        Cursor="Hand"
+                        Margin="0,-2,-10,2"
+                        Foreground="CornflowerBlue"/>
+
+
+             <Controls:IconButton 
+                        Command="{Binding NavigateAddCommand }"
+                        CornerRadius="1" 
+                        Width="120"                  
+                        Height="40" 
+                        
+                        PathData="{StaticResource left-Arrow}"
+                         
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                         
+                        Cursor="Hand"
+                        Margin="-20,-2,25,2"
+                        Foreground="CornflowerBlue"/>
+
+
+            <Controls:IconButton 
+                Command="{Binding SaveCommand }"
+                CornerRadius="15" 
+                Width="554" 
+                BorderBrush="Gray" 
+                BorderThickness="2" 
+                Height="40" 
+                Text="{StaticResource ButtonSpeichern}"
+                PathData="{StaticResource Save}" 
+                Background="RoyalBlue" 
+                Foreground="AliceBlue"  
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Margin="0,5,0,5"
+                FontSize="18" 
+                Cursor="Hand" 
+                Grid.Column="1"
+                />
+
+
+
     </Grid>
 </UserControl>

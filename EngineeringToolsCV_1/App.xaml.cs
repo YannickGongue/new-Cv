@@ -38,7 +38,7 @@ namespace EngineeringToolsCV_1
         public App()
         {
             this.mUser = new MUser();
-            this.VmLogin = new LoginViewModel(navigationStore,this.mUser, _vmUserReset, _mStudent);
+            this.VmLogin = new LoginViewModel(this.navigationStore,this.mUser, this._vmUserReset, this._mStudent);
             this._mStudent = new MStudentInformations();
             this._vmRegister = new RegisterViewModel(this.VmLogin, this.mUser);
             this._vmUserReset = new UserResetViewModel();
@@ -69,10 +69,10 @@ namespace EngineeringToolsCV_1
 
         private void CreateHomeView()
         {
-            INavigateService<HomeViewModel> homeNavigationService = new LayoutNavigationService<HomeViewModel>(navigationStore,
-                        () => new HomeViewModel(navigationStore, this._vmRegister, this._vmUserReset,this._mStudent,this.mUser), _NavigationBar);
+            INavigateService<HomeViewModel> homeNavigationService = new LayoutNavigationService<HomeViewModel>(this.navigationStore,
+                        () => new HomeViewModel(this.navigationStore, this._vmRegister, this._vmUserReset,this._mStudent,this.mUser), this._NavigationBar);
             homeNavigationService.Navigate();
-            this.mainWindow.DataContext = new mainViewModel(navigationStore, this._vmRegister,this._vmUserReset,this._mStudent,this.mUser);
+            this.mainWindow.DataContext = new mainViewModel(this.navigationStore, this._vmRegister,this._vmUserReset,this._mStudent,this.mUser);
             this.mainWindow.Show();
         }
         
