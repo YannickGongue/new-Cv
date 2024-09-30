@@ -6,179 +6,226 @@
       xmlns:local="clr-namespace:EngineeringToolsCV_1.Views" 
       xmlns:Controls="clr-namespace:EngineeringToolsCV_1"
       mc:Ignorable="d" 
-      Height="490" 
-      Width="710">
+      Height="650" 
+      Width="830">
     <UserControl.Resources>
 
         <Style TargetType="{x:Type TextBox}" x:Key="TextboxStyle">
             <Setter Property="HorizontalContentAlignment" Value ="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="25"/>
+          
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <Border BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            CornerRadius="4">
-                            <ContentPresenter 
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"/>
-                        </Border>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush"   Value="RoyalBlue" />
+                                <Setter Property="Foreground" Value="blue"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True"/>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="BorderBrush" Value="red" />
-                </Trigger>
-            </Style.Triggers>
         </Style>
 
     </UserControl.Resources>
-    <GroupBox Header="{StaticResource GroupLabelPersonalDaten}" 
+    <Grid>
+        <Border BorderBrush="CornflowerBlue"
+                BorderThickness="1"
+                Margin="10,2,10,0"
+                Height="40"
+                CornerRadius="10"
+                VerticalAlignment="Top"/>
+        <TextBlock Text="personal Data" 
+                   VerticalAlignment ="Top" 
+                   HorizontalAlignment="Center"  
+                   FontSize="22"
+                   Width="150" 
+                   Foreground="CornflowerBlue"
+                   Margin="28,5,0,0"/>
+        <Controls:IconButton 
+                        Command="{Binding NavigateCancelCommand  }"
+                        CornerRadius="1" 
+                        Width="120"                  
+                        Height="40" 
+                        
+                        PathData="{StaticResource left-Arrow}"
+                         
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                         
+                        Cursor="Hand"
+                        Margin="-20,-2,25,2"
+                        Foreground="CornflowerBlue"/>
+
+        <GroupBox Header="{StaticResource GroupLabelPersonalDaten}" 
               FontWeight="Normal"
               FontSize="18"
               BorderBrush="Gray"
-              BorderThickness="2">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="47*"/>
-                <ColumnDefinition Width="651*"/>
-            </Grid.ColumnDefinitions>
-            <Label Content="{StaticResource LabelNachname}"
+              BorderThickness="2"
+              Margin="0,52,0,65">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="47*"/>
+                    <ColumnDefinition Width="651*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="{StaticResource LabelTitle}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
+                    Margin="20,0,0,0"
                    FontSize="17"
                    Width="200" Grid.ColumnSpan="2"/>
-            <TextBox   
-                    x:Name="txtName"
-                    Width="330"
-                    Height="30"
+               
+                <TextBox               
+                    Controls:CornerRadiusSetter.CornerRadius="10" 
+                   
+                    BorderThickness="2"
+                    x:Name="txtTitle"                
+                    Width="575" 
+                    HorizontalContentAlignment="Center"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Margin="0,30,0,0"
+                    Margin="22,28,0,0"
                     Grid.ColumnSpan="2"
-                    Text="{Binding Path=StrName}"/>
-            <Label
+                    Text="{Binding Path=StrTitle}"
+                    BorderBrush="{Binding ColorTitle}"/>
+                <Label
+                   Content="{StaticResource LabelNachname}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Width="200"
+                   Height="30"
+                   Margin="20,55,0,0" Grid.ColumnSpan="2"/>
+                <TextBox 
+                   Controls:CornerRadiusSetter.CornerRadius="10" 
+                    BorderThickness="2"
+                     x:Name="txtNachname"
+                     HorizontalContentAlignment="Center"
+                     Width="580"  
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Margin="20,86,0,0"
+                     Grid.ColumnSpan="2"
+                     Text="{Binding Path=StrVorname}"
+                     BorderBrush="{Binding ColorName}"/>
+                <Label
                    Content="{StaticResource LabelVorname}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Width="200"
                    Height="30"
-                   Margin="0,60,0,0" Grid.ColumnSpan="2"/>
-            <TextBox 
-                     x:Name="txtVorname"
-                     HorizontalContentAlignment="Center"
-                     Width="330"
-                     Height="30"
-                     HorizontalAlignment="Left"
-                     VerticalAlignment="Top"
-                     Margin="0,95,0,0"
-                     Grid.ColumnSpan="2"
-                     Text="{Binding Path=StrVorname}"/>
-            <Label
-                   Content="{StaticResource LabelEmail}"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   Width="200"
-                   Height="30"
-                   Margin="0,123,0,0" Grid.ColumnSpan="2"/>
-            <TextBox 
-                   x:Name="txtEmail"
+                   Margin="20,115,0,0" Grid.ColumnSpan="2"/>
+                <TextBox 
+                   Controls:CornerRadiusSetter.CornerRadius="10" 
+                    BorderThickness="2"                 
+                    x:Name="txtVorname"
                     HorizontalContentAlignment="Center"
-                    Width="330"
-                    Height="30"
+                    Width="580"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Margin="0,155,0,0" 
+                    Margin="20,146,0,0" 
                     Grid.ColumnSpan="2"
-                    Text="{Binding Path=StrEmail}"/>
+                    Text="{Binding Path=StrEmail}"
+                     BorderBrush="{Binding ColorVorname}"/>
 
-            <Label
-                Content="{StaticResource LabelStraße}"
+                <Label
+                  Content="{StaticResource LabelStraße}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Width="200"
                    Height="30"
-                   Margin="0,182,0,0" Grid.ColumnSpan="2"/>
-            <TextBox 
+                   Margin="20,173,0,0" Grid.ColumnSpan="2"/>
+                <TextBox 
+                   Controls:CornerRadiusSetter.CornerRadius="10" 
+                    BorderThickness="2"
                    x:Name="txtStraße"
                     HorizontalContentAlignment="Center"
-                    Width="490"
-                    Height="30"
+                    Width="580"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Margin="0,210,0,0" Grid.ColumnSpan="2"
-                   Text="{Binding Path=StrStraße}"/>
-            <Label
-                Content="{StaticResource LabelStraßnummer}"
+                    Margin="20,205,0,0" Grid.ColumnSpan="2"
+                   Text="{Binding Path=StrStraße}"
+                     BorderBrush="{Binding ColorStraße}"/>
+                <Label
+                  Content="{StaticResource LabelStraßnummer}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Width="200"
                    Height="30"
-                   Margin="0,240,0,0" Grid.ColumnSpan="2"/>
-            <TextBox 
+                   Margin="20,230,0,0" Grid.ColumnSpan="2"/>
+                <TextBox 
+                   Controls:CornerRadiusSetter.CornerRadius="10" 
+                    BorderThickness="2"
                    x:Name="txtNummer"
                      HorizontalContentAlignment="Center"
                      Width="150"
-                     Height="30"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
-                     Margin="0,275,0,0" 
+                     Margin="20,264,0,0" 
                      Grid.ColumnSpan="2"
-                    Text="{Binding Path=StrNummer}"/>
-             <Label
+                    Text="{Binding Path=StrNummer}"
+                     BorderBrush="{Binding ColorNummer}"/>
+                <Label
                    Content="{StaticResource LabelPostleitzahl}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Width="200"
                    Height="30"
-                   Margin="0,305,0,0" 
+                   Margin="20,290,0,0" 
                   Grid.ColumnSpan="2"/>
-            <TextBox 
+                <TextBox
+                   Controls:CornerRadiusSetter.CornerRadius="10" 
+                    BorderThickness="2"
                     x:Name="txtPstleitzahl"
                      HorizontalContentAlignment="Center"
-                     Width="150"
-                     Height="30"
+                     Width="150"                   
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
-                     Margin="0,335,0,0" 
+                     Margin="20,325,0,0" 
                      Grid.ColumnSpan="2"
-                     Text="{Binding Path=StrPostleitzahl}"/>
-            <Label
+                     Text="{Binding Path=StrPostleitzahl}"
+                     BorderBrush="{Binding ColorPlz}"/>
+                <Label
                   Content="{StaticResource LabelStadt}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Width="200"
                    Height="35"
-                   Margin="289,292,0,0"
+                   Margin="289,288,0,0"
                    Grid.ColumnSpan="2"/>
-            
+
                 <ComboBox 
                     Name="cmbStadt"
+                    HorizontalAlignment="Left"
                     Width="200"
                     ItemsSource="{Binding CityList}"
                     Height="30"
                     Grid.Column="1"
-                    Margin="29,230,0,0"
-                    SelectedItem="{Binding Path=SelectedCity}"/>
-                
-            <Border BorderBrush="Gray"
+                    Margin="235,169,0,0"
+                    SelectedItem="{Binding Path=SelectedCity}"
+                     BorderBrush="{Binding ColorCity}"/>
+
+                <Border BorderBrush="Gray"
                     BorderThickness="2"
                     Width="152"
                     Height="122"
                     VerticalAlignment="Top"
+                     HorizontalAlignment="Right"
                     Background="AliceBlue"
-                    Margin="85,10,0,0"
+                    Margin="85,10,20,0"
                     Grid.Column="1">
-                <Image                 
+                    <Image                 
                     Stretch="Uniform"
                      Name="imageFoto"
                      Width="152" 
                      Height="120"
                      VerticalAlignment="Top"
-                     Grid.Column="1"/>
-            </Border>
-            <Controls:IconButton 
+                    
+                    />
+                </Border>
+              <Controls:IconButton 
                 Command="{Binding LoadCommand }"
                 CornerRadius="8"
                 Width="155"
@@ -191,22 +238,89 @@
                 Text="{StaticResource ButtonFotoHerunterladen}"
                 FontSize="25"
                 VerticalAlignment="Top"
-                Margin="289,145,206,0" 
+                 HorizontalAlignment="Right"
+                Margin="289,145,20,0" 
                 Cursor="Hand" 
                 Grid.Column="1"
                 Click="LoadFotoButton_Click"/>
 
-            <TextBox 
+                <Label
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Width="200"
+                   Height="30"
+                   Margin="20,360,0,0" Grid.ColumnSpan="2" 
+                   Content="{StaticResource LabelGeburtsdatum}"/>
+                <DatePicker      
+                   x:Name="txtDate"
+                    HorizontalContentAlignment="Center"
+                    Width="180"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="20,395,0,0" 
+                    Grid.ColumnSpan="2"
+                    Text="{Binding Path=StrDate}"
+                     BorderBrush="{Binding ColorDate}"/>
+
+                <Label
+                   Content="{StaticResource LabelGeburtsort}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Width="200"
+                   Height="30"
+                   Margin="295,360,0,0" Grid.ColumnSpan="2" 
+                  />
+                <TextBox 
+                   Controls:CornerRadiusSetter.CornerRadius="10" 
+                    BorderThickness="2"
+                   x:Name="txtBirthplace"
+                    HorizontalContentAlignment="Center"
+                    Width="180"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="295,395,0,0" 
+                    Grid.ColumnSpan="2"
+                    Text="{Binding Path=strBirthPlace}"
+                     BorderBrush="{Binding ColorBirth}"/>
+
+                <Label
+                   Content="{StaticResource LabelEmail}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Width="200"
+                   Height="30"
+                   Margin="20,435,0,0" Grid.ColumnSpan="2" 
+                  />
+                <TextBox 
+                  Controls:CornerRadiusSetter.CornerRadius="10" 
+                    BorderThickness="2"
+                   x:Name="txtEmail"
+                    HorizontalContentAlignment="Center"
+                    Width="580"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="20,470,0,0" 
+                    Grid.ColumnSpan="2"
+                    Text="{Binding Path=strEmail}"
+                     BorderBrush="{Binding ColorEmail}"/>
+
+
+
+
+            </Grid>
+
+        </GroupBox>
+        <TextBox 
                Name="tbSearch"
                HorizontalAlignment="Left"
-               Width="175"
+               Width="174"
                Height="30"
                TextAlignment="Center"
-               Margin="0,375,0,54" Grid.ColumnSpan="2"/>
-            <Controls:IconButton 
+               Margin="22,605,0,15"/>
+        <Controls:IconButton 
                 Command="{Binding NavigateSearchCommand }"
                 CornerRadius="15" 
-                Width="128" 
+                Width="163" 
                 BorderBrush="Gray" 
                 BorderThickness="2" 
                 Height="40" 
@@ -215,29 +329,14 @@
                 Background="RoyalBlue" 
                 Foreground="AliceBlue"  
                 HorizontalAlignment="Left"
-                Margin="133,370,0,49" 
+                Margin="201,600,0,10" 
                 FontSize="18" 
-                Cursor="Hand"
-                Grid.Column="1"/>
-            <Controls:IconButton 
-                Command="{Binding NavigateSendCommand }"
-                CornerRadius="15" 
-                Width="175" 
-                BorderBrush="Gray" 
-                BorderThickness="2" 
-                Height="40" 
-                Text="{StaticResource ButtonSenden }"
-                PathData="{StaticResource Send }" 
-                Background="RoyalBlue" 
-                Foreground="AliceBlue"  
-                HorizontalAlignment="Left"
-                Margin="268,370,0,49" 
-                FontSize="18" 
-                Cursor="Hand" Grid.Column="1"/>
-            <Controls:IconButton 
+                Cursor="Hand" />
+
+        <Controls:IconButton 
                 Command="{Binding SaveCommand }"
                 CornerRadius="15" 
-                Width="154" 
+                Width="272" 
                 BorderBrush="Gray" 
                 BorderThickness="2" 
                 Height="40" 
@@ -245,97 +344,11 @@
                 PathData="{StaticResource Save}" 
                 Background="RoyalBlue" 
                 Foreground="AliceBlue"  
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                Margin="0,419,260,0" 
-                FontSize="18" 
-                Cursor="Hand" 
-                Grid.Column="1"
-                />
-            <Controls:IconButton 
-                Command="{Binding NavigateEditCommand }"
-                CornerRadius="15" 
-                Width="155" 
-                BorderBrush="Gray" 
-                BorderThickness="2" 
-                Height="40" 
-                Text="{StaticResource ButtonEditieren}"
-                PathData="{StaticResource Edit}" 
-                Background="RoyalBlue" 
-                Foreground="AliceBlue"  
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                FontSize="18" 
-                Cursor="Hand" Grid.ColumnSpan="2"/>
-            
-            <Controls:IconButton 
-                Command="{Binding NavigateCancelCommand }"
-                CornerRadius="15" 
-                Width="154" 
-                BorderBrush="Gray" 
-                BorderThickness="2" 
-                Height="40" 
-                Text="{StaticResource ButtonAbbrechen}"
-                PathData="{StaticResource Cancel-Icon}" 
-                Background="RoyalBlue" 
-                Foreground="AliceBlue"  
-                HorizontalAlignment="Center"
                 VerticalAlignment="Top"
+                Margin="464,600,0,0" 
                 FontSize="18" 
-                Cursor="Hand"
-                Margin="0,419,-70,0" 
-                Grid.Column="1"/>
+                Cursor="Hand" />
 
-            <GroupBox
-                Header="{StaticResource ListLabelPerson}"
-                BorderBrush="Gray"
-                Width="200"
-                Height="460"
-                HorizontalAlignment="Right"
-                Background="AliceBlue"
-                Margin="0,-5,0,4" Grid.Column="1">
-
-                <StackPanel 
-                  Orientation="Vertical" 
-                  HorizontalAlignment="Right"                 
-                  Width="190"
-                  Height="438">
-                    <ListView Width="185"
-                              Height="330">
-                    </ListView>
-
-                    <Controls:IconButton 
-                        Command="{Binding NavigateAddCommand }"
-                        CornerRadius="1" 
-                        Width="182" 
-                        BorderBrush="Gray" 
-                        BorderThickness="2" 
-                        Height="43" 
-                        Text="{StaticResource Buttonhinzufügen}"
-                        PathData="{StaticResource add-new}"
-                        Background="RoyalBlue" 
-                        Foreground="AliceBlue"  
-                        VerticalAlignment="Bottom"
-                        FontSize="28" 
-                        Cursor="Hand"
-                        Margin="0,10,0,2"/>
-                    <Controls:IconButton 
-                        Command="{Binding NavigateRemoveCommand }"
-                        CornerRadius="1" 
-                        Width="182" 
-                        BorderBrush="Gray" 
-                        BorderThickness="2" 
-                        Height="43" 
-                        Text="{StaticResource ButtonEntfernen}"
-                        PathData="{StaticResource Remove}"
-                        Background="RoyalBlue" 
-                        Foreground="AliceBlue"                
-                        VerticalAlignment="Bottom"
-                        FontSize="28" 
-                        Cursor="Hand"/>
-                </StackPanel>
-            </GroupBox>
-        </Grid>
-    </GroupBox>
-
+    </Grid>
 </UserControl>

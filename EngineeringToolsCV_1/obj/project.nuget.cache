@@ -1,15 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "soouYAgxLdMfzBzHHNPEjHF7rDiHCDPbkP5yK7oBZSPjpgRZTSEgTFUd8rdinV9H6U/6sZ2DVx/T2WdOxYGUEQ==",
+  "dgSpecHash": "omqdu4Ic953HCB2CzVEXJXcmbZgL74LUsmVGADGk2iEPFhu4xSRjuVoC1akRTP0YrCcC4RC8+b1/ClB/WeLBQg==",
   "success": true,
   "projectFilePath": "C:\\Users\\vamic\\source\\repos\\Project_Engeneering_Tools\\EngineeringToolsCV_1\\EngineeringToolsCV_1.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\vamic\\.nuget\\packages\\haley.wpf\\5.4.3.1\\haley.wpf.5.4.3.1.nupkg.sha512",
     "C:\\Users\\vamic\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\vamic\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\vamic\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "C:\\Users\\vamic\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\vamic\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\vamic\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\vamic\\.nuget\\packages\\shellbrowser.net\\7.1.0.357\\shellbrowser.net.7.1.0.357.nupkg.sha512",
     "C:\\Users\\vamic\\.nuget\\packages\\simplemodal.wpf\\1.0.0\\simplemodal.wpf.1.0.0.nupkg.sha512",
     "C:\\Users\\vamic\\.nuget\\packages\\syncfusion.licensing\\20.4.0.38\\syncfusion.licensing.20.4.0.38.nupkg.sha512",
     "C:\\Users\\vamic\\.nuget\\packages\\syncfusion.sfchart.wpf\\20.4.0.38\\syncfusion.sfchart.wpf.20.4.0.38.nupkg.sha512",
@@ -19,6 +21,26 @@
     "C:\\Users\\vamic\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Das Paket \"Haley.WPF 5.4.3.1\" wurde nicht mit dem Projektzielframework \".NETCoreApp,Version=v3.1\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
+      "libraryId": "Haley.WPF",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Das Paket \"ShellBrowser.NET 7.1.0.357\" wurde nicht mit dem Projektzielframework \".NETCoreApp,Version=v3.1\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
+      "libraryId": "ShellBrowser.NET",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",

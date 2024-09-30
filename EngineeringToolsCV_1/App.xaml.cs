@@ -11,6 +11,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Globalization;
+using Haley.Utils;
 
 namespace EngineeringToolsCV_1
 {
@@ -50,6 +52,7 @@ namespace EngineeringToolsCV_1
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {  
+            
             if(Environment.MachineName.Equals("DESKTOP-5FKC835"))
             {
                 setting = new AppSetting();

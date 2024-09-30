@@ -15,6 +15,13 @@ namespace EngineeringToolsCV_1.ViewModels
 {
     public class DashboardViewModel : ViewModelBase
     {
+        private InformationViewModel VmInfos;
+        private BerufViewModel VmBeruf;
+        private FormationViewModel VmFormation;
+        private InteresseViewModel VmInteresse;
+        private ProjektViewModel VmProject;
+        private QualificationViewModel VmQualif;
+        private SocialMediaViewModel VmSocialMedia;
         private Brush setBackColor;
         private bool setEnable;
         private bool setEnableInfo;
@@ -95,11 +102,11 @@ namespace EngineeringToolsCV_1.ViewModels
 
         private void executeBerufCommand(NavigationStore navigationStore)
         {
-            navigationBar = new NavigationBarViewModel("Home -> Dashboard -> Beruferfahrung");
+            navigationBar = new NavigationBarViewModel("Home -> Dashboard -> Experiences");
 
             BerufCommand = new NavigateCommand<BerufViewModel>(
                new LayoutNavigationService<BerufViewModel>(navigationStore,
-               () => new BerufViewModel(navigationStore), navigationBar));
+               () => new BerufViewModel(navigationStore,this._mStudent), navigationBar));
         }
 
         private void executeProjektCommand(NavigationStore navigationStore)

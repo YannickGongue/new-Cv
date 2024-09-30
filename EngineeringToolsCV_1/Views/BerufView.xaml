@@ -6,12 +6,39 @@
       xmlns:local="clr-namespace:EngineeringToolsCV_1.Views"
       xmlns:Controls="clr-namespace:EngineeringToolsCV_1"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800">
+      Height="650"           
+      Width="830">
+    <UserControl.Resources>
+
+        <Style TargetType="{x:Type TextBox}" x:Key="TextboxStyle">
+            <Setter Property="HorizontalContentAlignment" Value ="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="4">
+                            <ContentPresenter 
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="red" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
 
     <Grid>
         <Border BorderBrush="CornflowerBlue"
                 BorderThickness="1"
-                Margin="0,2,0,208"
+                Margin="10,2,10,0"
                 Height="40"
                 CornerRadius="10"
                 VerticalAlignment="Top"/>
@@ -22,8 +49,8 @@
                    Width="150" 
                    Foreground="CornflowerBlue"
                    Margin="28,5,0,0"/>
-            
-            <Controls:IconButton 
+
+        <Controls:IconButton 
                         Command="{Binding NavigateAddCommand }"
                         CornerRadius="1" 
                         Width="80"                  
@@ -39,8 +66,8 @@
                         Foreground="CornflowerBlue"/>
 
 
-             <Controls:IconButton 
-                        Command="{Binding NavigateAddCommand }"
+        <Controls:IconButton 
+                        Command="{Binding NavigateReturnCommand }"
                         CornerRadius="1" 
                         Width="120"                  
                         Height="40" 
@@ -55,7 +82,7 @@
                         Foreground="CornflowerBlue"/>
 
 
-            <Controls:IconButton 
+        <Controls:IconButton 
                 Command="{Binding SaveCommand }"
                 CornerRadius="15" 
                 Width="554" 
@@ -73,8 +100,155 @@
                 Cursor="Hand" 
                 Grid.Column="1"
                 />
+        <GroupBox Header="{StaticResource GroupLabelPersonalDaten}" 
+              FontWeight="Normal"
+              FontSize="18"
+              BorderBrush="Gray"
+              BorderThickness="2" Margin="0,42,0,60">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="47*"/>
+                    <ColumnDefinition Width="651*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="{StaticResource LabelNachname}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   FontSize="17"
+                   Width="200" Grid.ColumnSpan="2"/>
+                <TextBox   
+                    x:Name="txtName"
+                    Width="330"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="0,30,0,0"
+                    Grid.ColumnSpan="2"
+                    Text="{Binding Path=StrName}"/>
+                <Label
+                   Content="{StaticResource LabelVorname}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Width="200"
+                   Height="30"
+                   Margin="0,60,0,0" Grid.ColumnSpan="2"/>
+                <TextBox 
+                     x:Name="txtVorname"
+                     HorizontalContentAlignment="Center"
+                     Width="330"
+                     Height="30"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Margin="0,95,0,0"
+                     Grid.ColumnSpan="2"
+                     Text="{Binding Path=StrVorname}"/>
+                <Label
+                   Content="{StaticResource LabelEmail}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Width="200"
+                   Height="30"
+                   Margin="0,123,0,0" Grid.ColumnSpan="2"/>
+                <TextBox 
+                   x:Name="txtEmail"
+                    HorizontalContentAlignment="Center"
+                    Width="330"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="0,155,0,0" 
+                    Grid.ColumnSpan="2"
+                    Text="{Binding Path=StrEmail}"/>
+
+                <Label
+                Content="{StaticResource LabelStraße}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Width="200"
+                   Height="30"
+                   Margin="0,182,0,0" Grid.ColumnSpan="2"/>
+                <TextBox 
+                   x:Name="txtStraße"
+                    HorizontalContentAlignment="Center"
+                    Width="490"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="0,210,0,0" Grid.ColumnSpan="2"
+                   Text="{Binding Path=StrStraße}"/>
+                <Label
+                Content="{StaticResource LabelStraßnummer}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Width="200"
+                   Height="30"
+                   Margin="0,240,0,0" Grid.ColumnSpan="2"/>
+                <TextBox 
+                   x:Name="txtNummer"
+                     HorizontalContentAlignment="Center"
+                     Width="150"
+                     Height="30"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Margin="0,275,0,0" 
+                     Grid.ColumnSpan="2"
+                    Text="{Binding Path=StrNummer}"/>
+                <Label
+                   Content="{StaticResource LabelPostleitzahl}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Width="200"
+                   Height="30"
+                   Margin="0,305,0,0" 
+                  Grid.ColumnSpan="2"/>
+                <TextBox 
+                    x:Name="txtPstleitzahl"
+                     HorizontalContentAlignment="Center"
+                     Width="150"
+                     Height="30"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Margin="0,335,0,0" 
+                     Grid.ColumnSpan="2"
+                     Text="{Binding Path=StrPostleitzahl}"/>
+                <Label
+                  Content="{StaticResource LabelStadt}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Width="200"
+                   Height="35"
+                   Margin="289,292,0,0"
+                   Grid.ColumnSpan="2"/>
+
+                <ComboBox 
+                    Name="cmbStadt"
+                    Width="200"
+                    ItemsSource="{Binding CityList}"
+                    Height="30"
+                    Grid.Column="1"
+                    Margin="29,230,0,0"
+                    SelectedItem="{Binding Path=SelectedCity}"/>
 
 
+
+
+                <TextBox 
+               Name="tbSearch"
+               HorizontalAlignment="Left"
+               Width="175"
+               Height="30"
+               TextAlignment="Center"
+               Margin="0,375,0,54" Grid.ColumnSpan="2"/>
+
+
+
+
+
+
+
+
+            </Grid>
+        </GroupBox>
 
     </Grid>
+
 </UserControl>

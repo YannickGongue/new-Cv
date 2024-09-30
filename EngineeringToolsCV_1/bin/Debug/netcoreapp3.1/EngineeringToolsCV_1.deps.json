@@ -8,6 +8,8 @@
     ".NETCoreApp,Version=v3.1": {
       "EngineeringToolsCV_1/1.0.0": {
         "dependencies": {
+          "Haley.WPF": "5.4.3.1",
+          "ShellBrowser.NET": "7.1.0.357",
           "SimpleModal.WPF": "1.0.0",
           "Syncfusion.SfChart.WPF": "20.4.0.38",
           "System.Data.SqlClient": "4.8.5",
@@ -15,6 +17,14 @@
         },
         "runtime": {
           "EngineeringToolsCV_1.dll": {}
+        }
+      },
+      "Haley.WPF/5.4.3.1": {
+        "runtime": {
+          "lib/net462/Haley.WPF.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
         }
       },
       "Microsoft.NETCore.Platforms/3.1.0": {},
@@ -55,6 +65,14 @@
             "rid": "win-x86",
             "assetType": "native",
             "fileVersion": "4.6.25512.1"
+          }
+        }
+      },
+      "ShellBrowser.NET/7.1.0.357": {
+        "runtime": {
+          "lib/net47/ShellBrowser.dll": {
+            "assemblyVersion": "7.1.0.357",
+            "fileVersion": "7.1.0.357"
           }
         }
       },
@@ -135,6 +153,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Haley.WPF/5.4.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UNWxVMj32OJmm7dfKP8XKof9xcMJUFsgrqZfKlM6PLkb4lbVV58WsljIOInQ+GzdKPTt5FFPr5yMLuHNaztTjQ==",
+      "path": "haley.wpf/5.4.3.1",
+      "hashPath": "haley.wpf.5.4.3.1.nupkg.sha512"
+    },
     "Microsoft.NETCore.Platforms/3.1.0": {
       "type": "package",
       "serviceable": true,
@@ -176,6 +201,13 @@
       "sha512": "sha512-YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
+    },
+    "ShellBrowser.NET/7.1.0.357": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jlVUOHW0HwuRqmuEMQ4D+MdnGjBX1wwUVMcXbN//1opd+Ads8eByMKGp+ElKf5D+8DCizx/lqw8Gzt3mynWq2g==",
+      "path": "shellbrowser.net/7.1.0.357",
+      "hashPath": "shellbrowser.net.7.1.0.357.nupkg.sha512"
     },
     "SimpleModal.WPF/1.0.0": {
       "type": "package",

@@ -8,55 +8,56 @@
         xmlns:viewModel="clr-namespace:EngineeringToolsCV_1.ViewModels" 
         xmlns:component="clr-namespace:EngineeringToolsCV_1.Components"
         mc:Ignorable="d"
-        Height="600" Width="750"
-        MaxWidth="750" MaxHeight="600" 
+        Height="800" Width="850"
+        MaxWidth="950" MaxHeight="850" 
         WindowState="Normal" 
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None"
         >
-    <Grid>
-        <Grid.Resources>
-            <DataTemplate DataType="{x:Type viewModel:LayoutViewModel}">
-                <component:Layout/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-                <local:HomeView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
-                <local:LoginView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:DashboardViewModel}">
-                <local:DashboardView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:InformationViewModel}">
-                <local:InformationView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:BerufViewModel}">
-                <local:BerufView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:ProjektViewModel}">
-                <local:ProjektView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:SocialMediaViewModel}">
-                <local:SocialMediaView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:InteresseViewModel}">
-                <local:InteresseView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:QualificationViewModel}">
-                <local:QualificationView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:ConfigViewModel}">
-                <local:ConfigView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:FormationViewModel}">
-                <local:FormationView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:ActivitiesViewModel}">
-                <local:ActivitiesView/>
-            </DataTemplate>
-        </Grid.Resources>
-        <controls:IconButton  
+    <Viewbox Stretch="Fill" StretchDirection="Both">
+        <Grid>
+            <Grid.Resources>
+                <DataTemplate DataType="{x:Type viewModel:LayoutViewModel}">
+                    <component:Layout/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                    <local:HomeView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+                    <local:LoginView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:DashboardViewModel}">
+                    <local:DashboardView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:InformationViewModel}">
+                    <local:InformationView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:BerufViewModel}">
+                    <local:BerufView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:ProjektViewModel}">
+                    <local:ProjektView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:SocialMediaViewModel}">
+                    <local:SocialMediaView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:InteresseViewModel}">
+                    <local:InteresseView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:QualificationViewModel}">
+                    <local:QualificationView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:ConfigViewModel}">
+                    <local:ConfigView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:FormationViewModel}">
+                    <local:FormationView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:ActivitiesViewModel}">
+                    <local:ActivitiesView/>
+                </DataTemplate>
+            </Grid.Resources>
+           <controls:IconButton  
             Width="90" 
             Height="30" 
             Foreground="RoyalBlue"  
@@ -69,8 +70,9 @@
             Command="{Binding HomeNavigationCommand}"
             IsEnabled="{Binding Path=SetEnable}"/>
 
-        <ComboBox
+           <ComboBox
             Width="65"
+                Height="25"
             DisplayMemberPath="Id"
             SelectedItem="{Binding Path=SelectedCulture}"
             ItemsSource="{Binding CultureList}"
@@ -78,9 +80,9 @@
             Name="CultureComboBox"
             HorizontalAlignment="Left"
             BorderBrush="AliceBlue"
-            Margin="545,0,0,560"/>
+            Margin="545,-185,0,560"/>
 
-        <local:ucRoundButton 
+            <local:ucRoundButton 
             VerticalAlignment="Top"
             HorizontalAlignment="Right" 
             Margin="0,-4,3,0" 
@@ -90,7 +92,7 @@
             CornerRadius="27" 
             Click="CloseButton_Click"/>
 
-        <local:ucRoundButton 
+            <local:ucRoundButton 
             VerticalAlignment="Top" 
             HorizontalAlignment="Right" 
             Margin="0,-4,30,0" 
@@ -100,7 +102,7 @@
             CornerRadius="27"
             Click="MinimizeButton_Click"/>
 
-        <local:ucRoundButton 
+            <local:ucRoundButton 
             VerticalAlignment="Top"
             HorizontalAlignment="Right" 
             Margin="0,-4,58,0" 
@@ -109,12 +111,13 @@
             Height="30" CornerRadius="27"
             Click="MaximizeButton_Click" />
 
-        <ContentControl
+            <ContentControl
              Content="{ Binding CurrentViewModels}" 
              HorizontalAlignment="Center" 
              VerticalAlignment="Center" 
              BorderBrush="Transparent"
-             Width="740" Height="560"
-             Margin="0,20,0,0"/>
-    </Grid>
+             Width="850" Height="740"
+             Margin="0,40,0,0"/>
+        </Grid>
+    </Viewbox>
 </Window>

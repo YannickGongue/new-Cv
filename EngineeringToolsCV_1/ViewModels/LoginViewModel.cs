@@ -93,6 +93,8 @@ namespace EngineeringToolsCV_1.ViewModels
             this._vmUserReset = vmUserReset;
             this._mStudent = mStudent;
             this.mUser = _mUser;
+            this.Username = "gonguego";
+            this.Password = "dyna1605";
             this.navigationBar = new NavigationBarViewModel("Home -> Dashboard");
 
             this.SetActivedWindow = true;

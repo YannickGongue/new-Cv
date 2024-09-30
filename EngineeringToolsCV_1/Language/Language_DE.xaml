@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=System.Runtime">
 
+    <!-- Dashboard -->
     <system:String x:Key="LabelInformation" >Information</system:String>
     <system:String x:Key="LabelBerufserfahrung" >Berufserfahrung</system:String>
     <system:String x:Key="LabelProjekt">Projekt</system:String>
@@ -11,6 +12,10 @@
     <system:String x:Key="LabelTätigkeiten">Tätigkeiten</system:String>
     <system:String x:Key="LabelInteressen">Interessen</system:String>
     <system:String x:Key="LabelKonfigurationen">Konfigurationen</system:String>
+    <system:String x:Key="LabelStart">StartSeite</system:String>
+
+
+    <!-- StartSeite -->
     <system:String x:Key="LabelBenutzername">Benutzername* :</system:String>
     <system:String x:Key="LabelPasswort">Passwort* :</system:String>
     <system:String x:Key="LabelPasswortBestätig">Passwort bestätigen</system:String>
@@ -20,6 +25,10 @@
     <system:String x:Key="LinkButtonBenutzerRegistrieren">Benutzer registrieren</system:String>
     <system:String x:Key="LinkButtonBenutzerResetzen">Benutzer resetzen</system:String>
     <system:String x:Key="TextStartSeite">Die Erstellung Ihres besten Lebenslaufs</system:String>
+
+    <!-- Personal Data -->
+    <system:String x:Key="LabelPersonalData">Personal Data</system:String>
+    <system:String x:Key="LabelTitle">Title* :</system:String>
     <system:String x:Key="LabelNachname">Nachname* :</system:String>
     <system:String x:Key="LabelVorname">Vorname* :</system:String>
     <system:String x:Key="LabelEmail">Email* :</system:String>
@@ -27,6 +36,8 @@
     <system:String x:Key="LabelStraßnummer">Straßnummer* :</system:String>
     <system:String x:Key="LabelPostleitzahl">Postleitzahl* :</system:String>
     <system:String x:Key="LabelStadt">Stadt* :</system:String>
+    <system:String x:Key="LabelGeburtsdatum">Geburtsdatum* :</system:String>
+    <system:String x:Key="LabelGeburtsort">Geburtsort* :</system:String>
     <system:String x:Key="ButtonAbbrechen">Abbrechen</system:String>
     <system:String x:Key="ButtonSpeichern">Speichern</system:String>
     <system:String x:Key="ButtonEditieren">Editieren</system:String>
@@ -39,6 +50,7 @@
     <system:String x:Key="ButtonAnmelden">Anmelden</system:String>
     <system:String x:Key="ButtonFotoHerunterladen">Foto Laden</system:String>
     <system:String x:Key="ButtonSenden">Senden auf Liste</system:String>
+    
     <system:String x:Key="GroupLabelPersonalDaten">Personal Daten</system:String>
     <system:String x:Key="ListLabelPerson">Personen</system:String>
     <system:String x:Key="LabelServerType">Servertype :</system:String>

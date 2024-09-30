@@ -78,5 +78,7 @@ namespace EngineeringToolsCV_1
 
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(IconButton), new PropertyMetadata(_defaultCornerRadius));
+
+       
     }
 }

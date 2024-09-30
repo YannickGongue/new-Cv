@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "Haley.WPF/5.4.3.1": {
+        "type": "package",
+        "compile": {
+          "lib/net462/Haley.WPF.dll": {}
+        },
+        "runtime": {
+          "lib/net462/Haley.WPF.dll": {}
+        }
+      },
       "Microsoft.NETCore.Platforms/3.1.0": {
         "type": "package",
         "compile": {
@@ -67,6 +76,15 @@
             "assetType": "native",
             "rid": "win-x86"
           }
+        }
+      },
+      "ShellBrowser.NET/7.1.0.357": {
+        "type": "package",
+        "compile": {
+          "lib/net47/ShellBrowser.dll": {}
+        },
+        "runtime": {
+          "lib/net47/ShellBrowser.dll": {}
         }
       },
       "SimpleModal.WPF/1.0.0": {
@@ -179,6 +197,20 @@
     }
   },
   "libraries": {
+    "Haley.WPF/5.4.3.1": {
+      "sha512": "UNWxVMj32OJmm7dfKP8XKof9xcMJUFsgrqZfKlM6PLkb4lbVV58WsljIOInQ+GzdKPTt5FFPr5yMLuHNaztTjQ==",
+      "type": "package",
+      "path": "haley.wpf/5.4.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Haley.png",
+        "haley.wpf.5.4.3.1.nupkg.sha512",
+        "haley.wpf.nuspec",
+        "lib/net462/Haley.WPF.dll",
+        "lib/net6.0-windows7.0/Haley.WPF.dll"
+      ]
+    },
     "Microsoft.NETCore.Platforms/3.1.0": {
       "sha512": "z7aeg8oHln2CuNulfhiLYxCVMPEwBl3rzicjvIX+4sUuCwvXw5oXQEtbiU2c0z4qYL5L3Kmx0mMA/+t/SbY67w==",
       "type": "package",
@@ -304,6 +336,24 @@
         "runtimes/win-x86/native/sni.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "ShellBrowser.NET/7.1.0.357": {
+      "sha512": "jlVUOHW0HwuRqmuEMQ4D+MdnGjBX1wwUVMcXbN//1opd+Ads8eByMKGp+ElKf5D+8DCizx/lqw8Gzt3mynWq2g==",
+      "type": "package",
+      "path": "shellbrowser.net/7.1.0.357",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Tools/VisualStudioToolsManifest.xml",
+        "lib/net47/ShellBrowser.dll",
+        "lib/net47/ShellBrowser.xml",
+        "lib/net6.0-windows7.0/ShellBrowser.dll",
+        "lib/net6.0-windows7.0/ShellBrowser.xml",
+        "readme.md",
+        "shellbrowser.net.7.1.0.357.nupkg.sha512",
+        "shellbrowser.net.nuspec"
       ]
     },
     "SimpleModal.WPF/1.0.0": {
@@ -621,6 +671,8 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Haley.WPF >= 5.4.3.1",
+      "ShellBrowser.NET >= 7.1.0.357",
       "SimpleModal.WPF >= 1.0.0",
       "Syncfusion.SfChart.WPF >= 20.4.0.38",
       "System.Data.SqlClient >= 4.8.5",
@@ -667,6 +719,14 @@
       "netcoreapp3.1": {
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
+          "Haley.WPF": {
+            "target": "Package",
+            "version": "[5.4.3.1, )"
+          },
+          "ShellBrowser.NET": {
+            "target": "Package",
+            "version": "[7.1.0.357, )"
+          },
           "SimpleModal.WPF": {
             "target": "Package",
             "version": "[1.0.0, )"
@@ -707,6 +767,26 @@
     }
   },
   "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Das Paket \"Haley.WPF 5.4.3.1\" wurde nicht mit dem Projektzielframework \".NETCoreApp,Version=v3.1\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
+      "libraryId": "Haley.WPF",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Das Paket \"ShellBrowser.NET 7.1.0.357\" wurde nicht mit dem Projektzielframework \".NETCoreApp,Version=v3.1\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
+      "libraryId": "ShellBrowser.NET",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",

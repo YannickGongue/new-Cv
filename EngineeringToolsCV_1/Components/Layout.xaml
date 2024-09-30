@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EngineeringToolsCV_1.Components"
              mc:Ignorable="d" 
-             Height="560" 
-             Width="740">
+             Height="730" 
+             Width="850">
     <Grid>
         <local:NavigationBar 
-            Width="710"
+            Width="800"
             Height="25"
             VerticalAlignment="Top"
             Margin="3"
@@ -18,13 +18,13 @@
             />
         <Rectangle 
             Fill="RoyalBlue" 
-            Height="2" Width="710"
+            Height="2" Width="790"
             VerticalAlignment="Top" 
             Margin="0,31,0,0"/>
         
         <Rectangle 
             Fill="RoyalBlue"
-            Height="2" Width="710" 
+            Height="2" Width="790" 
             VerticalAlignment="Bottom" 
             Margin="0,0,0,30"/>
         
@@ -36,6 +36,7 @@
             Margin="0,0,25,5" 
             FontSize="15" 
             Text="{Binding Path=StrDate}" />
+        
         <TextBlock 
             Width="210" 
             Height="20" 
@@ -50,7 +51,7 @@
              HorizontalAlignment="Center" 
              VerticalAlignment="Center" 
              BorderBrush="Transparent"
-             Width="710" Height="490"/>
+             Width="840" Height="650"/>
      
     </Grid>
 </UserControl>

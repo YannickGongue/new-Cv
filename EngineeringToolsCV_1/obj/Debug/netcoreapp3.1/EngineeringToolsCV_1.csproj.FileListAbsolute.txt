@@ -151,7 +151,6 @@ C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\bin\D
 C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.csprojAssemblyReference.cache
 C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Language\Language_DE.baml
 C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Language\Language_EN.baml
 C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Style\Style.baml
@@ -216,3 +215,6 @@ C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\D
 C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\ProjektView.baml
 C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\QualificationView.baml
 C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\SocialMediaView.baml
+C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.csprojAssemblyReference.cache
+C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\Haley.WPF.dll
+C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\ShellBrowser.dll
