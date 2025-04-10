@@ -8,7 +8,7 @@
         xmlns:viewModel="clr-namespace:EngineeringToolsCV_1.ViewModels" 
         xmlns:component="clr-namespace:EngineeringToolsCV_1.Components"
         mc:Ignorable="d"
-        Height="800" Width="850"
+        Height="750" Width="850"
         MaxWidth="950" MaxHeight="850" 
         WindowState="Normal" 
         WindowStartupLocation="CenterScreen" 
@@ -72,7 +72,7 @@
 
            <ComboBox
             Width="65"
-                Height="25"
+            Height="25"
             DisplayMemberPath="Id"
             SelectedItem="{Binding Path=SelectedCulture}"
             ItemsSource="{Binding CultureList}"
@@ -117,7 +117,7 @@
              VerticalAlignment="Center" 
              BorderBrush="Transparent"
              Width="850" Height="740"
-             Margin="0,40,0,0"/>
+             Margin="0,27,0,0"/>
         </Grid>
     </Viewbox>
 </Window>

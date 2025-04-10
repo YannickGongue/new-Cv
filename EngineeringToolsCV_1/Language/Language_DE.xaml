@@ -58,6 +58,35 @@
     <system:String x:Key="LabelAuthentifizierung">Authentifizierung :</system:String>
     <system:String x:Key="ButtonVerbindung">Verbinden</system:String>
 
+    <!-- Expereinces -->
+    <system:String x:Key="GrTitel">Berufserfahrung bearbeiten</system:String>
+    <system:String x:Key="LabelTitel">Titel*</system:String>
+    <system:String x:Key="LabelBeschäftigung">Beschäftigungsverhältnis*</system:String>
+    <system:String x:Key="LabelUnternehmen">Unternehmen oder Organisation</system:String>
+    <system:String x:Key="ChekboxTätig">ich bin derzeit in dieser Position tätig</system:String>
+    <system:String x:Key="LabelStartDatum">Startdatum*</system:String>
+    <system:String x:Key="LabelEndDatum">Enddatum*</system:String>
+    <system:String x:Key="LabelStandort">Standort*</system:String>
+    <system:String x:Key="LabelOrtTyp">OrtType*</system:String>
+    <system:String x:Key="LabelBeschreibung">Beschreibung</system:String>
+    <system:String x:Key="LabelSkills">Skills</system:String>
+
+    <system:String x:Key="TxtBerufserfahrung">Berufserfahrung</system:String>
+
+
+
+
+
+
+
+    <system:String x:Key="ButtonDelete"> Berufserfahrung löschen </system:String>
+
+
+
+
+
+
+
 
 
 
