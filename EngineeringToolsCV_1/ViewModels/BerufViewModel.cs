@@ -1,6 +1,8 @@
 ﻿using EngineeringToolsCV_1.Command;
 using EngineeringToolsCV_1.Models;
+using EngineeringToolsCV_1.Repositories;
 using EngineeringToolsCV_1.Store;
+using EngineeringToolsCV_1.Style;
 using EngineeringToolsCV_1.Views;
 using System;
 using System.Collections.Generic;
@@ -11,19 +13,283 @@ namespace EngineeringToolsCV_1.ViewModels
 {
     public class BerufViewModel : ViewModelBase
     {
+        private UserInfos _UserInfo;
+        private MessageDialog dialogMessage;
+        private DBName DbName;
+
         private NavigationStore navigationStore;
         private NavigationBarViewModel navigationBar;
         private MStudentInformations _mStudentInfos;
+        private string strTitel;
+        private string strEmail;
+        private string strBeschäftigung;
+        private string strUnternehmen;
+        private string strStartDate;
+        private string strEndDate;
+        private string strOrtTyp;
+        private string strStandort;
+        private string strBeschreibung;
+        private string selAufgabe;
+        private string strSkills;
+
+        private bool checkTätig;
+        private List<string> itemAufgabe;
+        private List<string> ortTyp;
+        private string selOrtTyp;
+
+
+        public bool CheckTätig
+        {
+            get { return this.checkTätig; }
+            set
+            {
+                this.checkTätig = value;
+                OnPropertyChanged(nameof(this.CheckTätig));
+
+            }
+        }
+
+        public string StrBeschäftigung
+        {
+            get { return this.strBeschäftigung; }
+            set
+            {
+                this.strBeschäftigung = value;
+                OnPropertyChanged(nameof(this.StrBeschäftigung));
+
+            }
+        }
+        public string StrTitel
+        {
+            get { return this.strTitel; }
+            set
+            {
+                this.strTitel = value;
+                OnPropertyChanged(nameof(this.StrTitel));
+
+            }
+        }
+
+        public string StrEmail
+        {
+            get { return this.strEmail; }
+            set
+            {
+                this.strEmail = value;
+                OnPropertyChanged(nameof(this.StrEmail));
+
+            }
+        }
+
+        public string StrUnternehmen
+        {
+            get { return this.strUnternehmen; }
+            set
+            {
+                this.strUnternehmen = value;
+                OnPropertyChanged(nameof(this.StrUnternehmen));
+
+            }
+        }
+
+        public string StrEndDate
+        {
+            get { return this.strEndDate; }
+            set
+            {
+                this.strEndDate = value;
+                OnPropertyChanged(nameof(this.StrEndDate));
+
+            }
+        }
+
+        public string StrOrtTyp
+        {
+            get { return this.strOrtTyp; }
+            set
+            {
+                this.strOrtTyp = value;
+                OnPropertyChanged(nameof(this.StrOrtTyp));
+
+            }
+        }
+
+        public string StrStandOrt
+        {
+            get { return this.strStandort; }
+            set
+            {
+                this.strStandort = value;
+                OnPropertyChanged(nameof(this.StrStandOrt));
+
+            }
+        }
+
+        public string StrSkills
+        {
+            get { return this.strSkills; }
+            set
+            {
+                this.strSkills = value;
+                OnPropertyChanged(nameof(this.StrSkills));
+
+            }
+        }
+
+        public string StrBeschreibung
+        {
+            get { return this.strBeschreibung; }
+            set
+            {
+                this.strBeschreibung = value;
+                OnPropertyChanged(nameof(this.StrBeschreibung));
+
+            }
+        }
+
+        public string SelAufgabe
+        {
+            get { return this.selAufgabe; }
+            set
+            {
+                this.selAufgabe = value;
+                OnPropertyChanged(nameof(this.SelAufgabe));
+
+            }
+        }
+
+        public List<string> ItemAufgabe
+        {
+            get { return this.itemAufgabe; }
+            set
+            {
+                this.itemAufgabe = value;
+                OnPropertyChanged(nameof(this.StrStandOrt));
+
+            }
+        }
+
+        public string SelOrtTyp
+        {
+            get { return this.selOrtTyp; }
+            set
+            {
+                this.selOrtTyp = value;
+                OnPropertyChanged(nameof(this.SelOrtTyp));
+
+            }
+        }
+
+        public List<string> ItemOrtTyp
+        {
+            get { return this.ortTyp; }
+            set
+            {
+                this.ortTyp = value;
+                OnPropertyChanged(nameof(this.ItemOrtTyp));
+
+            }
+        }
+
         public ICommand NavigateReturnCommand { get; set; }
+        public ICommand SaveCommand { get; set; }
+        public ICommand deleteCommand { get; set; }
+
+
 
         public BerufViewModel(NavigationStore navigationStore, MStudentInformations mStudentInfos)
         {
             this.navigationStore = navigationStore;
             this._mStudentInfos = mStudentInfos;
+            DbName = new DBName();
+
             navigationBar = new NavigationBarViewModel("Home -> Dashboard");
             this.NavigateReturnCommand = new NavigateCommand<DashboardViewModel>(
                new LayoutNavigationService<DashboardViewModel>(navigationStore,
                () => new DashboardViewModel(navigationStore, this._mStudentInfos), navigationBar));
+            this.SaveCommand = new DelegateCommand(ExecuteSaveMethod, CanExecute);
+            this.deleteCommand = new DelegateCommand(ExecuteDeleteMethod, CanExecute);
+
+
+
+            this.ItemAufgabe = new List<string>
+            {
+                "auswählen....","Vollzeit", "Teilzeit", "Selbständig",
+                "freiberuflich", "befristet","Praktikum","Azubi",
+                "freiwilliges soziales Jahr","Verbeamte","Duale Studium","Werkstudium"
+            };
+
+            this.ItemOrtTyp = new List<string>
+            {
+                "auswählen....","Vorort", "Hybrid", "Remote"              
+            };
+
+            this.CheckTätig = false;
+        }
+        private bool CanExecute(object arg)
+        {
+            return true;
+        }
+
+        private void ExecuteDeleteMethod(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+
+        private void ExecuteSaveMethod(object obj)
+        {
+            int iCount;
+            this._UserInfo = new UserInfos();
+            string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3},{4},{5},{6},{7})" +
+                                                     "VALUES({8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19})",
+                                                     DbName.strTBL_Beruf, DbName.strTitel,
+                                                     DbName.strBerufEmail, DbName.strSkills,
+                                                     DbName.strFirma, DbName.strStartDatum,
+                                                     DbName.strEndDatum, DbName.strStandOrt,DbName.strOrtsTyp,
+                                                     DbName.strArbeitArt,
+                                                     this.StrTitel, this.StrEmail, this.StrBeschreibung,
+                                                     this.StrUnternehmen, this.strStartDate, this.StrEndDate, 
+                                                     this.StrStandOrt,this.SelOrtTyp,this.StrSkills,this.StrBeschreibung);
+            this.dialogMessage = new MessageDialog();
+            try
+            {
+                //if (string.IsNullOrEmpty(StrTitel) || string.IsNullOrEmpty(StrEmail) ||
+                //    string.IsNullOrEmpty(strStartDate) || string.IsNullOrEmpty(StrEndDate) ||
+                //    string.IsNullOrEmpty(StrStraße) || string.IsNullOrEmpty(strNummer) || string.IsNullOrEmpty(StrPostleitzahl) ||
+                //    string.IsNullOrEmpty(this.SelectedCity) || string.IsNullOrEmpty(this.strDate.ToString()))
+                //{
+                //    this.ColorTitle = Brushes.Red;
+                //    this.ColorName = Brushes.Red;
+                //    this.ColorVorname = Brushes.Red;
+                //    this.ColorBirth = Brushes.Red;
+                //    this.ColorEmail = Brushes.Red;
+                //    this.ColorNummer = Brushes.Red;
+                //    this.ColorPlz = Brushes.Red;
+                //    this.ColorStraße = Brushes.Red;
+                //    this.ColorCity = Brushes.Red;
+                //    this.ColorDate = Brushes.Red;
+                //    this.dialogMessage.ErrorMessage.Text = "die Leeren Feldern sollten ausgefüllt werden";
+                //    this.dialogMessage.Show();
+                //}
+                //else
+                //{
+                    iCount = this._UserInfo.SaveStudentInfos(strQueryRegister);
+                    if (iCount == 1)
+                    {
+                        this.dialogMessage.ErrorMessage.Text = "die Einträgen wurden erfolgreich in die Datenbank hinzugefügt";
+                        this.dialogMessage.Show();
+                    }
+                //}
+
+
+            }
+            catch (Exception ex)
+            {
+                this.dialogMessage.ErrorMessage.Text = ex.Message.ToString();
+                this.dialogMessage.Show();
+            }
         }
     }
 }

@@ -21,5 +21,17 @@ namespace EngineeringToolsCV_1.Style
         public string strNummer = "Straßenummer";
         public string strFoto = "foto";
 
+        public string strTBL_Beruf = "TBLBerufsErfahrung";
+        public string strAufgabe = "Aufgabe";
+        public string strTitel = "Titel";
+        public string strSkills = "Skills";
+        public string strFirma = "Firma";
+        public string strStartDatum = "StartDatum";
+        public string strEndDatum = "EndDatum";
+        public string strStandOrt = "Standort";
+        public string strOrtsTyp = "OrtsTyp";
+        public string strArbeitArt = "ArbeitsArt";
+        public string strBerufEmail = "Email";
+
     }
 }

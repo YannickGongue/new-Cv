@@ -70,6 +70,7 @@
     <system:String x:Key="LabelOrtTyp">OrtType*</system:String>
     <system:String x:Key="LabelBeschreibung">Beschreibung</system:String>
     <system:String x:Key="LabelSkills">Skills</system:String>
+    <system:String x:Key="LabelBerufsEmail">Email*</system:String>
 
     <system:String x:Key="TxtBerufserfahrung">Berufserfahrung</system:String>
 

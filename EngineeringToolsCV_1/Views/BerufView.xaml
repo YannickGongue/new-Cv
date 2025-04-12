@@ -126,13 +126,29 @@
                    Margin="15,0,0,0"/>
                 <TextBox   
                     x:Name="txtTitel"
-                    Width="790"
+                    Width="390"
                     Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Margin="10,30,0,0"
                     Grid.ColumnSpan="2"
                     Text="{Binding Path=StrTitel}"
+                    Controls:CornerRadiusSetter.CornerRadius="7"/>
+
+                <Label Content="{StaticResource LabelBerufsEmail }"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top"
+                   FontSize="17"
+                   Width="200" 
+                   Margin="0,0,185,0"/>
+                <TextBox   
+                    x:Name="txtEmail"
+                    Width="380"
+                    Height="30"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Margin="0,30,10,0"
+                    Text="{Binding Path=StrEmail}"
                     Controls:CornerRadiusSetter.CornerRadius="7"/>
                 <Label
                    Content="{StaticResource LabelBeschäftigung}"
@@ -143,7 +159,7 @@
                    />
                 <ComboBox 
                      x:Name="txtBeschäftigung"
-                     HorizontalContentAlignment="Center"
+                     HorizontalContentAlignment="Left"
                      Width="790"
                      Height="30"
                      HorizontalAlignment="Left"
@@ -152,6 +168,7 @@
                      Grid.ColumnSpan="2"
                      ItemsSource="{Binding  Path=ItemAufgabe}"
                      Text="{Binding Path=StrBeschäftingung}"
+                    SelectedItem="{Binding Path=SelAufgabe}"
                     Controls:CornerRadiusSetter.CornerRadius="7"/>
                 <Label
                    Content="{StaticResource LabelUnternehmen}"
@@ -160,7 +177,7 @@
                    Width="300"
                    Margin="15,120,0,0" />
                 <TextBox 
-                   x:Name="txtEmail"
+                   x:Name="txtUternehmen"
                     HorizontalContentAlignment="Center"
                     Width="790"
                     Height="30"
@@ -178,7 +195,9 @@
                    VerticalAlignment="Top"
                    Width="500"
                    Height="30"
-                   Margin="20,190,0,0" />
+                   Margin="20,190,0,0"
+                   IsChecked="{Binding Path=CheckTätig}"
+                   />
 
                 <Label
                     
@@ -188,59 +207,55 @@
                    Width="300"
                    Margin="10,210,0,0" />
 
-                <ComboBox 
+                <DatePicker
                    x:Name="cbStartDate"
-                    HorizontalContentAlignment="Center"
                     Width="350"
                     Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Margin="15,240,0,0"
-                    Text="{Binding Path=StrStartDatum}"
-                    ItemsSource="{Binding Path=itemMonths}"
-                    SelectedItem="{Binding Path=selMonth}"/>
+                    Text="{Binding Path=StrStartDate}"
+                   />
 
-                <ComboBox 
+                <DatePicker 
                    x:Name="cbEndDate"
-                    HorizontalContentAlignment="Center"
                     Width="350"
                     Height="30"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
-                    Margin="0,240,90,0" Grid.ColumnSpan="2"
+                    Margin="0,240,90,0" 
                    Text="{Binding Path=StrEndDate}"
-                    ItemsSource="{Binding Path=EndDate}"
-                    SelectedItem="{Binding Path=selEndDate}"/>
+                   />
 
                 <Label
-                    
+         
                    Content="{StaticResource LabelEndDatum}"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Top"
                    Width="300"
-                   Margin="10,210,130,0" />
+                   Margin="0,210,135,0" />
 
                 <TextBox 
-                   x:Name="cbEndMonth"
+                   x:Name="txtStandOrt"
                     HorizontalContentAlignment="Center"
                     Width="350"
                     Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Margin="15,310,0,0" 
-                    />
+                    Text="{Binding Path=StrStandOrt}"/>
 
                 <ComboBox 
                    x:Name="cbE"
-                    HorizontalContentAlignment="Center"
+                    HorizontalContentAlignment="Left"
                     Width="350"
                     Height="30"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Margin="0,310,90,0" 
-                    Text="{Binding Path=strOrtTyp}"
-                    ItemsSource="{Binding Path=OrtTyp}"
-                    SelectedItem="{Binding Path=selOrtTyp}"/>
+                    Text="{Binding Path=StrOrtTyp}"
+                    ItemsSource="{Binding Path=ItemOrtTyp}"
+                    SelectedItem="{Binding Path=SelOrtTyp}"/>
 
                 <Label
                    Content="{StaticResource LabelStandort}"
@@ -265,7 +280,7 @@
                      HorizontalAlignment="Right"
                      VerticalAlignment="Top"
                      Margin="0,350,20,0" 
-                     Text="{Binding Path=StrStandort}"
+                     Text="{Binding Path=StrSkills}"
                     Controls:CornerRadiusSetter.CornerRadius="7"
                     VerticalScrollBarVisibility="Visible"/>
                 <Label
