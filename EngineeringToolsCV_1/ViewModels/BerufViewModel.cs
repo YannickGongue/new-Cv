@@ -24,8 +24,8 @@ namespace EngineeringToolsCV_1.ViewModels
         private string strEmail;
         private string strBeschäftigung;
         private string strUnternehmen;
-        private string strStartDate;
-        private string strEndDate;
+        private DateTime strStartDate;
+        private DateTime strEndDate;
         private string strOrtTyp;
         private string strStandort;
         private string strBeschreibung;
@@ -45,7 +45,6 @@ namespace EngineeringToolsCV_1.ViewModels
             {
                 this.checkTätig = value;
                 OnPropertyChanged(nameof(this.CheckTätig));
-
             }
         }
 
@@ -56,7 +55,6 @@ namespace EngineeringToolsCV_1.ViewModels
             {
                 this.strBeschäftigung = value;
                 OnPropertyChanged(nameof(this.StrBeschäftigung));
-
             }
         }
         public string StrTitel
@@ -66,7 +64,6 @@ namespace EngineeringToolsCV_1.ViewModels
             {
                 this.strTitel = value;
                 OnPropertyChanged(nameof(this.StrTitel));
-
             }
         }
 
@@ -77,7 +74,6 @@ namespace EngineeringToolsCV_1.ViewModels
             {
                 this.strEmail = value;
                 OnPropertyChanged(nameof(this.StrEmail));
-
             }
         }
 
@@ -88,18 +84,26 @@ namespace EngineeringToolsCV_1.ViewModels
             {
                 this.strUnternehmen = value;
                 OnPropertyChanged(nameof(this.StrUnternehmen));
-
             }
         }
 
-        public string StrEndDate
+        public DateTime StrStartDate
+        {
+            get { return this.strStartDate; }
+            set
+            {
+                this.strStartDate = value;
+                OnPropertyChanged(nameof(this.StrStartDate));
+            }
+        }
+
+        public DateTime StrEndDate
         {
             get { return this.strEndDate; }
             set
             {
                 this.strEndDate = value;
                 OnPropertyChanged(nameof(this.StrEndDate));
-
             }
         }
 
@@ -110,7 +114,6 @@ namespace EngineeringToolsCV_1.ViewModels
             {
                 this.strOrtTyp = value;
                 OnPropertyChanged(nameof(this.StrOrtTyp));
-
             }
         }
 
@@ -121,7 +124,6 @@ namespace EngineeringToolsCV_1.ViewModels
             {
                 this.strStandort = value;
                 OnPropertyChanged(nameof(this.StrStandOrt));
-
             }
         }
 
@@ -132,7 +134,6 @@ namespace EngineeringToolsCV_1.ViewModels
             {
                 this.strSkills = value;
                 OnPropertyChanged(nameof(this.StrSkills));
-
             }
         }
 
@@ -143,7 +144,6 @@ namespace EngineeringToolsCV_1.ViewModels
             {
                 this.strBeschreibung = value;
                 OnPropertyChanged(nameof(this.StrBeschreibung));
-
             }
         }
 
@@ -154,7 +154,6 @@ namespace EngineeringToolsCV_1.ViewModels
             {
                 this.selAufgabe = value;
                 OnPropertyChanged(nameof(this.SelAufgabe));
-
             }
         }
 
@@ -165,7 +164,6 @@ namespace EngineeringToolsCV_1.ViewModels
             {
                 this.itemAufgabe = value;
                 OnPropertyChanged(nameof(this.StrStandOrt));
-
             }
         }
 
@@ -176,7 +174,6 @@ namespace EngineeringToolsCV_1.ViewModels
             {
                 this.selOrtTyp = value;
                 OnPropertyChanged(nameof(this.SelOrtTyp));
-
             }
         }
 
@@ -187,7 +184,6 @@ namespace EngineeringToolsCV_1.ViewModels
             {
                 this.ortTyp = value;
                 OnPropertyChanged(nameof(this.ItemOrtTyp));
-
             }
         }
 
@@ -202,6 +198,9 @@ namespace EngineeringToolsCV_1.ViewModels
             this.navigationStore = navigationStore;
             this._mStudentInfos = mStudentInfos;
             DbName = new DBName();
+            this.StrStartDate = new DateTime();
+            this.StrEndDate = new DateTime();
+
 
             navigationBar = new NavigationBarViewModel("Home -> Dashboard");
             this.NavigateReturnCommand = new NavigateCommand<DashboardViewModel>(
@@ -234,24 +233,23 @@ namespace EngineeringToolsCV_1.ViewModels
         private void ExecuteDeleteMethod(object obj)
         {
             throw new NotImplementedException();
-        }
-
-       
+        }     
 
         private void ExecuteSaveMethod(object obj)
         {
             int iCount;
             this._UserInfo = new UserInfos();
-            string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3},{4},{5},{6},{7})" +
-                                                     "VALUES({8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19})",
+            string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3},{4},{5},{6},{7},{8},{9},{10})" +
+                                                    "VALUES({11},{12},{13},{14},{15},{16},{17},{18},{19},{20})",
                                                      DbName.strTBL_Beruf, DbName.strTitel,
                                                      DbName.strBerufEmail, DbName.strSkills,
                                                      DbName.strFirma, DbName.strStartDatum,
-                                                     DbName.strEndDatum, DbName.strStandOrt,DbName.strOrtsTyp,
-                                                     DbName.strArbeitArt,
-                                                     this.StrTitel, this.StrEmail, this.StrBeschreibung,
-                                                     this.StrUnternehmen, this.strStartDate, this.StrEndDate, 
-                                                     this.StrStandOrt,this.SelOrtTyp,this.StrSkills,this.StrBeschreibung);
+                                                     DbName.strEndDatum, DbName.strStandOrt,
+                                                     DbName.strOrtsTyp,DbName.strAufgabe, DbName.strArbeitArt,
+                                                     this.StrTitel, this.StrEmail, this.StrSkills,
+                                                     this.StrUnternehmen, this.strStartDate.ToString("MM.dd.yy"), 
+                                                     this.StrEndDate.ToString("MM.dd.yy"), 
+                                                     this.StrStandOrt,this.SelOrtTyp,this.StrBeschreibung,this.SelAufgabe);
             this.dialogMessage = new MessageDialog();
             try
             {
@@ -282,8 +280,6 @@ namespace EngineeringToolsCV_1.ViewModels
                         this.dialogMessage.Show();
                     }
                 //}
-
-
             }
             catch (Exception ex)
             {

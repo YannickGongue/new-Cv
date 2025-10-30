@@ -19,8 +19,8 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             CornerRadius="4">
                             <ContentPresenter 
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"/>
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -35,14 +35,15 @@
     </UserControl.Resources>
 
     <Grid>
-        <Border
+          <Border
             BorderBrush="CornflowerBlue"
             BorderThickness="1"
             Margin="10,18,10,0"
             Height="40"
             CornerRadius="10"
             VerticalAlignment="Top"/>
-        <TextBlock
+        
+          <TextBlock
             Text="{StaticResource TxtBerufserfahrung}" 
             VerticalAlignment ="Top" 
             HorizontalAlignment="Center"  
@@ -51,7 +52,7 @@
             Foreground="CornflowerBlue"
             Margin="28,18,0,0"/>
 
-        <Controls:IconButton 
+             <Controls:IconButton 
                 Command="{Binding NavigateAddCommand }"
                 CornerRadius="1" 
                 Width="80"                  
@@ -64,7 +65,7 @@
                 Foreground="CornflowerBlue"/>
 
 
-        <Controls:IconButton 
+             <Controls:IconButton 
                 Command="{Binding NavigateReturnCommand }"
                 CornerRadius="1" 
                 Width="120"                  
@@ -77,7 +78,7 @@
                 Foreground="CornflowerBlue"/>
 
 
-        <Controls:IconButton 
+             <Controls:IconButton 
                 Command="{Binding SaveCommand }"
                 CornerRadius="15" 
                 Width="154" 
@@ -94,7 +95,7 @@
                 FontSize="18" 
                 Cursor="Hand" />
 
-        <Controls:IconButton 
+             <Controls:IconButton 
                 Command="{Binding deleteCommand }"
                 CornerRadius="15" 
                 Width="244" 
@@ -111,85 +112,95 @@
                 FontSize="18" 
                 Cursor="Hand"
                 />
+        
         <GroupBox Header="{StaticResource GrTitel}" 
               FontWeight="Normal"
               FontSize="18"
               BorderBrush="Gray"
               BorderThickness="2" 
               Margin="0,58,0,65">
+            
             <Grid Height="515">
-                <Label Content="{StaticResource LabelTitel }"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   FontSize="17"
-                   Width="200" Grid.ColumnSpan="2"
-                   Margin="15,0,0,0"/>
+                
+                <Label Content="{StaticResource LabelTitel}"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  FontSize="17"
+                  Width="200" 
+                  Margin="15,0,0,0"/>
+                
                 <TextBox   
-                    x:Name="txtTitel"
-                    Width="390"
-                    Height="30"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Margin="10,30,0,0"
-                    Grid.ColumnSpan="2"
-                    Text="{Binding Path=StrTitel}"
-                    Controls:CornerRadiusSetter.CornerRadius="7"/>
+                  x:Name="txtTitel"
+                  Width="390"
+                  Height="30"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Margin="10,30,0,0"
+                  Text="{Binding Path=StrTitel}"
+                  Controls:CornerRadiusSetter.CornerRadius="7"
+                  MaxLength="250"/>
 
                 <Label Content="{StaticResource LabelBerufsEmail }"
-                   HorizontalAlignment="Right"
-                   VerticalAlignment="Top"
-                   FontSize="17"
-                   Width="200" 
-                   Margin="0,0,185,0"/>
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Top"
+                  FontSize="17"
+                  Width="200" 
+                  Margin="0,0,185,0"/>
+                
                 <TextBox   
-                    x:Name="txtEmail"
-                    Width="380"
-                    Height="30"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    Margin="0,30,10,0"
-                    Text="{Binding Path=StrEmail}"
-                    Controls:CornerRadiusSetter.CornerRadius="7"/>
-                <Label
+                  x:Name="txtEmail"
+                  Width="380"
+                  Height="30"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Top"
+                  Margin="0,30,10,0"
+                  Text="{Binding Path=StrEmail}"
+                  Controls:CornerRadiusSetter.CornerRadius="7"
+                  MaxLength="250"/>
+                
+                 <Label
                    Content="{StaticResource LabelBeschäftigung}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Width="400"
                    Margin="15,60,0,0" 
                    />
-                <ComboBox 
-                     x:Name="txtBeschäftigung"
-                     HorizontalContentAlignment="Left"
-                     Width="790"
-                     Height="30"
-                     HorizontalAlignment="Left"
-                     VerticalAlignment="Top"
-                     Margin="10,95,0,0"
-                     Grid.ColumnSpan="2"
-                     ItemsSource="{Binding  Path=ItemAufgabe}"
-                     Text="{Binding Path=StrBeschäftingung}"
+                
+                  <ComboBox 
+                    x:Name="txtBeschäftigung"
+                    HorizontalContentAlignment="Left"
+                    Width="790"
+                    Height="30"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="10,95,0,0"
+                    Grid.ColumnSpan="2"
+                    ItemsSource="{Binding  Path=ItemAufgabe}"
+                    Text="{Binding Path=StrBeschäftingung}"
                     SelectedItem="{Binding Path=SelAufgabe}"
                     Controls:CornerRadiusSetter.CornerRadius="7"/>
-                <Label
+                
+                 <Label
                    Content="{StaticResource LabelUnternehmen}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Width="300"
                    Margin="15,120,0,0" />
-                <TextBox 
+                
+                 <TextBox 
                    x:Name="txtUternehmen"
-                    HorizontalContentAlignment="Center"
-                    Width="790"
-                    Height="30"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Margin="10,155,0,0" 
-                    Grid.ColumnSpan="2"
-                    Text="{Binding Path=StrUnternehmen}"
-                    Controls:CornerRadiusSetter.CornerRadius="7"/>
+                   HorizontalContentAlignment="Left"
+                   Width="790"
+                   Height="30"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="10,155,0,0" 
+                   Grid.ColumnSpan="2"
+                   Text="{Binding Path=StrUnternehmen}"
+                   Controls:CornerRadiusSetter.CornerRadius="7"
+                   MaxLength="250"/>
 
-                <CheckBox
-                    
+                 <CheckBox                  
                    Content="{StaticResource ChekboxTätig}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
@@ -199,65 +210,65 @@
                    IsChecked="{Binding Path=CheckTätig}"
                    />
 
-                <Label
-                    
+                 <Label                   
                    Content="{StaticResource LabelStartDatum}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Width="300"
                    Margin="10,210,0,0" />
 
-                <DatePicker
+                 <DatePicker
                    x:Name="cbStartDate"
-                    Width="350"
-                    Height="30"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Margin="15,240,0,0"
-                    Text="{Binding Path=StrStartDate}"
+                   Width="350"
+                   Height="30"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="15,240,0,0"
+                   SelectedDate="{Binding Path=StrStartDate}"
                    />
 
-                <DatePicker 
+                 <DatePicker 
                    x:Name="cbEndDate"
-                    Width="350"
-                    Height="30"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    Margin="0,240,90,0" 
-                   Text="{Binding Path=StrEndDate}"
-                   />
+                   Width="350"
+                   Height="30"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top"
+                   Margin="0,240,90,0" 
+                   SelectedDate="{Binding Path=StrEndDate}"
+                   SelectedDateFormat="Short"/>
 
-                <Label
-         
+                 <Label        
                    Content="{StaticResource LabelEndDatum}"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Top"
                    Width="300"
                    Margin="0,210,135,0" />
 
-                <TextBox 
+                 <TextBox 
                    x:Name="txtStandOrt"
-                    HorizontalContentAlignment="Center"
-                    Width="350"
-                    Height="30"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Margin="15,310,0,0" 
-                    Text="{Binding Path=StrStandOrt}"/>
+                   HorizontalContentAlignment="Left"
+                   Width="350"
+                   Height="30"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="15,310,0,0" 
+                   Text="{Binding Path=StrStandOrt}"
+                   MaxLines="6"
+                   MaxLength="250"/>
 
-                <ComboBox 
+                 <ComboBox 
                    x:Name="cbE"
-                    HorizontalContentAlignment="Left"
-                    Width="350"
-                    Height="30"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    Margin="0,310,90,0" 
-                    Text="{Binding Path=StrOrtTyp}"
-                    ItemsSource="{Binding Path=ItemOrtTyp}"
-                    SelectedItem="{Binding Path=SelOrtTyp}"/>
+                   HorizontalContentAlignment="Left"
+                   Width="350"
+                   Height="30"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top"
+                   Margin="0,310,90,0" 
+                   Text="{Binding Path=StrOrtTyp}"
+                   ItemsSource="{Binding Path=ItemOrtTyp}"
+                   SelectedItem="{Binding Path=SelOrtTyp}"/>
 
-                <Label
+                 <Label
                    Content="{StaticResource LabelStandort}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
@@ -265,25 +276,30 @@
                    Margin="10,276,0,0" 
                   />
 
-                <Label
+                 <Label
                    Content="{StaticResource LabelSkills}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Width="100"
                    Margin="10,356,0,0" 
                   />
-                <TextBox 
+                
+                 <TextBox 
                     x:Name="txtSkill"
-                     HorizontalContentAlignment="Center"
-                     Width="660"
-                     Height="50"
-                     HorizontalAlignment="Right"
-                     VerticalAlignment="Top"
-                     Margin="0,350,20,0" 
-                     Text="{Binding Path=StrSkills}"
+                    HorizontalContentAlignment="Left"
+                    Width="660"
+                    Height="50"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Margin="0,350,20,0" 
+                    Text="{Binding Path=StrSkills}"
                     Controls:CornerRadiusSetter.CornerRadius="7"
-                    VerticalScrollBarVisibility="Visible"/>
-                <Label
+                    VerticalScrollBarVisibility="Visible"
+                    MaxLines="5"
+                    TextWrapping="Wrap"
+                    MaxLength="250"/>
+                
+                 <Label
                   Content="{StaticResource LabelOrtTyp}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
@@ -293,25 +309,28 @@
 
                
 
-                <Label
+                 <Label
                    Content="{StaticResource LabelBeschreibung}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Width="200"
                    Margin="10,400,0,0" 
                   />
+
                 <TextBox 
-                    x:Name="txtBeschreibung"
-                     HorizontalContentAlignment="Left"
-                     Width="650"
-                     Height="100"
-                     HorizontalAlignment="Right"
-                     VerticalAlignment="Top"
-                     Margin="15,410,25,0" 
-                     Text="{Binding Path=StrBeschreibung}"
-                    Controls:CornerRadiusSetter.CornerRadius="2"
-                    TextWrapping="Wrap"
-                    VerticalScrollBarVisibility="Visible"/>
+                  x:Name="txtBeschreibung"
+                  HorizontalContentAlignment="Left"
+                  Width="650"
+                  Height="100"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Top"
+                  Margin="15,410,25,0" 
+                  Text="{Binding Path=StrBeschreibung}"
+                  Controls:CornerRadiusSetter.CornerRadius="2"
+                  TextWrapping="Wrap"
+                  VerticalScrollBarVisibility="Visible"
+                  MaxLength="2000"/>
+                
             </Grid>
         </GroupBox>
 

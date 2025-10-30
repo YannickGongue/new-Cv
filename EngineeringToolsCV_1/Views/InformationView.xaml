@@ -38,20 +38,20 @@
                 Height="40"
                 CornerRadius="10"
                 VerticalAlignment="Top"/>
-        <TextBlock Text="personal Data" 
+               <TextBlock Text="personal Data" 
                    VerticalAlignment ="Top" 
                    HorizontalAlignment="Center"  
                    FontSize="22"
                    Width="150" 
                    Foreground="CornflowerBlue"
                    Margin="28,12,0,0"/>
-        <Controls:IconButton 
-                        Command="{Binding NavigateCancelCommand  }"
-                        CornerRadius="1" 
-                        Width="120"                  
-                        Height="40" 
-                        
-                        PathData="{StaticResource left-Arrow}"
+               <Controls:IconButton 
+                   Command="{Binding NavigateCancelCommand  }"
+                   CornerRadius="1" 
+                   Width="120"                  
+                   Height="40" 
+                   
+                   PathData="{StaticResource left-Arrow}"
                          
                         VerticalAlignment="Top"
                         HorizontalAlignment="Left"
@@ -67,10 +67,7 @@
               BorderThickness="2"
               Margin="0,52,0,65">
             <Grid >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="47*"/>
-                    <ColumnDefinition Width="651*"/>
-                </Grid.ColumnDefinitions>
+                
                 <Label Content="{StaticResource LabelTitle}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
@@ -79,8 +76,7 @@
                    Width="200" Grid.ColumnSpan="2"/>
                
                 <TextBox               
-                    Controls:CornerRadiusSetter.CornerRadius="10" 
-                   
+                    Controls:CornerRadiusSetter.CornerRadius="10"             
                     BorderThickness="2"
                     x:Name="txtTitle"                
                     Width="575" 
@@ -88,16 +84,16 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Margin="22,28,0,0"
-                    Grid.ColumnSpan="2"
                     Text="{Binding Path=StrTitle}"
                     BorderBrush="{Binding ColorTitle}"/>
+                
                 <Label
                    Content="{StaticResource LabelNachname}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Width="200"
                    Height="30"
-                   Margin="20,55,0,0" Grid.ColumnSpan="2"/>
+                   Margin="20,55,0,0"/>
                 <TextBox 
                    Controls:CornerRadiusSetter.CornerRadius="10" 
                     BorderThickness="2"
@@ -107,8 +103,7 @@
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
                      Margin="20,86,0,0"
-                     Grid.ColumnSpan="2"
-                     Text="{Binding Path=StrVorname}"
+                     Text="{Binding Path=StrName}"
                      BorderBrush="{Binding ColorName}"/>
                 <Label
                    Content="{StaticResource LabelVorname}"
@@ -127,7 +122,7 @@
                     VerticalAlignment="Top"
                     Margin="20,146,0,0" 
                     Grid.ColumnSpan="2"
-                    Text="{Binding Path=StrEmail}"
+                    Text="{Binding Path=StrVorname}"
                      BorderBrush="{Binding ColorVorname}"/>
 
                 <Label
@@ -259,7 +254,7 @@
                     VerticalAlignment="Top"
                     Margin="20,395,0,0" 
                     Grid.ColumnSpan="2"
-                    Text="{Binding Path=StrDate}"
+                    SelectedDate="{Binding Path=StrDate}"
                      BorderBrush="{Binding ColorDate}"/>
 
                 <Label
@@ -280,7 +275,7 @@
                     VerticalAlignment="Top"
                     Margin="295,395,0,0" 
                     Grid.ColumnSpan="2"
-                    Text="{Binding Path=strBirthPlace}"
+                    Text="{Binding Path=StrBirthPlace}"
                      BorderBrush="{Binding ColorBirth}"/>
 
                 <Label
@@ -291,6 +286,7 @@
                    Height="30"
                    Margin="20,435,0,0" Grid.ColumnSpan="2" 
                   />
+                
                 <TextBox 
                   Controls:CornerRadiusSetter.CornerRadius="10" 
                     BorderThickness="2"
@@ -301,11 +297,8 @@
                     VerticalAlignment="Top"
                     Margin="20,470,0,0" 
                     Grid.ColumnSpan="2"
-                    Text="{Binding Path=strEmail}"
+                    Text="{Binding Path=StrEmail}"
                      BorderBrush="{Binding ColorEmail}"/>
-
-
-
 
             </Grid>
 

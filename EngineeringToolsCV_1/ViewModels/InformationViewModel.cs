@@ -33,6 +33,8 @@ namespace EngineeringToolsCV_1.ViewModels
         private string strStraße;
         private string strPostleitzahl;
         private string strNummer;
+        private string strLand;
+
         private string selectedCity;
         private DateTime strDate;
         private Brush colorTitle;
@@ -42,7 +44,7 @@ namespace EngineeringToolsCV_1.ViewModels
         private Brush colorNummer;
         private Brush colorPlz;
         private Brush colorCity;
-        private Brush colorBirth;
+        private Brush colorBirthplace;
         private Brush colorEmail;
         private Brush colorDate;
 
@@ -86,11 +88,11 @@ namespace EngineeringToolsCV_1.ViewModels
         {
             get
             {
-                return this.colorBirth;
+                return this.colorBirthplace;
             }
             set
             {
-                this.colorBirth = value;
+                this.colorBirthplace = value;
                 OnPropertyChanged(nameof(this.ColorBirth));
             }
         }
@@ -196,6 +198,20 @@ namespace EngineeringToolsCV_1.ViewModels
             }
         }
 
+
+        public string StrBirthPlace
+        {
+            get
+            {
+                return this.strLand;
+            }
+            set
+            {
+                this.strLand = value;
+                OnPropertyChanged(nameof(this.StrBirthPlace));
+            }
+        }
+
         public string SelectedCity
         {
             get
@@ -257,7 +273,7 @@ namespace EngineeringToolsCV_1.ViewModels
             set
             {
                 this.strEmail = value;
-                OnPropertyChanged(nameof(this.strEmail));
+                OnPropertyChanged(nameof(this.StrEmail));
             }
         }
 
@@ -321,6 +337,7 @@ namespace EngineeringToolsCV_1.ViewModels
             this._mStudentInfos = mStudentInfos;
             DbName = new DBName();
             this.userInfosRepositories = new UserInfos();
+            this.strDate = new DateTime();
             CityList = new ObservableCollection<string>
             {
                 "Salzgitter", "Braunschweig", "Hannover", "Hildesheim", "Salder"
@@ -335,6 +352,7 @@ namespace EngineeringToolsCV_1.ViewModels
             this.ColorCity = Brushes.Black;
             this.ColorEmail = Brushes.Black;
             this.ColorDate = Brushes.Black;
+            this.ColorBirth = Brushes.Black;
 
             this.executeCancelCommand(navigationStore);
             this.SaveCommand = new DelegateCommand(ExecuteSaveMethod, CanExecute);
@@ -372,33 +390,82 @@ namespace EngineeringToolsCV_1.ViewModels
         {
             int iCount;
             this._UserInfo = new UserInfos();
-            string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3},{4},{5},{6},{7})" +
-                                                     "VALUES({8},{9},{10},{11},{12},{13},{14})",
+            string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3},{4},{5},{6},{7},{8},{9})" +
+                                                     "VALUES({10},{11},{12},{13},{14},{15},{16},{17})",
                                                      DbName.strTBL_StudentsInfo,DbName.strName,
                                                      DbName.strVorname, DbName.StrEmail,
                                                      DbName.strStraße, DbName.strNummer,
                                                      DbName.strPostleitzahl,DbName.strStadt,
+                                                     DbName.strDatum,DbName.strLand,
                                                      this.StrName, this.StrVorname, this.StrEmail,
-                                                     this.StrStraße, this.strNummer, this.StrPostleitzahl, this.SelectedCity);
+                                                     this.StrStraße, this.StrNummer, 
+                                                     this.StrPostleitzahl, this.SelectedCity, 
+                                                     this.StrDate.ToString("dd.mm.yy"), this.StrBirthPlace);
             this.dialogMessage = new MessageDialog();
            try
             {
-                if(string.IsNullOrEmpty(StrTitle) || string.IsNullOrEmpty(StrName)|| 
+                if( string.IsNullOrEmpty(StrTitle) || string.IsNullOrEmpty(StrName)|| 
                     string.IsNullOrEmpty(StrVorname) || string.IsNullOrEmpty(StrEmail)|| 
-                    string.IsNullOrEmpty(StrStraße) || string.IsNullOrEmpty(strNummer) || string.IsNullOrEmpty(StrPostleitzahl) ||
-                    string.IsNullOrEmpty(this.SelectedCity) || string.IsNullOrEmpty(this.strDate.ToString()))
+                    string.IsNullOrEmpty(StrStraße) || string.IsNullOrEmpty(StrNummer) || 
+                    string.IsNullOrEmpty(StrPostleitzahl) || string.IsNullOrEmpty(StrBirthPlace) ||
+                    string.IsNullOrEmpty(this.SelectedCity) || string.IsNullOrEmpty(this.StrDate.ToString()))
                 {
-                    this.ColorTitle = Brushes.Red;
-                    this.ColorName = Brushes.Red;
-                    this.ColorVorname = Brushes.Red;
-                    this.ColorBirth = Brushes.Red;
-                    this.ColorEmail = Brushes.Red;
-                    this.ColorNummer = Brushes.Red;
-                    this.ColorPlz = Brushes.Red;
-                    this.ColorStraße = Brushes.Red;
-                    this.ColorCity = Brushes.Red;
-                    this.ColorDate = Brushes.Red;
-                    this.dialogMessage.ErrorMessage.Text = "die Leeren Feldern sollten ausgefüllt werden";
+                    if (string.IsNullOrEmpty(StrTitle)){
+
+                        this.ColorTitle = Brushes.Red;
+                    }
+
+                    if (string.IsNullOrEmpty(StrName)) {
+
+                        this.ColorName = Brushes.Red;
+                    }
+                    
+                    if (string.IsNullOrEmpty(StrVorname)){
+
+                        this.ColorVorname = Brushes.Red;
+                    }
+                   
+                    if (string.IsNullOrEmpty(StrEmail)){
+                        this.ColorEmail = Brushes.Red;
+                    }
+
+                    if(string.IsNullOrEmpty(this.StrDate.ToString()))
+                    {
+                        this.ColorBirth = Brushes.Red;
+                    }
+
+                    if (string.IsNullOrEmpty(StrNummer))
+                    {
+                        this.ColorNummer = Brushes.Red;
+                    }
+                   
+                    if(string.IsNullOrEmpty(StrPostleitzahl))
+                    {
+                        this.ColorPlz = Brushes.Red;
+                    }
+                   
+                    if(string.IsNullOrEmpty(StrStraße))
+                    {
+                        this.ColorStraße = Brushes.Red;
+                    }
+                   
+                    if (string.IsNullOrEmpty(this.SelectedCity))
+                    {
+                        this.ColorCity = Brushes.Red;
+                    }
+                   
+                    if(string.IsNullOrEmpty(this.StrDate.ToString()))
+                    {
+                        this.ColorDate = Brushes.Red;
+                    }
+
+                    if (string.IsNullOrEmpty(this.StrBirthPlace))
+                    {
+                        this.ColorBirth = Brushes.Red;
+                    }
+
+
+                    this.dialogMessage.ErrorMessage.Text = "die leeren Feldern sollten ausgefüllt werden";
                     this.dialogMessage.Show();
                 }
                 else
@@ -409,9 +476,7 @@ namespace EngineeringToolsCV_1.ViewModels
                         this.dialogMessage.ErrorMessage.Text = "die Einträgen wurden erfolgreich in die Datenbank hinzugefügt";
                         this.dialogMessage.Show();
                     }
-                }
-                
-
+                }               
             }
             catch (Exception ex)
             {
