@@ -20,6 +20,20 @@ namespace EngineeringToolsCV_1.ViewModels
         private NavigationStore navigationStore;
         private NavigationBarViewModel navigationBar;
         private MStudentInformations _mStudentInfos;
+
+        //Tabelle Berufserfahrung
+        public string strTBL_Beruf = "TBLBerufsErfahrung";
+        public string strDBAufgabe = "Aufgabe";
+        public string strDBTitel = "Titel";
+        public string strSBSkills = "Skills";
+        public string strDBFirma = "Firma";
+        public string strDBStartDatum = "StartDatum";
+        public string strDBEndDatum = "EndDatum";
+        public string strDBStandOrt = "Standort";
+        public string strDBOrtsTyp = "OrtsTyp";
+        public string strDBArbeitArt = "ArbeitsArt";
+        public string strDBBerufEmail = "Email";
+
         private string strTitel;
         private string strEmail;
         private string strBeschäftigung;
@@ -192,24 +206,22 @@ namespace EngineeringToolsCV_1.ViewModels
         public ICommand deleteCommand { get; set; }
 
 
-
         public BerufViewModel(NavigationStore navigationStore, MStudentInformations mStudentInfos)
         {
             this.navigationStore = navigationStore;
             this._mStudentInfos = mStudentInfos;
-            DbName = new DBName();
+            this.DbName = new DBName();
             this.StrStartDate = new DateTime();
             this.StrEndDate = new DateTime();
 
 
-            navigationBar = new NavigationBarViewModel("Home -> Dashboard");
-            this.NavigateReturnCommand = new NavigateCommand<DashboardViewModel>(
+           this.navigationBar = new NavigationBarViewModel("Home -> Dashboard");
+           this.NavigateReturnCommand = new NavigateCommand<DashboardViewModel>(
                new LayoutNavigationService<DashboardViewModel>(navigationStore,
                () => new DashboardViewModel(navigationStore, this._mStudentInfos), navigationBar));
-            this.SaveCommand = new DelegateCommand(ExecuteSaveMethod, CanExecute);
-            this.deleteCommand = new DelegateCommand(ExecuteDeleteMethod, CanExecute);
 
-
+           this.SaveCommand = new DelegateCommand(ExecuteSaveMethod, CanExecute);
+           this.deleteCommand = new DelegateCommand(ExecuteDeleteMethod, CanExecute);
 
             this.ItemAufgabe = new List<string>
             {
@@ -225,6 +237,7 @@ namespace EngineeringToolsCV_1.ViewModels
 
             this.CheckTätig = false;
         }
+
         private bool CanExecute(object arg)
         {
             return true;
@@ -239,17 +252,17 @@ namespace EngineeringToolsCV_1.ViewModels
         {
             int iCount;
             this._UserInfo = new UserInfos();
-            string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3},{4},{5},{6},{7},{8},{9},{10})" +
-                                                    "VALUES({11},{12},{13},{14},{15},{16},{17},{18},{19},{20})",
-                                                     DbName.strTBL_Beruf, DbName.strTitel,
-                                                     DbName.strBerufEmail, DbName.strSkills,
-                                                     DbName.strFirma, DbName.strStartDatum,
-                                                     DbName.strEndDatum, DbName.strStandOrt,
-                                                     DbName.strOrtsTyp,DbName.strAufgabe, DbName.strArbeitArt,
-                                                     this.StrTitel, this.StrEmail, this.StrSkills,
-                                                     this.StrUnternehmen, this.strStartDate.ToString("MM.dd.yy"), 
-                                                     this.StrEndDate.ToString("MM.dd.yy"), 
-                                                     this.StrStandOrt,this.SelOrtTyp,this.StrBeschreibung,this.SelAufgabe);
+            string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3},{4},{5},{6},{7},{8},{9},{10}) " +
+                                            "VALUES ('{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}')",
+                                            DbName.strTBL_Beruf, DbName.strTitel,
+                                            DbName.strBerufEmail, DbName.strSkills,
+                                            DbName.strFirma, DbName.strStartDatum,
+                                            DbName.strEndDatum, DbName.strStandOrt,
+                                            DbName.strOrtsTyp, DbName.strAufgabe, DbName.strArbeitArt,
+                                            this.StrTitel, this.StrEmail, this.StrSkills,
+                                            this.StrUnternehmen, this.strStartDate.ToString("yyyy-MM-dd"),
+                                            this.StrEndDate.ToString("yyyy-MM-dd"),
+                                            this.StrStandOrt, this.SelOrtTyp, this.StrBeschreibung, this.SelAufgabe);
             this.dialogMessage = new MessageDialog();
             try
             {

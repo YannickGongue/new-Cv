@@ -391,7 +391,7 @@ namespace EngineeringToolsCV_1.ViewModels
             int iCount;
             this._UserInfo = new UserInfos();
             string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3},{4},{5},{6},{7},{8},{9})" +
-                                                     "VALUES({10},{11},{12},{13},{14},{15},{16},{17})",
+                                                     "VALUES('{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}')",
                                                      DbName.strTBL_StudentsInfo,DbName.strName,
                                                      DbName.strVorname, DbName.StrEmail,
                                                      DbName.strStraße, DbName.strNummer,
@@ -400,7 +400,7 @@ namespace EngineeringToolsCV_1.ViewModels
                                                      this.StrName, this.StrVorname, this.StrEmail,
                                                      this.StrStraße, this.StrNummer, 
                                                      this.StrPostleitzahl, this.SelectedCity, 
-                                                     this.StrDate.ToString("dd.mm.yy"), this.StrBirthPlace);
+                                                     this.StrDate.ToString("yyyy-MM-dd"), this.StrBirthPlace);
             this.dialogMessage = new MessageDialog();
            try
             {

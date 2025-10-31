@@ -246,6 +246,7 @@
                    Height="30"
                    Margin="20,360,0,0" Grid.ColumnSpan="2" 
                    Content="{StaticResource LabelGeburtsdatum}"/>
+                
                 <DatePicker      
                    x:Name="txtDate"
                     HorizontalContentAlignment="Center"
@@ -254,7 +255,7 @@
                     VerticalAlignment="Top"
                     Margin="20,395,0,0" 
                     Grid.ColumnSpan="2"
-                    SelectedDate="{Binding Path=StrDate}"
+                     SelectedDate ="{Binding Path=StrDate}"
                      BorderBrush="{Binding ColorDate}"/>
 
                 <Label
