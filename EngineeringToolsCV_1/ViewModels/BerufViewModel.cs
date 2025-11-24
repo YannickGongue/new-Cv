@@ -1,4 +1,5 @@
 ﻿using EngineeringToolsCV_1.Command;
+using EngineeringToolsCV_1.DatabaseManager;
 using EngineeringToolsCV_1.Models;
 using EngineeringToolsCV_1.Repositories;
 using EngineeringToolsCV_1.Store;
@@ -13,10 +14,10 @@ namespace EngineeringToolsCV_1.ViewModels
 {
     public class BerufViewModel : ViewModelBase
     {
-        private UserInfos _UserInfo;
+        private DbManager _dbManager;
         private MessageDialog dialogMessage;
         private DBName DbName;
-
+        
         private NavigationStore navigationStore;
         private NavigationBarViewModel navigationBar;
         private MStudentInformations _mStudentInfos;
@@ -206,10 +207,13 @@ namespace EngineeringToolsCV_1.ViewModels
         public ICommand deleteCommand { get; set; }
 
 
-        public BerufViewModel(NavigationStore navigationStore, MStudentInformations mStudentInfos)
+        public BerufViewModel(NavigationStore navigationStore, 
+                              MStudentInformations mStudentInfos,
+                              DbManager dbManager)
         {
             this.navigationStore = navigationStore;
             this._mStudentInfos = mStudentInfos;
+            this._dbManager = dbManager;
             this.DbName = new DBName();
             this.StrStartDate = new DateTime();
             this.StrEndDate = new DateTime();
@@ -218,7 +222,7 @@ namespace EngineeringToolsCV_1.ViewModels
            this.navigationBar = new NavigationBarViewModel("Home -> Dashboard");
            this.NavigateReturnCommand = new NavigateCommand<DashboardViewModel>(
                new LayoutNavigationService<DashboardViewModel>(navigationStore,
-               () => new DashboardViewModel(navigationStore, this._mStudentInfos), navigationBar));
+               () => new DashboardViewModel(navigationStore, this._mStudentInfos, this._dbManager), navigationBar));
 
            this.SaveCommand = new DelegateCommand(ExecuteSaveMethod, CanExecute);
            this.deleteCommand = new DelegateCommand(ExecuteDeleteMethod, CanExecute);
@@ -251,7 +255,6 @@ namespace EngineeringToolsCV_1.ViewModels
         private void ExecuteSaveMethod(object obj)
         {
             int iCount;
-            this._UserInfo = new UserInfos();
             string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3},{4},{5},{6},{7},{8},{9},{10}) " +
                                             "VALUES ('{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}')",
                                             DbName.strTBL_Beruf, DbName.strTitel,
@@ -263,6 +266,7 @@ namespace EngineeringToolsCV_1.ViewModels
                                             this.StrUnternehmen, this.strStartDate.ToString("yyyy-MM-dd"),
                                             this.StrEndDate.ToString("yyyy-MM-dd"),
                                             this.StrStandOrt, this.SelOrtTyp, this.StrBeschreibung, this.SelAufgabe);
+
             this.dialogMessage = new MessageDialog();
             try
             {
@@ -286,7 +290,7 @@ namespace EngineeringToolsCV_1.ViewModels
                 //}
                 //else
                 //{
-                    iCount = this._UserInfo.SaveStudentInfos(strQueryRegister);
+                    iCount = this._dbManager.SetAllInfos(strQueryRegister);
                     if (iCount == 1)
                     {
                         this.dialogMessage.ErrorMessage.Text = "die Einträgen wurden erfolgreich in die Datenbank hinzugefügt";

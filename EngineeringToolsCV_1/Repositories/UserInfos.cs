@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 
 namespace EngineeringToolsCV_1.Repositories
 {
-    public class UserInfos : IStudentsInfo
+    public class UserInfos : IUserInfo
     {
         private SqlCommand sqlcmdManager;         
         private SqlConnection sqlconManager;      
@@ -27,46 +27,14 @@ namespace EngineeringToolsCV_1.Repositories
         {
             throw new NotImplementedException();
         }
-
-        public byte[] ConvertImageToByte(Image img)
-        {         
-            MemoryStream ms = new MemoryStream();
-            //img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-            return ms.ToArray();
-        }
+       
 
         public void FindStudentInfos(MStudentInformations mStudentInformations)
         {
             throw new NotImplementedException();
         }
 
-        public ImageSource Foto()
-        {
-            ImageSource imageSourceDefault = null;
-            ImageSource imageSource;
-            string ImagePath;
-            this.dialogMessage = new MessageDialog();
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-            try
-            {
-                if (openFileDialog.ShowDialog() == true)
-                {
-                    ImagePath = openFileDialog.FileName;
-                    imageSource = new BitmapImage(new Uri(ImagePath));
-                    return imageSource;
-                }
-            }
-            catch (Exception ex)
-            {
-                dialogMessage.ErrorMessage.Text = ex.Message.ToString();
-            }
-
-            return imageSourceDefault;
-        }
-
+        
         public void RemoveStudentInfos(MStudentInformations mStudentInformations)
         {
             throw new NotImplementedException();

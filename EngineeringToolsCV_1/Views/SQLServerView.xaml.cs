@@ -1,4 +1,5 @@
-﻿using EngineeringToolsCV_1.Models;
+﻿using EngineeringToolsCV_1.DatabaseManager;
+using EngineeringToolsCV_1.Models;
 using EngineeringToolsCV_1.Service;
 using EngineeringToolsCV_1.Store;
 using EngineeringToolsCV_1.ViewModels;
@@ -25,6 +26,7 @@ namespace EngineeringToolsCV_1.Views
     /// </summary>
     public partial class SQLServerView : Window
     {
+        private DbManager _dbManager;
         private MStudentInformations _mStudent;
         private MUser _mUser;
         private MainWindow mainWindow;
@@ -37,13 +39,18 @@ namespace EngineeringToolsCV_1.Views
         SqlCommand com = new SqlCommand();
         SqlDataReader dr;
 
-        public SQLServerView(RegisterViewModel userRegister ,UserResetViewModel vmUserReset,MStudentInformations mStudent, MUser mUser)
+        public SQLServerView(RegisterViewModel userRegister ,
+                             UserResetViewModel  vmUserReset,
+                             MStudentInformations mStudent, 
+                             MUser mUser,
+                             DbManager dbManager)
         {
             InitializeComponent();
             this._userRegister = userRegister;
             this._vmUserReset = vmUserReset;
             this._mStudent = mStudent;
             this._mUser = mUser;
+            this._dbManager = dbManager;
             this.navigationStore = new NavigationStore();
             this.mainWindow = new MainWindow();
             this._NavigationBar = new NavigationBarViewModel("Home");
@@ -171,9 +178,9 @@ namespace EngineeringToolsCV_1.Views
         private void CreateHomeView()
         {
             INavigateService<HomeViewModel> homeNavigationService = new LayoutNavigationService<HomeViewModel>(navigationStore,
-                        () => new HomeViewModel(navigationStore,this._userRegister,this._vmUserReset,this._mStudent, this._mUser), _NavigationBar);
+                        () => new HomeViewModel(navigationStore,this._userRegister,this._vmUserReset,this._mStudent, this._mUser,this._dbManager), _NavigationBar);
             homeNavigationService.Navigate();
-            mainWindow.DataContext = new mainViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent,this._mUser);
+            mainWindow.DataContext = new mainViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent,this._mUser,this._dbManager);
             mainWindow.Show();
         }
 

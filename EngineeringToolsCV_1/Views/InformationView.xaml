@@ -217,8 +217,8 @@
                      Width="152" 
                      Height="120"
                      VerticalAlignment="Top"
-                    
-                    />
+                    Source="{Binding SelectedImage}"
+                     />
                 </Border>
               <Controls:IconButton 
                 Command="{Binding LoadCommand }"
@@ -237,7 +237,7 @@
                 Margin="289,145,20,0" 
                 Cursor="Hand" 
                 Grid.Column="1"
-                Click="LoadFotoButton_Click"/>
+                />
 
                 <Label
                    HorizontalAlignment="Left"

@@ -1,4 +1,5 @@
 ﻿using EngineeringToolsCV_1.Command;
+using EngineeringToolsCV_1.DatabaseManager;
 using EngineeringToolsCV_1.Models;
 using EngineeringToolsCV_1.Service;
 using EngineeringToolsCV_1.Store;
@@ -15,6 +16,8 @@ namespace EngineeringToolsCV_1.ViewModels
 {
     public class DashboardViewModel : ViewModelBase
     {
+        private DbManager _dbManager;
+
         private InformationViewModel VmInfos;
         private BerufViewModel VmBeruf;
         private FormationViewModel VmFormation;
@@ -75,9 +78,11 @@ namespace EngineeringToolsCV_1.ViewModels
         public ICommand InterestCommand { get; set; }
 
         public DashboardViewModel(NavigationStore navigationStore, 
-                                  MStudentInformations mStudent)
+                                  MStudentInformations mStudent,
+                                  DbManager dbManager)
         {
             this._mStudent = mStudent;
+            this._dbManager = dbManager;
             this.executeInfoCommand(navigationStore);
             this.executeBerufCommand(navigationStore);
             this.executeProjektCommand(navigationStore);
@@ -97,7 +102,7 @@ namespace EngineeringToolsCV_1.ViewModels
 
             InfoCommand = new NavigateCommand<InformationViewModel>(
                new LayoutNavigationService<InformationViewModel>(navigationStore,
-               () => new InformationViewModel(navigationStore,this._mStudent), navigationBar));
+               () => new InformationViewModel(navigationStore,this._mStudent,this._dbManager), navigationBar));
         }
 
         private void executeBerufCommand(NavigationStore navigationStore)
@@ -106,7 +111,7 @@ namespace EngineeringToolsCV_1.ViewModels
 
             BerufCommand = new NavigateCommand<BerufViewModel>(
                new LayoutNavigationService<BerufViewModel>(navigationStore,
-               () => new BerufViewModel(navigationStore,this._mStudent), navigationBar));
+               () => new BerufViewModel(navigationStore,this._mStudent, this._dbManager), navigationBar));
         }
 
         private void executeProjektCommand(NavigationStore navigationStore)

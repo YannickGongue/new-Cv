@@ -9,6 +9,7 @@ using EngineeringToolsCV_1.Language;
 using EngineeringToolsCV_1.Models;
 using EngineeringToolsCV_1.Store;
 using EngineeringToolsCV_1.Views;
+using EngineeringToolsCV_1.DatabaseManager;
 
 namespace EngineeringToolsCV_1.ViewModels
 {
@@ -24,6 +25,7 @@ namespace EngineeringToolsCV_1.ViewModels
         private Culture selectedCulture;
         private MStudentInformations _mStudent;
         private MUser _mUser;
+        private DbManager _dbManager;
 
         //add a SelectedCulture property
         public Culture SelectedCulture
@@ -69,14 +71,19 @@ namespace EngineeringToolsCV_1.ViewModels
         public ICommand HomeNavigationCommand { get; set; }
         public ViewModelBase CurrentViewModels => _navigationstore.CurrentViewModels;
 
-        public mainViewModel(NavigationStore navigationStore, RegisterViewModel userRegister,
-                             UserResetViewModel vmUserReset, MStudentInformations mStudent, MUser mUser)
+        public mainViewModel(NavigationStore navigationStore, 
+                             RegisterViewModel userRegister,
+                             UserResetViewModel vmUserReset, 
+                             MStudentInformations mStudent, 
+                             MUser mUser,
+                             DbManager dbManager)
         {
             this._navigationstore = navigationStore;
             this._userRegister = userRegister;
             this._vmUserReset = vmUserReset;
             this._mStudent = mStudent;
             this._mUser = mUser;
+            this._dbManager = dbManager;
 
             this.executeCommand(navigationStore);
 
@@ -106,7 +113,7 @@ namespace EngineeringToolsCV_1.ViewModels
                 this.SetEnable = true;
                 HomeNavigationCommand = new NavigateCommand<HomeViewModel>(
                                         new LayoutNavigationService<HomeViewModel>(navigationStore,
-                                        () => new HomeViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent, this._mUser), _NavigationBar));
+                                        () => new HomeViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent, this._mUser,this._dbManager), _NavigationBar));
             }
            
         }

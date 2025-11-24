@@ -24,6 +24,10 @@ namespace EngineeringToolsCV_1.Style
         public string strFoto = "foto";
         public string strDatum = "Datum";
         public string strLand = "Land";
+        public string strImageId = "ImageId";
+        public string strFileName = "FileName";
+        public string strContentType = "ContentType";
+        public string strImageData = "ImageData";
 
         //Tabelle Berufserfahrung
         public string strTBL_Beruf = "TBLBerufsErfahrung";

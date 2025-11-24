@@ -33,12 +33,12 @@ namespace EngineeringToolsCV_1.Command
             this.userRepositories = new User();
             this.dialogMessage = new MessageDialog();
 
-            mUser.Id = _ViewModel.Username;
-            mUser.Passwort = _ViewModel.Password;
+            this.mUser.Id = _ViewModel.Username;
+            this.mUser.Passwort = _ViewModel.Password;
           
-            if(userRepositories.LoginUser(mUser).Rows.Count==1)
+            if(this.userRepositories.LoginUser(mUser).Rows.Count==1)
             {
-                _navigateService.Navigate();
+                this._navigateService.Navigate();
             }
             else
             {

@@ -215,6 +215,7 @@ C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\D
 C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\ProjektView.baml
 C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\QualificationView.baml
 C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\Views\SocialMediaView.baml
-C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.csprojAssemblyReference.cache
 C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\Haley.WPF.dll
 C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\bin\Debug\netcoreapp3.1\ShellBrowser.dll
+C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.csproj.AssemblyReference.cache
+C:\Users\vamic\source\repos\Project_Engeneering_Tools\EngineeringToolsCV_1\obj\Debug\netcoreapp3.1\EngineeringToolsCV_1.GeneratedMSBuildEditorConfig.editorconfig

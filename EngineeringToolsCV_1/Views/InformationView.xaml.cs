@@ -24,29 +24,14 @@ namespace EngineeringToolsCV_1.Views
     /// </summary>
     public partial class InformationView : UserControl
     {
-        private UserInfos userInfosRepositories;
-        private MStudentInformations mStudentInformations;
-        private MessageDialog dialogMessage;
-        //private InformationViewModel informationViewModel;
+        
 
         public InformationView()
         {
-            this.userInfosRepositories = new UserInfos();
+           
             InitializeComponent();
             
         }
 
-
-        private void LoadFotoButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                this.imageFoto.Source = this.userInfosRepositories.Foto();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
     }
 }

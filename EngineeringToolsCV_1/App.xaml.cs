@@ -3,6 +3,7 @@ using EngineeringToolsCV_1.Service;
 using EngineeringToolsCV_1.Store;
 using EngineeringToolsCV_1.ViewModels;
 using EngineeringToolsCV_1.Views;
+using EngineeringToolsCV_1.DatabaseManager;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Globalization;
 using Haley.Utils;
+using EngineeringToolsCV_1.Repositories;
 
 namespace EngineeringToolsCV_1
 {
@@ -35,19 +37,21 @@ namespace EngineeringToolsCV_1
         private MStudentInformations _mStudent;
         private MUser mUser;
         private LoginViewModel VmLogin;
+        private  DbManager dbManager;
 
-       
+
         public App()
         {
+            this.dbManager = new DbManager(new UserInfos());
             this.mUser = new MUser();
-            this.VmLogin = new LoginViewModel(this.navigationStore,this.mUser, this._vmUserReset, this._mStudent);
+            this.VmLogin = new LoginViewModel(this.navigationStore,this.mUser, this._vmUserReset, this._mStudent,this.dbManager);
             this._mStudent = new MStudentInformations();
             this._vmRegister = new RegisterViewModel(this.VmLogin, this.mUser);
             this._vmUserReset = new UserResetViewModel();
             this.navigationStore = new NavigationStore();
             this.mainWindow = new MainWindow();
             this._NavigationBar = new NavigationBarViewModel("Home");
-            this.ServerView = new SQLServerView(this._vmRegister,this._vmUserReset,this._mStudent,this.mUser);
+            this.ServerView = new SQLServerView(this._vmRegister,this._vmUserReset,this._mStudent,this.mUser,this.dbManager);
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
@@ -73,9 +77,9 @@ namespace EngineeringToolsCV_1
         private void CreateHomeView()
         {
             INavigateService<HomeViewModel> homeNavigationService = new LayoutNavigationService<HomeViewModel>(this.navigationStore,
-                        () => new HomeViewModel(this.navigationStore, this._vmRegister, this._vmUserReset,this._mStudent,this.mUser), this._NavigationBar);
+                        () => new HomeViewModel(this.navigationStore, this._vmRegister, this._vmUserReset,this._mStudent,this.mUser,this.dbManager), this._NavigationBar);
             homeNavigationService.Navigate();
-            this.mainWindow.DataContext = new mainViewModel(this.navigationStore, this._vmRegister,this._vmUserReset,this._mStudent,this.mUser);
+            this.mainWindow.DataContext = new mainViewModel(this.navigationStore, this._vmRegister,this._vmUserReset,this._mStudent,this.mUser,this.dbManager);
             this.mainWindow.Show();
         }
         

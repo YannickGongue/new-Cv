@@ -6,14 +6,14 @@ using System.Windows.Media;
 
 namespace EngineeringToolsCV_1.Models
 {
-    public interface IStudentsInfo
+    public interface IUserInfo
     {
         public void UpdateStudentInfos(MStudentInformations mStudentInformations);
         public int SaveStudentInfos( string strQuery);
         public void FindStudentInfos(MStudentInformations mStudentInformations);
         public void AddStudentInfos(MStudentInformations mStudentInformations);
         public void RemoveStudentInfos(MStudentInformations mStudentInformations);
-        public ImageSource Foto();
-        public Byte[] ConvertImageToByte(Image img);
+        //public ImageSource Foto();
+        //public Byte[] ConvertImageToByte(Image img);
     }
 }

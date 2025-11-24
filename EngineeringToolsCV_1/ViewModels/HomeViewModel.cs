@@ -1,4 +1,5 @@
 ﻿using EngineeringToolsCV_1.Command;
+using EngineeringToolsCV_1.DatabaseManager;
 using EngineeringToolsCV_1.Models;
 using EngineeringToolsCV_1.Service;
 using EngineeringToolsCV_1.Store;
@@ -17,6 +18,7 @@ namespace EngineeringToolsCV_1.ViewModels
         private UserResetViewModel _vmUserReset;
         private MStudentInformations _mStudent;
         private MUser _mUser;
+        private DbManager _dbManager;
 
         private string displayedImagePath = @"C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\Images\job-portfolio.png"; 
         public ICommand NavigateLoginCommand { get; }
@@ -31,18 +33,23 @@ namespace EngineeringToolsCV_1.ViewModels
             }
         }
 
-        public HomeViewModel(NavigationStore navigationStore, RegisterViewModel userRegister, 
-                              UserResetViewModel vmUserReset, MStudentInformations mStudent,MUser mUser)
+        public HomeViewModel(NavigationStore navigationStore,
+                               RegisterViewModel userRegister, 
+                              UserResetViewModel vmUserReset,
+                               MStudentInformations mStudent,
+                               MUser mUser,
+                               DbManager dbManager)
         {
             this._vmUserRegister = userRegister;
             this._vmUserReset = vmUserReset;
             this._mStudent = mStudent;
             this._mUser = mUser;
+            this._dbManager = dbManager;
                                                                        
             navigationBar = new NavigationBarViewModel("Home");
             NavigateLoginCommand = new NavigateCommand<LoginViewModel>(
                 new LayoutNavigationService<LoginViewModel>(navigationStore,
-                () => new LoginViewModel(navigationStore,this._mUser,this._vmUserReset,this._mStudent), navigationBar));
+                () => new LoginViewModel(navigationStore,this._mUser,this._vmUserReset,this._mStudent,this._dbManager), navigationBar));
         }
     }
 }

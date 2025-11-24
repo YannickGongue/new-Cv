@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using EngineeringToolsCV_1.Command;
+using EngineeringToolsCV_1.DatabaseManager;
 using EngineeringToolsCV_1.IRepository;
 using EngineeringToolsCV_1.Models;
 using EngineeringToolsCV_1.Repositories;
@@ -15,6 +16,7 @@ namespace EngineeringToolsCV_1.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
+        private DbManager _dbManager;
         private string password;
         private string username;
        
@@ -87,12 +89,16 @@ namespace EngineeringToolsCV_1.ViewModels
             }
         }
 
-        public LoginViewModel(NavigationStore navigateStore, MUser _mUser,
-                              UserResetViewModel vmUserReset, MStudentInformations mStudent)
+        public LoginViewModel(NavigationStore navigateStore, 
+                              MUser _mUser,
+                              UserResetViewModel vmUserReset, 
+                              MStudentInformations mStudent,
+                              DbManager dbManager)
         {          
             this._vmUserReset = vmUserReset;
             this._mStudent = mStudent;
             this.mUser = _mUser;
+            this._dbManager = dbManager;
             this.Username = "gonguego";
             this.Password = "dyna1605";
             this.navigationBar = new NavigationBarViewModel("Home -> Dashboard");
@@ -102,7 +108,7 @@ namespace EngineeringToolsCV_1.ViewModels
 
             this.NavigateLoginCommand = new NavigateLoginCommand(this,
                                    new LayoutNavigationService<DashboardViewModel>(navigateStore,
-                                   () => new DashboardViewModel(navigateStore,this._mStudent), 
+                                   () => new DashboardViewModel(navigateStore,this._mStudent,this._dbManager), 
                                    navigationBar));
             this.RegisterCommand = new DelegateCommand(ExecuteRegister, CanExecute);
             this.UserResetCommand = new DelegateCommand(ExecuteUserReset, CanExecute);
