@@ -18,6 +18,7 @@ namespace EngineeringToolsCV_1.ViewModels
     {
         private DbManager _dbManager;
         private DBName _dbName;
+        private ErrorMessageViewModel _vmDialogMessage;
         private string password;
         private string username;
        
@@ -32,8 +33,9 @@ namespace EngineeringToolsCV_1.ViewModels
         private NavigationBarViewModel navigationBar;
 
         public ViewModelCommand NavigateLoginCommand { get; }
-        public ICommand RegisterCommand { get; }
-        public ICommand UserResetCommand { get; set;  }
+        public ICommand RegisterCommand { get; set; }
+        public ICommand UserResetCommand { get; set; }
+
 
         public bool UserResetEnabled
         {
@@ -94,13 +96,15 @@ namespace EngineeringToolsCV_1.ViewModels
                               UserResetViewModel vmUserReset, 
                               MStudentInformations mStudent,
                               DbManager dbManager,
-                              DBName dbName)
+                              DBName dbName,
+                              ErrorMessageViewModel vmDialogMessage)
         {
             this._vmUserReset = vmUserReset;
             this._mStudent = mStudent;
             this._mUser = mUser;
             this._dbManager = dbManager;
             this._dbName = dbName;
+            this._vmDialogMessage = vmDialogMessage;
             this.Username = "gonguego";
             this.Password = "dyna1605";
             this.navigationBar = new NavigationBarViewModel("Home -> Dashboard");
@@ -110,7 +114,7 @@ namespace EngineeringToolsCV_1.ViewModels
 
             this.NavigateLoginCommand = new NavigateLoginCommand(this,
                                        new LayoutNavigationService<DashboardViewModel>(navigateStore,
-                                       () => new DashboardViewModel(navigateStore,this._mStudent,this._dbManager,this._dbName), 
+                                       () => new DashboardViewModel(navigateStore,this._mStudent,this._dbManager,this._dbName,this._vmDialogMessage), 
                                        navigationBar),this._dbManager,this._mUser,this._dbName);
             this.RegisterCommand = new DelegateCommand(ExecuteRegister, CanExecute);
             this.UserResetCommand = new DelegateCommand(ExecuteUserReset, CanExecute);
@@ -121,14 +125,14 @@ namespace EngineeringToolsCV_1.ViewModels
             this._mUser.Id = this.username;
             //sql-Befehle zusammensetzen.
            string strQueryLogin = String.Format("SELECT {1} FROM {0} WHERE {2}='{3}'",
-                                           this._dbName.StrTBL_User,
-                                           this._dbName.StrEmail,
-                                           this._dbName.StrId,
-                                           this._mUser.Id);
+                                                 this._dbName.StrTBL_User,
+                                                 this._dbName.StrEmail,
+                                                 this._dbName.StrId,
+                                                 this._mUser.Id);
 
             this._UserResetView = new UserResetView();
             this.UserResetEnabled = false;
-            this._vmUserReset.SetEmail = this._dbManager.GetEmail(this._mUser, strQueryLogin);
+            this._vmUserReset.SetEmail = this._dbManager.GetUserDataFromDB( strQueryLogin).Rows[0][0].ToString();
             this._UserResetView.DataContext = this._vmUserReset;
             this._UserResetView.Show(); 
             
@@ -143,9 +147,8 @@ namespace EngineeringToolsCV_1.ViewModels
         {
             this.register = new RegisterView(this);
             this.SetActivedWindow = false;
-            this.register.DataContext = new RegisterViewModel(this, this._mUser, this._dbManager);
-            this.register.Show();               
-           
+            this.register.DataContext = new RegisterViewModel(this, this._mUser, this._dbManager,this._dbName,this._vmDialogMessage);
+            this.register.Show();                         
         }
     }
 }

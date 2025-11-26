@@ -17,6 +17,8 @@ using System.Windows.Media;
 using System.IO;
 using Microsoft.Win32;
 using EngineeringToolsCV_1.DatabaseManager;
+using System.Threading.Tasks;
+using System.Data;
 
 namespace EngineeringToolsCV_1.ViewModels
 {
@@ -26,8 +28,10 @@ namespace EngineeringToolsCV_1.ViewModels
         private DbManager _dbManager;
         private UserInfos userInfosRepositories;
         private MStudentInformations _mStudentInfos;
-        private MessageDialog dialogMessage;
+        private ErrorMessageViewModel _dialogMessage;
+        private MessageDialog _DialogView;
         private DBName _dbName;
+        private DataTable dtTable;
         private string strTitle;
         private string strName;
         private string strVorname;
@@ -50,6 +54,7 @@ namespace EngineeringToolsCV_1.ViewModels
         private Brush colorEmail;
         private Brush colorDate;
         private ImageSource _selectedImage;
+        private string strsearch;
 
         private ObservableCollection<string> cityList;
 
@@ -58,6 +63,7 @@ namespace EngineeringToolsCV_1.ViewModels
         public ICommand NavigateCancelCommand { get; set; }
         public ICommand SaveCommand { get; set; }
         public ICommand LoadCommand { get; set; }
+        public ICommand NavigateSearchCommand { get; set; }
 
         public Brush ColorDate
         {
@@ -305,6 +311,20 @@ namespace EngineeringToolsCV_1.ViewModels
             }
         }
 
+        public string Strsearch
+        {
+            get
+            {
+                return this.strsearch;
+            }
+            set
+            {
+                this.strsearch = value;
+                OnPropertyChanged(nameof(this.Strsearch));
+            }
+        }
+
+
         public string StrStraße
         {
             get
@@ -345,13 +365,17 @@ namespace EngineeringToolsCV_1.ViewModels
         public InformationViewModel(NavigationStore navigationStore, 
                                     MStudentInformations mStudentInfos,
                                     DbManager dbManager,
-                                    DBName dbName )
+                                    DBName dbName,
+                                    ErrorMessageViewModel dialogMessage)
         {
             this._mStudentInfos = mStudentInfos;
             this._dbManager = dbManager;
             this._dbName =  dbName;
-            //this.userInfosRepositories = new UserInfos();
+            this._dialogMessage = dialogMessage;
+
+            this._DialogView = new MessageDialog();
             this.strDate = new DateTime();
+            this.dtTable = new DataTable();
             CityList = new ObservableCollection<string>
             {
                 "Salzgitter", "Braunschweig", "Hannover", "Hildesheim", "Salder"
@@ -371,6 +395,37 @@ namespace EngineeringToolsCV_1.ViewModels
             this.executeCancelCommand(navigationStore);
             this.SaveCommand = new DelegateCommand(ExecuteSaveMethod, CanExecute);
             this.LoadCommand = new DelegateCommand(ExecuteLoadMethod, CanExecute);
+            this.NavigateSearchCommand = new DelegateCommand(ExecuteSearchMethod, CanExecute);
+        }
+
+        private void ExecuteSearchMethod(object obj)
+        {
+            string strQuery = String.Format("SELECT {1},{2},{3},{4},{5},{6},{7},{8},{9} FROM {0} WHERE {10}= '{11}'",
+                                                 this._dbName.strTBL_StudentsInfo, this._dbName.strName,
+                                                 this._dbName.strVorname, this._dbName.StrEmail,
+                                                 this._dbName.strStraße, this._dbName.strNummer,
+                                                 this._dbName.strPostleitzahl, this._dbName.strStadt,
+                                                 this._dbName.strDatum, this._dbName.strLand,this._dbName.StrId,
+                                                 this.Strsearch);
+            DataRow drRow;
+
+            this.dtTable = this._dbManager.GetUserDataFromDB(strQuery);
+
+            if (this.dtTable.Rows.Count > 0)
+            {
+                drRow = this.dtTable.Rows[0];
+                this.StrName = drRow[this._dbName.strName].ToString();
+                this.StrVorname = drRow[this._dbName.strVorname].ToString();
+                this.StrEmail = drRow[this._dbName.StrEmail].ToString();
+                this.StrStraße = drRow[this._dbName.strStraße].ToString();
+                this.StrNummer = drRow[this._dbName.strNummer].ToString();
+                this.StrPostleitzahl = drRow[this._dbName.strPostleitzahl].ToString();
+                this.SelectedCity = drRow[this._dbName.strStadt].ToString();
+                //this.StrDate = Convert.ToDateTime(drRow[this._dbName.strDatum].ToString());
+                this.strLand = drRow[this._dbName.strLand].ToString();
+
+            }
+
         }
 
         public ImageSource Foto()
@@ -378,7 +433,6 @@ namespace EngineeringToolsCV_1.ViewModels
             ImageSource imageSourceDefault = null;
             ImageSource imageSource;
            
-            this.dialogMessage = new MessageDialog();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -394,7 +448,9 @@ namespace EngineeringToolsCV_1.ViewModels
             }
             catch (Exception ex)
             {
-                dialogMessage.ErrorMessage.Text = ex.Message.ToString();
+                this._dialogMessage.SetErrorMessage = ex.Message.ToString();
+                this._DialogView.DataContext = this._dialogMessage;
+                this._DialogView.Show();
             }
 
             return imageSourceDefault;
@@ -430,7 +486,7 @@ namespace EngineeringToolsCV_1.ViewModels
 
             NavigateCancelCommand = new NavigateCommand<DashboardViewModel>(
                new LayoutNavigationService<DashboardViewModel>(navigationStore,
-               () => new DashboardViewModel(navigationStore,this._mStudentInfos,this._dbManager,this._dbName), navigationBar));
+               () => new DashboardViewModel(navigationStore,this._mStudentInfos,this._dbManager,this._dbName,this._dialogMessage), navigationBar));
           
         }
 
@@ -460,7 +516,6 @@ namespace EngineeringToolsCV_1.ViewModels
                                                      this.StrDate.ToString("yyyy-MM-dd"), this.StrBirthPlace,
                                                      hexData, filename );
 
-            this.dialogMessage = new MessageDialog();
            try
             {
                 if( string.IsNullOrEmpty(StrTitle) || string.IsNullOrEmpty(StrName)|| 
@@ -523,23 +578,26 @@ namespace EngineeringToolsCV_1.ViewModels
                         this.ColorBirth = Brushes.Red;
                     }
 
-                    this.dialogMessage.ErrorMessage.Text = "die leeren Feldern sollten ausgefüllt werden";
-                    this.dialogMessage.Show();
+                    this._dialogMessage.SetErrorMessage = "die leeren Feldern sollten ausgefüllt werden";
+                    this._DialogView.DataContext = this._dialogMessage;
+                    this._DialogView.Show();
                 }
                 else
                 {
-                    iCount = this._dbManager.SetAllInfos(strQueryRegister);
+                    iCount = this._dbManager.SetDataToDB(strQueryRegister);
                     if (iCount == 1)
                     {
-                        this.dialogMessage.ErrorMessage.Text = "die Einträgen wurden erfolgreich in die Datenbank hinzugefügt";
-                        this.dialogMessage.Show();
+                        this._dialogMessage.SetErrorMessage = "die Einträgen wurden erfolgreich in die Datenbank hinzugefügt";
+                        this._DialogView.DataContext = this._dialogMessage;
+                        this._DialogView.Show();
                     }
                 }               
             }
             catch (Exception ex)
             {
-                this.dialogMessage.ErrorMessage.Text = ex.Message.ToString();
-                this.dialogMessage.Show();
+                this._dialogMessage.SetErrorMessage = ex.Message.ToString();
+                this._DialogView.DataContext = this._dialogMessage;
+                this._DialogView.Show();
             }
             
         }

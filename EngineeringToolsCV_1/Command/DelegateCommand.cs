@@ -9,7 +9,7 @@ namespace EngineeringToolsCV_1.Command
         private readonly Func<object, bool> _canExecute;
         private readonly Action<object> _execute;
 
-        public DelegateCommand(Action<object> execute,
+        public  DelegateCommand( Action<object> execute,
                                Func<object,bool> canExecute)
         {
             _execute = execute;

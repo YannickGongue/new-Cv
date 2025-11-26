@@ -15,6 +15,7 @@ namespace EngineeringToolsCV_1.ViewModels
     {
         private DbManager _dbManager;
         private MessageDialog dialogMessage;
+        private ErrorMessageViewModel _vmDialogMessage;
         private DBName _dbName;
         
         private NavigationStore navigationStore;
@@ -209,12 +210,14 @@ namespace EngineeringToolsCV_1.ViewModels
         public BerufViewModel(NavigationStore navigationStore, 
                               MStudentInformations mStudentInfos,
                               DbManager dbManager,
-                              DBName dbName)
+                              DBName dbName,
+                              ErrorMessageViewModel vmDialogMessage)
         {
             this.navigationStore = navigationStore;
             this._mStudentInfos = mStudentInfos;
             this._dbManager = dbManager;
             this._dbName = dbName;
+            this._vmDialogMessage = vmDialogMessage;
             this.StrStartDate = new DateTime();
             this.StrEndDate = new DateTime();
 
@@ -222,7 +225,7 @@ namespace EngineeringToolsCV_1.ViewModels
            this.navigationBar = new NavigationBarViewModel("Home -> Dashboard");
            this.NavigateReturnCommand = new NavigateCommand<DashboardViewModel>(
                new LayoutNavigationService<DashboardViewModel>(navigationStore,
-               () => new DashboardViewModel(navigationStore, this._mStudentInfos, this._dbManager,this._dbName), navigationBar));
+               () => new DashboardViewModel(navigationStore, this._mStudentInfos, this._dbManager,this._dbName,this._vmDialogMessage), navigationBar));
 
            this.SaveCommand = new DelegateCommand(ExecuteSaveMethod, CanExecute);
            this.deleteCommand = new DelegateCommand(ExecuteDeleteMethod, CanExecute);
@@ -252,20 +255,20 @@ namespace EngineeringToolsCV_1.ViewModels
             throw new NotImplementedException();
         }     
 
-        private void ExecuteSaveMethod(object obj)
+        private  void ExecuteSaveMethod(object obj)
         {
             int iCount;
             string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3},{4},{5},{6},{7},{8},{9},{10}) " +
-                                            "VALUES ('{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}')",
-                                            this._dbName.strTBL_Beruf, this._dbName.strTitel,
-                                            this._dbName.strBerufEmail, this._dbName.strSkills,
-                                            this._dbName.strFirma, this._dbName.strStartDatum,
-                                            this._dbName.strEndDatum, this._dbName.strStandOrt,
-                                            this._dbName.strOrtsTyp, this._dbName.strAufgabe, this._dbName.strArbeitArt,
-                                            this.StrTitel, this.StrEmail, this.StrSkills,
-                                            this.StrUnternehmen, this.strStartDate.ToString("yyyy-MM-dd"),
-                                            this.StrEndDate.ToString("yyyy-MM-dd"),
-                                            this.StrStandOrt, this.SelOrtTyp, this.StrBeschreibung, this.SelAufgabe);
+                                                    "VALUES ('{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}')",
+                                                    this._dbName.strTBL_Beruf, this._dbName.strTitel,
+                                                    this._dbName.strBerufEmail, this._dbName.strSkills,
+                                                    this._dbName.strFirma, this._dbName.strStartDatum,
+                                                    this._dbName.strEndDatum, this._dbName.strStandOrt,
+                                                    this._dbName.strOrtsTyp, this._dbName.strAufgabe, this._dbName.strArbeitArt,
+                                                    this.StrTitel, this.StrEmail, this.StrSkills,
+                                                    this.StrUnternehmen, this.strStartDate.ToString("yyyy-MM-dd"),
+                                                    this.StrEndDate.ToString("yyyy-MM-dd"),
+                                                    this.StrStandOrt, this.SelOrtTyp, this.StrBeschreibung, this.SelAufgabe);
 
             this.dialogMessage = new MessageDialog();
             try
@@ -290,17 +293,19 @@ namespace EngineeringToolsCV_1.ViewModels
                 //}
                 //else
                 //{
-                    iCount = this._dbManager.SetAllInfos(strQueryRegister);
+                    iCount = this._dbManager.SetDataToDB(strQueryRegister);
                     if (iCount == 1)
                     {
-                        this.dialogMessage.ErrorMessage.Text = "die Einträgen wurden erfolgreich in die Datenbank hinzugefügt";
+                        this._vmDialogMessage.SetErrorMessage= "die Einträgen wurden erfolgreich in die Datenbank hinzugefügt";
+                        this.dialogMessage.DataContext = this._vmDialogMessage;
                         this.dialogMessage.Show();
                     }
                 //}
             }
             catch (Exception ex)
             {
-                this.dialogMessage.ErrorMessage.Text = ex.Message.ToString();
+                this._vmDialogMessage.SetErrorMessage = ex.Message.ToString();
+                this.dialogMessage.DataContext = this._vmDialogMessage;
                 this.dialogMessage.Show();
             }
         }

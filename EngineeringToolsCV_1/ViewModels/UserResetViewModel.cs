@@ -61,7 +61,7 @@ namespace EngineeringToolsCV_1.ViewModels
             }
         }
 
-        public ICommand OnSearchCommand { get; }
+        public ICommand OnSearchCommand { get; set; }
 
         public UserResetViewModel(NewPassordViewModel vmNewPassword, DbManager dbManager, DBName dbName, MUser mUser)
         {
@@ -90,7 +90,7 @@ namespace EngineeringToolsCV_1.ViewModels
 
             this.SetBackground = Brushes.AliceBlue;
             this.SetIsEnabled = false;
-            dtTable = this._dbManager.SetLoginUser(this._mUser, strQueryLogin);
+            dtTable = this._dbManager.GetUserDataFromDB(strQueryLogin);
             if (dtTable.Rows.Count > 0)
             {
                 this._vmNewPassword.StrBenutzname = dtTable.Rows[0][this._dbName.StrId].ToString();

@@ -26,6 +26,8 @@ namespace EngineeringToolsCV_1.ViewModels
         private ProjektViewModel VmProject;
         private QualificationViewModel VmQualif;
         private SocialMediaViewModel VmSocialMedia;
+        private ErrorMessageViewModel _vmDialogMessage;
+
         private Brush setBackColor;
         private bool setEnable;
         private bool setEnableInfo;
@@ -81,11 +83,13 @@ namespace EngineeringToolsCV_1.ViewModels
         public DashboardViewModel(NavigationStore navigationStore, 
                                   MStudentInformations mStudent,
                                   DbManager dbManager,
-                                  DBName dbName)
+                                  DBName dbName,
+                                  ErrorMessageViewModel vmDialogMessage)
         {
             this._mStudent = mStudent;
             this._dbManager = dbManager;
             this._dbName = dbName;
+            this._vmDialogMessage = vmDialogMessage;
             this.executeInfoCommand(navigationStore);
             this.executeBerufCommand(navigationStore);
             this.executeProjektCommand(navigationStore);
@@ -105,7 +109,7 @@ namespace EngineeringToolsCV_1.ViewModels
 
             InfoCommand = new NavigateCommand<InformationViewModel>(
                new LayoutNavigationService<InformationViewModel>(navigationStore,
-               () => new InformationViewModel(navigationStore,this._mStudent,this._dbManager,this._dbName), navigationBar));
+               () => new InformationViewModel(navigationStore,this._mStudent,this._dbManager,this._dbName,this._vmDialogMessage), navigationBar));
         }
 
         private void executeBerufCommand(NavigationStore navigationStore)
@@ -114,7 +118,7 @@ namespace EngineeringToolsCV_1.ViewModels
 
             BerufCommand = new NavigateCommand<BerufViewModel>(
                new LayoutNavigationService<BerufViewModel>(navigationStore,
-               () => new BerufViewModel(navigationStore,this._mStudent, this._dbManager, this._dbName), navigationBar));
+               () => new BerufViewModel(navigationStore,this._mStudent, this._dbManager, this._dbName,this._vmDialogMessage), navigationBar));
         }
 
         private void executeProjektCommand(NavigationStore navigationStore)

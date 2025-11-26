@@ -8,6 +8,7 @@ using EngineeringToolsCV_1.IRepository;
 using EngineeringToolsCV_1.Models;
 using EngineeringToolsCV_1.Repositories;
 using EngineeringToolsCV_1.DatabaseManager;
+using EngineeringToolsCV_1.Views;
 
 namespace EngineeringToolsCV_1.ViewModels
 {
@@ -21,7 +22,9 @@ namespace EngineeringToolsCV_1.ViewModels
         private LoginViewModel VmLogin;
         private DbManager _DbManager;
         private MUser mUser;
-        private DBName dbname;
+        private DBName _dbname;
+        private ErrorMessageViewModel dialogMessage;
+        private MessageDialog _DialogView;
 
 
 
@@ -84,31 +87,52 @@ namespace EngineeringToolsCV_1.ViewModels
         public ICommand regCommand { get; }
         public ICommand CancelCommand { get; }
 
-        public RegisterViewModel(LoginViewModel _vmLogin, MUser _mUser, DbManager dbManager)
+        public RegisterViewModel(LoginViewModel _vmLogin, MUser _mUser, DbManager dbManager, DBName dbname, ErrorMessageViewModel dialogMessage)
         {
             this.mUser = _mUser;
             this._DbManager = dbManager;
+            this._dbname = dbname;
             this.VmLogin = _vmLogin;
+            this.dialogMessage = dialogMessage;
+            this._DialogView = new MessageDialog();
             this.regCommand = new DelegateCommand( regExecut, CanExecute);
             this.CancelCommand = new DelegateCommand(CancelExecut, CanExecute);
 
         }
 
         private void regExecut(object obj)
-        {
-            string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3}) VALUES('{1}','{2}','{3}')",
-                                                  this.dbname.StrTBL_User,
-                                                  this.dbname.StrId,
-                                                  this.dbname.StrEmail,
-                                                  this.dbname.StrPasswort);
-           
-
+        {                 
             this.mUser.Id = this.Username;
             this.mUser.Email = this.EmailAdress;
             this.mUser.Passwort = this.Password;
             this.mUser.ConfirmPasswort = this.ConfirmPassword;
 
-            this._DbManager.registerUser( strQueryRegister,mUser);
+            string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3}) VALUES('{4}','{5}','{6}')",
+                                                     this._dbname.StrTBL_User,
+                                                     this._dbname.StrId,
+                                                     this._dbname.StrEmail,
+                                                     this._dbname.StrPasswort,
+                                                     this.mUser.Id,
+                                                     this.mUser.Email,
+                                                     this.mUser.Passwort);
+
+            // Bestätigung der Passwort.
+            if (mUser.Passwort == mUser.ConfirmPasswort)
+            {
+                //sind die Datensätze eingefügt?
+                if (this._DbManager.SetDataToDB(strQueryRegister) == 1)
+                {
+                    this.dialogMessage.SetErrorMessage = "die Einträgen wurden erfolgreich in die Datenbank hinzugefügt";
+                    this._DialogView.DataContext = this.dialogMessage;
+                    this._DialogView.Show();
+                }
+            }
+            else
+            {
+                this.dialogMessage.SetErrorMessage= "Die Passwort stimmen nicht überein";
+                this._DialogView.DataContext = this.dialogMessage;
+                this._DialogView.Show();
+            }
         }
 
         private void CancelExecut(object obj)

@@ -310,7 +310,8 @@
                Width="174"
                Height="30"
                TextAlignment="Center"
-               Margin="22,605,0,15"/>
+               Margin="22,605,0,15"
+               Text="{Binding Path=Strsearch}"/>
         <Controls:IconButton 
                 Command="{Binding NavigateSearchCommand }"
                 CornerRadius="15" 
@@ -330,7 +331,7 @@
         <Controls:IconButton 
                 Command="{Binding SaveCommand }"
                 CornerRadius="15" 
-                Width="272" 
+                Width="172" 
                 BorderBrush="Gray" 
                 BorderThickness="2" 
                 Height="40" 
@@ -340,7 +341,24 @@
                 Foreground="AliceBlue"  
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Margin="464,600,0,0" 
+                Margin="640,600,0,0" 
+                FontSize="18" 
+                Cursor="Hand" />
+
+        <Controls:IconButton 
+                Command="{Binding DeleteCommand }"
+                CornerRadius="15" 
+                Width="192" 
+                BorderBrush="Gray" 
+                BorderThickness="2" 
+                Height="40" 
+                Text="{StaticResource ButtonEntfernen}"
+                PathData="{StaticResource Close-Icon}" 
+                Background="RoyalBlue" 
+                Foreground="AliceBlue"  
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="400,600,0,0" 
                 FontSize="18" 
                 Cursor="Hand" />
 

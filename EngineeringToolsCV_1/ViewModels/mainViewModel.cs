@@ -16,6 +16,7 @@ namespace EngineeringToolsCV_1.ViewModels
     public class mainViewModel : ViewModelBase
     {
         private bool setEnable;
+        private ErrorMessageViewModel _vmDialogMessage;
         private UserResetView _userResetView;
         private RegisterViewModel _userRegister;
         private UserResetViewModel _vmUserReset;
@@ -79,7 +80,8 @@ namespace EngineeringToolsCV_1.ViewModels
                              MStudentInformations mStudent, 
                              MUser mUser,
                              DbManager dbManager,
-                             DBName dbName )
+                             DBName dbName,
+                             ErrorMessageViewModel vmDialogMessage)
         {
             this._navigationstore = navigationStore;
             this._userRegister = userRegister;
@@ -88,6 +90,7 @@ namespace EngineeringToolsCV_1.ViewModels
             this._mUser = mUser;
             this._dbManager = dbManager;
             this._dbName = dbName;
+            this._vmDialogMessage = vmDialogMessage;
 
             this.executeCommand(navigationStore);
 
@@ -117,7 +120,7 @@ namespace EngineeringToolsCV_1.ViewModels
                 this.SetEnable = true;
                 HomeNavigationCommand = new NavigateCommand<HomeViewModel>(
                                         new LayoutNavigationService<HomeViewModel>(navigationStore,
-                                        () => new HomeViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent, this._mUser,this._dbManager,this._dbName), _NavigationBar));
+                                        () => new HomeViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent, this._mUser,this._dbManager,this._dbName,this._vmDialogMessage), _NavigationBar));
             }
            
         }

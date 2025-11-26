@@ -49,7 +49,7 @@ namespace EngineeringToolsCV_1.Command
                                               this._mUser.Id,
                                               this._mUser.Passwort);
 
-            if (this._dbManager.SetLoginUser(_mUser, strQueryLogin).Rows.Count==1)
+            if (this._dbManager.GetUserDataFromDB(strQueryLogin).Rows.Count==1)
             {
                 this._navigateService.Navigate();
             }

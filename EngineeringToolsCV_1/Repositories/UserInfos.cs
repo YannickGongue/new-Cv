@@ -11,37 +11,59 @@ using System.IO;
 using System.Text;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Threading.Tasks;
 
 namespace EngineeringToolsCV_1.Repositories
 {
     public class UserInfos : IUserInfo
     {
-        private SqlCommand sqlcmdManager;         
-       
-        private string connectionString;
-        private MessageDialog dialogMessage;
+        private SqlCommand sqlcmdManager;
+        private SqlDataAdapter sqladDataAdapter;
+        private DataTable dtDatatable;
 
-        public void AddStudentInfos(MStudentInformations mStudentInformations, SqlConnection sqlCon, string strQueryRegister)
-        {
-            throw new NotImplementedException();
-        }
-       
-
-        public void FindStudentInfos(MStudentInformations mStudentInformations)
+        public void AddStudentInfos(SqlConnection sqlCon, string strQueryRegister)
         {
             throw new NotImplementedException();
         }
 
-        
+
+        public DataTable GetUserData(SqlConnection sqlcon, string strQueryLogin)
+        {
+            //Tabelle erzeugen.
+            this.dtDatatable = new DataTable();
+            
+            //Sql-Command zuweisen.
+            this.sqlcmdManager = new SqlCommand(strQueryLogin, sqlcon);
+            this.sqladDataAdapter = new SqlDataAdapter(sqlcmdManager);
+            //Verbindung öffnen.
+            sqlcon.Open();
+
+            //Sql-Abfrage festlegen.
+            this.sqlcmdManager.CommandType = CommandType.Text;
+            this.sqlcmdManager.CommandText = strQueryLogin;
+
+            //Tabelle einer Datenbank füllen.
+            this.sqladDataAdapter.Fill(dtDatatable);
+
+            //Die Verbindung schließen.
+            sqlcon.Close();
+            sqlcon.Dispose();
+            //Objekt freigegen.
+            this.sqlcmdManager.Dispose();
+            this.sqladDataAdapter.Dispose();
+            
+            return this.dtDatatable;
+        }
+
+
         public void RemoveStudentInfos(MStudentInformations mStudentInformations)
         {
             throw new NotImplementedException();
         }
 
-        public int SaveStudentInfos(string strQueryRegister, SqlConnection sqlcon)
+        public int SaveData(string strQueryRegister, SqlConnection sqlcon)
         {
             int iCount;                              
-            this.dialogMessage = new MessageDialog();
             //Sql-command Objekt instanzieren.
             sqlcmdManager = new SqlCommand(strQueryRegister, sqlcon);
                        
