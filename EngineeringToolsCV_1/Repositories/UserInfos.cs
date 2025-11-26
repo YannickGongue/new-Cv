@@ -1,5 +1,4 @@
 ﻿using EngineeringToolsCV_1.Models;
-using EngineeringToolsCV_1.Style;
 using EngineeringToolsCV_1.Views;
 using Microsoft.Win32;
 using System;
@@ -18,12 +17,11 @@ namespace EngineeringToolsCV_1.Repositories
     public class UserInfos : IUserInfo
     {
         private SqlCommand sqlcmdManager;         
-        private SqlConnection sqlconManager;      
        
         private string connectionString;
         private MessageDialog dialogMessage;
 
-        public void AddStudentInfos(MStudentInformations mStudentInformations)
+        public void AddStudentInfos(MStudentInformations mStudentInformations, SqlConnection sqlCon, string strQueryRegister)
         {
             throw new NotImplementedException();
         }
@@ -40,35 +38,25 @@ namespace EngineeringToolsCV_1.Repositories
             throw new NotImplementedException();
         }
 
-        public int SaveStudentInfos(string strQueryRegister)
+        public int SaveStudentInfos(string strQueryRegister, SqlConnection sqlcon)
         {
             int iCount;                              
             this.dialogMessage = new MessageDialog();
-
-            //Connectionstring-Objekt instanzieren.
-            sqlconManager = new SqlConnection();
-
-            this.connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            //Die Verbindung einer Datenbank festlegen.
-            sqlconManager.ConnectionString = connectionString;
             //Sql-command Objekt instanzieren.
-            sqlcmdManager = new SqlCommand();
-          
-            //Sql-Command zuweisen.
-            sqlcmdManager.Connection = sqlconManager;
-               
+            sqlcmdManager = new SqlCommand(strQueryRegister, sqlcon);
+                       
              //Verbindung öffnen.
-             sqlconManager.Open();               
+            sqlcon.Open();               
 
             //Sql-Abfrage festlegen.
-            sqlcmdManager.CommandType = CommandType.Text;
-            sqlcmdManager.CommandText = strQueryRegister;
+            this.sqlcmdManager.CommandType = CommandType.Text;
+            this.sqlcmdManager.CommandText = strQueryRegister;
                     
             //sql-Befehle ausführen.
             iCount = sqlcmdManager.ExecuteNonQuery();
                
             //Die Verbindung schließen.
-            sqlconManager.Close();
+            sqlcon.Close();
 
             return iCount;
           

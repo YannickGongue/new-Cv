@@ -1,6 +1,5 @@
 ﻿using EngineeringToolsCV_1.IRepository;
 using EngineeringToolsCV_1.Models;
-using EngineeringToolsCV_1.Style;
 using EngineeringToolsCV_1.ViewModels;
 using EngineeringToolsCV_1.Views;
 using System;
@@ -9,55 +8,34 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using EngineeringToolsCV_1.DatabaseManager;
 
 namespace EngineeringToolsCV_1.Repositories
 {
-    public class User : Setting, IUser
+    public class User : IUser
     {
         //private RegisterViewModel registerModelView;
         private ErrorMessageViewModel ErrorMessageView;
         private MessageDialog dialogMessage;
-        private DBName constante; 
         private DataTable dtDatatable;               
         private SqlDataAdapter sqladDataAdapter;
-        private string connectionString;
         private SqlCommand sqlcmdManager;         
-        private SqlConnection sqlconManager;    
         
 
-        public void AddUser(MUser mUser)
+        public void AddUser(MUser mUser, SqlConnection sqlcon, string strQueryRegister)
         {
             int iCount;                   
-            string strQueryRegister;
             //this.registerModelView = new RegisterViewModel();
             this.ErrorMessageView = new ErrorMessageViewModel();
             this.dialogMessage = new MessageDialog();
-            this.sqlconManager = new SqlConnection();
-            this.constante = new DBName();
-            this.connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            //Die Verbindung einer Datenbank festlegen.
-            this.sqlconManager.ConnectionString = connectionString;
             //Sql-command Objekt instanzieren.
-            this.sqlcmdManager = new SqlCommand();
-            this.sqlcmdManager.Connection = sqlconManager;
+            this.sqlcmdManager = new SqlCommand(strQueryRegister, sqlcon);
 
             try
             {
                 //Verbindung öffnen.
-                this.sqlconManager.Open();
-                strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3}) VALUES(@1,@2,@3)",
-                                                  this.constante.StrTBL_User,
-                                                  this.constante.StrId,
-                                                  this.constante.StrEmail,
-                                                  this.constante.StrPasswort);
-
-                //Parameters-collection leeren.
-                this.sqlcmdManager.Parameters.Clear();
-                // Parameters collection einfügen.
-                this.sqlcmdManager.Parameters.AddWithValue("@1", mUser.Id);
-                this.sqlcmdManager.Parameters.AddWithValue("@2", mUser.Email);
-                this.sqlcmdManager.Parameters.AddWithValue("@3", mUser.Passwort);
-
+                sqlcon.Open();
+                
                 //Sql-Abfrage festlegen.
                 this.sqlcmdManager.CommandType = CommandType.Text;
                 this.sqlcmdManager.CommandText = strQueryRegister;
@@ -79,7 +57,7 @@ namespace EngineeringToolsCV_1.Repositories
                     this.dialogMessage.Show();
                 }
                 //Die Verbindung schließen.
-                this.sqlconManager.Close();
+                sqlcon.Close();
             }
             catch (Exception ex)
             {
@@ -95,50 +73,34 @@ namespace EngineeringToolsCV_1.Repositories
             throw new NotImplementedException();
         }
 
-        public string GetUserEmail(MUser mUser)
+        public string GetUserEmail(MUser mUser, SqlConnection sqlcon, string strQueryRegister)
         {
-            String strQueryLogin;
             this.dialogMessage = new MessageDialog();
-            //Connectionstring-Objekt instanzieren.
-            this.sqlconManager = new SqlConnection();
-            //Sql-command Objekt instanzieren.
-            this.sqlcmdManager = new SqlCommand();
-            this.constante = new DBName();
+            
             //Tabelle erzeugen.
             this.dtDatatable = new DataTable();
-            //Sql-Command zuweisen.
-            this.sqlcmdManager.Connection = this.sqlconManager;
-            this.sqladDataAdapter = new SqlDataAdapter(this.sqlcmdManager);
-            this.connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            //Die Verbindung einer Datenbank festlegen.
-            this.sqlconManager.ConnectionString = this.ConnectionString;
+           
 
             try
             {
+                //Sql-Command zuweisen.
+                this.sqlcmdManager = new SqlCommand(strQueryRegister, sqlcon);
+                this.sqladDataAdapter = new SqlDataAdapter(this.sqlcmdManager);
                 //Verbindung öffnen.
-                sqlconManager.Open();
-                //sql-Befehle zusammensetzen.
-                strQueryLogin = String.Format("SELECT {1} FROM {0} WHERE {1}=@1 AND {2}=@2",
-                                               this.constante.StrTBL_User,
-                                               this.constante.StrEmail);
-
-                //Parameters-collection leeren.
-                this.sqlcmdManager.Parameters.Clear();
-                //Parameters collection einfügen.
-                this.sqlcmdManager.Parameters.AddWithValue("@1", mUser.Id);
-                this.sqlcmdManager.Parameters.AddWithValue("@2", mUser.Passwort);
+                sqlcon.Open();
+                
                 //Sql-Abfrage festlegen.
                 this.sqlcmdManager.CommandType = CommandType.Text;
-                this.sqlcmdManager.CommandText = strQueryLogin;
+                this.sqlcmdManager.CommandText = strQueryRegister;
 
                 //Tabelle einer Datenbank füllen.
                 this.sqladDataAdapter.Fill(this.dtDatatable);
                 //Objekt freigegen.
                 this.sqlcmdManager.Dispose();
-                this.sqlconManager.Dispose();
+                sqlcon.Dispose();
                 this.sqladDataAdapter.Dispose();
                 //Die Verbindung schließen.
-                this.sqlconManager.Close();
+                sqlcon.Close();
             }
             catch (Exception ex)
             {
@@ -146,54 +108,37 @@ namespace EngineeringToolsCV_1.Repositories
                 this.dialogMessage.ErrorMessage.Text = ex.Message.ToString();
             }
 
-            return this.dtDatatable.Rows.ToString();
+            return this.dtDatatable.Rows[0][0].ToString();
         }
 
-        public DataTable LoginUser(MUser mUser)
+        public DataTable LoginUser(MUser mUser, SqlConnection sqlcon, string strQueryLogin)
         {
-            String strQueryLogin;        
             this.dialogMessage = new MessageDialog();
-            //Connectionstring-Objekt instanzieren.
-            this.sqlconManager = new SqlConnection();
-            //Sql-command Objekt instanzieren.
-            this.sqlcmdManager = new SqlCommand();
-            this.constante = new DBName();
             //Tabelle erzeugen.
-            this.dtDatatable = new DataTable();
-            //Sql-Command zuweisen.
-            this.sqlcmdManager.Connection = sqlconManager;
-            this.sqladDataAdapter = new SqlDataAdapter(sqlcmdManager);
-            this.connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            //Die Verbindung einer Datenbank festlegen.
-            this.sqlconManager.ConnectionString = connectionString;
+            this.dtDatatable = new DataTable();        
 
             try
             {
+                //Sql-Command zuweisen.
+                this.sqlcmdManager = new SqlCommand(strQueryLogin, sqlcon);
+                this.sqladDataAdapter = new SqlDataAdapter(sqlcmdManager);
                 //Verbindung öffnen.
-                this.sqlconManager.Open();
-                //sql-Befehle zusammensetzen.
-                strQueryLogin = String.Format("SELECT {1},{2} FROM {0} WHERE {1}=@1 AND {2}=@2",
-                                               this.constante.StrTBL_User,
-                                               this.constante.StrId,
-                                               this.constante.StrPasswort);
-
-                //Parameters-collection leeren.
-                this.sqlcmdManager.Parameters.Clear();
-                //Parameters collection einfügen.
-                this.sqlcmdManager.Parameters.AddWithValue("@1", mUser.Id);
-                this.sqlcmdManager.Parameters.AddWithValue("@2", mUser.Passwort);
+                sqlcon.Open();
+               
                 //Sql-Abfrage festlegen.
                 this.sqlcmdManager.CommandType = CommandType.Text;
                 this.sqlcmdManager.CommandText = strQueryLogin;
 
                 //Tabelle einer Datenbank füllen.
                 this.sqladDataAdapter.Fill(dtDatatable);
+                
+                //Die Verbindung schließen.
+                sqlcon.Close();
+                sqlcon.Dispose();
                 //Objekt freigegen.
                 this.sqlcmdManager.Dispose();
-                this.sqlconManager.Dispose();
                 this.sqladDataAdapter.Dispose();
-                //Die Verbindung schließen.
-                this.sqlconManager.Close();
+
             }
             catch (Exception ex)
             {

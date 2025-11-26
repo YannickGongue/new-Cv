@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EngineeringToolsCV_1.Style
+namespace EngineeringToolsCV_1.DatabaseManager
 {
    public class DBName
    {

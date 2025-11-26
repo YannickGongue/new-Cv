@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using EngineeringToolsCV_1.Command;
+using EngineeringToolsCV_1.IRepository;
 using EngineeringToolsCV_1.Models;
 using EngineeringToolsCV_1.Repositories;
+using EngineeringToolsCV_1.DatabaseManager;
 
 namespace EngineeringToolsCV_1.ViewModels
 {
@@ -17,8 +19,9 @@ namespace EngineeringToolsCV_1.ViewModels
         private string confirmPassword;
         private string emailAdresse;
         private LoginViewModel VmLogin;
-        private User userRepositories;
+        private DbManager _DbManager;
         private MUser mUser;
+        private DBName dbname;
 
 
 
@@ -81,11 +84,10 @@ namespace EngineeringToolsCV_1.ViewModels
         public ICommand regCommand { get; }
         public ICommand CancelCommand { get; }
 
-        public RegisterViewModel(LoginViewModel _vmLogin, MUser _mUser)
+        public RegisterViewModel(LoginViewModel _vmLogin, MUser _mUser, DbManager dbManager)
         {
             this.mUser = _mUser;
-            this.userRepositories = new User();
-            
+            this._DbManager = dbManager;
             this.VmLogin = _vmLogin;
             this.regCommand = new DelegateCommand( regExecut, CanExecute);
             this.CancelCommand = new DelegateCommand(CancelExecut, CanExecute);
@@ -94,12 +96,19 @@ namespace EngineeringToolsCV_1.ViewModels
 
         private void regExecut(object obj)
         {
+            string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3}) VALUES('{1}','{2}','{3}')",
+                                                  this.dbname.StrTBL_User,
+                                                  this.dbname.StrId,
+                                                  this.dbname.StrEmail,
+                                                  this.dbname.StrPasswort);
+           
+
             this.mUser.Id = this.Username;
             this.mUser.Email = this.EmailAdress;
             this.mUser.Passwort = this.Password;
             this.mUser.ConfirmPasswort = this.ConfirmPassword;
 
-            this.userRepositories.AddUser(mUser);
+            this._DbManager.registerUser( strQueryRegister,mUser);
         }
 
         private void CancelExecut(object obj)

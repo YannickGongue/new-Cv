@@ -26,6 +26,8 @@ namespace EngineeringToolsCV_1.Views
     /// </summary>
     public partial class SQLServerView : Window
     {
+        private UserResetView _userResetView;
+        private DBName _dbName;
         private DbManager _dbManager;
         private MStudentInformations _mStudent;
         private MUser _mUser;
@@ -43,7 +45,8 @@ namespace EngineeringToolsCV_1.Views
                              UserResetViewModel  vmUserReset,
                              MStudentInformations mStudent, 
                              MUser mUser,
-                             DbManager dbManager)
+                             DbManager dbManager,
+                             DBName dbName)
         {
             InitializeComponent();
             this._userRegister = userRegister;
@@ -51,6 +54,7 @@ namespace EngineeringToolsCV_1.Views
             this._mStudent = mStudent;
             this._mUser = mUser;
             this._dbManager = dbManager;
+            this._dbName = dbName;
             this.navigationStore = new NavigationStore();
             this.mainWindow = new MainWindow();
             this._NavigationBar = new NavigationBarViewModel("Home");
@@ -178,9 +182,9 @@ namespace EngineeringToolsCV_1.Views
         private void CreateHomeView()
         {
             INavigateService<HomeViewModel> homeNavigationService = new LayoutNavigationService<HomeViewModel>(navigationStore,
-                        () => new HomeViewModel(navigationStore,this._userRegister,this._vmUserReset,this._mStudent, this._mUser,this._dbManager), _NavigationBar);
+                        () => new HomeViewModel(navigationStore,this._userRegister,this._vmUserReset,this._mStudent, this._mUser,this._dbManager,this._dbName), _NavigationBar);
             homeNavigationService.Navigate();
-            mainWindow.DataContext = new mainViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent,this._mUser,this._dbManager);
+            mainWindow.DataContext = new mainViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent,this._mUser,this._dbManager,this._dbName);
             mainWindow.Show();
         }
 

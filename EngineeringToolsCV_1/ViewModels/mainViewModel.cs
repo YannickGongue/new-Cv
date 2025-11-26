@@ -16,6 +16,7 @@ namespace EngineeringToolsCV_1.ViewModels
     public class mainViewModel : ViewModelBase
     {
         private bool setEnable;
+        private UserResetView _userResetView;
         private RegisterViewModel _userRegister;
         private UserResetViewModel _vmUserReset;
         private NavigationStore _navigationstore;
@@ -26,6 +27,7 @@ namespace EngineeringToolsCV_1.ViewModels
         private MStudentInformations _mStudent;
         private MUser _mUser;
         private DbManager _dbManager;
+        private DBName _dbName;
 
         //add a SelectedCulture property
         public Culture SelectedCulture
@@ -76,7 +78,8 @@ namespace EngineeringToolsCV_1.ViewModels
                              UserResetViewModel vmUserReset, 
                              MStudentInformations mStudent, 
                              MUser mUser,
-                             DbManager dbManager)
+                             DbManager dbManager,
+                             DBName dbName )
         {
             this._navigationstore = navigationStore;
             this._userRegister = userRegister;
@@ -84,6 +87,7 @@ namespace EngineeringToolsCV_1.ViewModels
             this._mStudent = mStudent;
             this._mUser = mUser;
             this._dbManager = dbManager;
+            this._dbName = dbName;
 
             this.executeCommand(navigationStore);
 
@@ -113,7 +117,7 @@ namespace EngineeringToolsCV_1.ViewModels
                 this.SetEnable = true;
                 HomeNavigationCommand = new NavigateCommand<HomeViewModel>(
                                         new LayoutNavigationService<HomeViewModel>(navigationStore,
-                                        () => new HomeViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent, this._mUser,this._dbManager), _NavigationBar));
+                                        () => new HomeViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent, this._mUser,this._dbManager,this._dbName), _NavigationBar));
             }
            
         }

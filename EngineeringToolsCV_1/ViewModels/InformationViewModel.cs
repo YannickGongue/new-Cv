@@ -3,7 +3,6 @@ using EngineeringToolsCV_1.Models;
 using EngineeringToolsCV_1.Repositories;
 using EngineeringToolsCV_1.Service;
 using EngineeringToolsCV_1.Store;
-using EngineeringToolsCV_1.Style;
 using EngineeringToolsCV_1.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -28,7 +27,7 @@ namespace EngineeringToolsCV_1.ViewModels
         private UserInfos userInfosRepositories;
         private MStudentInformations _mStudentInfos;
         private MessageDialog dialogMessage;
-        private DBName DbName;
+        private DBName _dbName;
         private string strTitle;
         private string strName;
         private string strVorname;
@@ -345,11 +344,12 @@ namespace EngineeringToolsCV_1.ViewModels
 
         public InformationViewModel(NavigationStore navigationStore, 
                                     MStudentInformations mStudentInfos,
-                                    DbManager dbManager)
+                                    DbManager dbManager,
+                                    DBName dbName )
         {
             this._mStudentInfos = mStudentInfos;
             this._dbManager = dbManager;
-            DbName = new DBName();
+            this._dbName =  dbName;
             //this.userInfosRepositories = new UserInfos();
             this.strDate = new DateTime();
             CityList = new ObservableCollection<string>
@@ -430,7 +430,7 @@ namespace EngineeringToolsCV_1.ViewModels
 
             NavigateCancelCommand = new NavigateCommand<DashboardViewModel>(
                new LayoutNavigationService<DashboardViewModel>(navigationStore,
-               () => new DashboardViewModel(navigationStore,this._mStudentInfos,this._dbManager), navigationBar));
+               () => new DashboardViewModel(navigationStore,this._mStudentInfos,this._dbManager,this._dbName), navigationBar));
           
         }
 
@@ -448,12 +448,12 @@ namespace EngineeringToolsCV_1.ViewModels
             //this._UserInfo = new UserInfos();
             string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11})" +
                                                      "VALUES('{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}')",
-                                                     DbName.strTBL_StudentsInfo,DbName.strName,
-                                                     DbName.strVorname, DbName.StrEmail,
-                                                     DbName.strStraße, DbName.strNummer,
-                                                     DbName.strPostleitzahl,DbName.strStadt,
-                                                     DbName.strDatum,DbName.strLand,
-                                                     DbName.strImageData,DbName.strFileName,
+                                                     this._dbName.strTBL_StudentsInfo,this._dbName.strName,
+                                                     this._dbName.strVorname, this._dbName.StrEmail,
+                                                     this._dbName.strStraße, this._dbName.strNummer,
+                                                     this._dbName.strPostleitzahl,this._dbName.strStadt,
+                                                     this._dbName.strDatum,this._dbName.strLand,
+                                                     this._dbName.strImageData,this._dbName.strFileName,
                                                      this.StrName, this.StrVorname, this.StrEmail,
                                                      this.StrStraße, this.StrNummer, 
                                                      this.StrPostleitzahl, this.SelectedCity, 

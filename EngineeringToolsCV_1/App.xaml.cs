@@ -37,21 +37,34 @@ namespace EngineeringToolsCV_1
         private MStudentInformations _mStudent;
         private MUser mUser;
         private LoginViewModel VmLogin;
-        private  DbManager dbManager;
+        private NewPassordViewModel _vmNewPassword;
+        private DbManager dbManager;
+        private UserInfos _userInfo;
+        private User _user;
+        private SqlConnectionFactory sqlcon;
+        private DBName dbName;
 
 
         public App()
         {
-            this.dbManager = new DbManager(new UserInfos());
+            string strConnectionString = ConfigurationManager
+                                         .ConnectionStrings["ConnectionString"]
+                                          .ConnectionString;
+            this.dbName = new DBName();
+            this.sqlcon = new SqlConnectionFactory(strConnectionString);
+            this._user = new User();
+            this._userInfo = new UserInfos();
+            this.dbManager = new DbManager(this._userInfo, this._user, this.sqlcon);
             this.mUser = new MUser();
-            this.VmLogin = new LoginViewModel(this.navigationStore,this.mUser, this._vmUserReset, this._mStudent,this.dbManager);
+            this._vmNewPassword = new NewPassordViewModel();
+            this.VmLogin = new LoginViewModel(this.navigationStore, this.mUser, this._vmUserReset, this._mStudent, this.dbManager, this.dbName);
             this._mStudent = new MStudentInformations();
-            this._vmRegister = new RegisterViewModel(this.VmLogin, this.mUser);
-            this._vmUserReset = new UserResetViewModel();
+            this._vmRegister = new RegisterViewModel(this.VmLogin, this.mUser, this.dbManager);
+            this._vmUserReset = new UserResetViewModel(this._vmNewPassword,this.dbManager,this.dbName, this.mUser);
             this.navigationStore = new NavigationStore();
             this.mainWindow = new MainWindow();
             this._NavigationBar = new NavigationBarViewModel("Home");
-            this.ServerView = new SQLServerView(this._vmRegister,this._vmUserReset,this._mStudent,this.mUser,this.dbManager);
+            this.ServerView = new SQLServerView(this._vmRegister,this._vmUserReset,this._mStudent,this.mUser,this.dbManager,this.dbName);
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
@@ -77,9 +90,9 @@ namespace EngineeringToolsCV_1
         private void CreateHomeView()
         {
             INavigateService<HomeViewModel> homeNavigationService = new LayoutNavigationService<HomeViewModel>(this.navigationStore,
-                        () => new HomeViewModel(this.navigationStore, this._vmRegister, this._vmUserReset,this._mStudent,this.mUser,this.dbManager), this._NavigationBar);
+                        () => new HomeViewModel(this.navigationStore, this._vmRegister, this._vmUserReset,this._mStudent,this.mUser,this.dbManager,this.dbName), this._NavigationBar);
             homeNavigationService.Navigate();
-            this.mainWindow.DataContext = new mainViewModel(this.navigationStore, this._vmRegister,this._vmUserReset,this._mStudent,this.mUser,this.dbManager);
+            this.mainWindow.DataContext = new mainViewModel(this.navigationStore, this._vmRegister,this._vmUserReset,this._mStudent,this.mUser,this.dbManager,this.dbName);
             this.mainWindow.Show();
         }
         

@@ -18,18 +18,15 @@ namespace EngineeringToolsCV_1.Views
     /// </summary>
     public partial class NewPassword : Window
     {
-        private UserResetViewModel _vmUserReset;
-        public NewPassword(UserResetViewModel vmUserReset)
+        public NewPassword()
         {
-            this._vmUserReset = vmUserReset;
             InitializeComponent();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            this._vmUserReset.SetIsEnabled = true;
-            this._vmUserReset.SetBackground = Brushes.RoyalBlue;                                                                                                                                                                                                           
+                                                                                                                                                                                                                   
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)

@@ -19,6 +19,7 @@ namespace EngineeringToolsCV_1.ViewModels
         private MStudentInformations _mStudent;
         private MUser _mUser;
         private DbManager _dbManager;
+        private DBName _dbName;
 
         private string displayedImagePath = @"C:\Users\vamic\source\repos\EngineeringToolsCV_1\EngineeringToolsCV_1\Images\job-portfolio.png"; 
         public ICommand NavigateLoginCommand { get; }
@@ -34,22 +35,24 @@ namespace EngineeringToolsCV_1.ViewModels
         }
 
         public HomeViewModel(NavigationStore navigationStore,
-                               RegisterViewModel userRegister, 
-                              UserResetViewModel vmUserReset,
-                               MStudentInformations mStudent,
-                               MUser mUser,
-                               DbManager dbManager)
+                             RegisterViewModel userRegister, 
+                             UserResetViewModel vmUserReset,
+                             MStudentInformations mStudent,
+                             MUser mUser,
+                             DbManager dbManager,
+                             DBName dbName)
         {
             this._vmUserRegister = userRegister;
             this._vmUserReset = vmUserReset;
             this._mStudent = mStudent;
             this._mUser = mUser;
             this._dbManager = dbManager;
+            this._dbName = dbName;
                                                                        
             navigationBar = new NavigationBarViewModel("Home");
             NavigateLoginCommand = new NavigateCommand<LoginViewModel>(
                 new LayoutNavigationService<LoginViewModel>(navigationStore,
-                () => new LoginViewModel(navigationStore,this._mUser,this._vmUserReset,this._mStudent,this._dbManager), navigationBar));
+                () => new LoginViewModel(navigationStore,this._mUser,this._vmUserReset,this._mStudent,this._dbManager,this._dbName), navigationBar));
         }
     }
 }

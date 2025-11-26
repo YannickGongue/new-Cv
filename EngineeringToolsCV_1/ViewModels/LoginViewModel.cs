@@ -17,23 +17,23 @@ namespace EngineeringToolsCV_1.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         private DbManager _dbManager;
+        private DBName _dbName;
         private string password;
         private string username;
        
         private bool setActivedWindow;
         private bool userResetEnabled;
         private RegisterView register;
-        private UserResetView UserResetView;
+        private UserResetView _UserResetView;
         //private RegisterViewModel _vmRegister;
         private UserResetViewModel _vmUserReset;
-        private IUser userRepository;
         private MStudentInformations _mStudent;
-        private MUser mUser;
+        private MUser _mUser;
         private NavigationBarViewModel navigationBar;
 
         public ViewModelCommand NavigateLoginCommand { get; }
         public ICommand RegisterCommand { get; }
-        public ICommand UserResetCommand { get; }
+        public ICommand UserResetCommand { get; set;  }
 
         public bool UserResetEnabled
         {
@@ -90,15 +90,17 @@ namespace EngineeringToolsCV_1.ViewModels
         }
 
         public LoginViewModel(NavigationStore navigateStore, 
-                              MUser _mUser,
+                              MUser mUser,
                               UserResetViewModel vmUserReset, 
                               MStudentInformations mStudent,
-                              DbManager dbManager)
-        {          
+                              DbManager dbManager,
+                              DBName dbName)
+        {
             this._vmUserReset = vmUserReset;
             this._mStudent = mStudent;
-            this.mUser = _mUser;
+            this._mUser = mUser;
             this._dbManager = dbManager;
+            this._dbName = dbName;
             this.Username = "gonguego";
             this.Password = "dyna1605";
             this.navigationBar = new NavigationBarViewModel("Home -> Dashboard");
@@ -107,19 +109,28 @@ namespace EngineeringToolsCV_1.ViewModels
             this.UserResetEnabled = true;
 
             this.NavigateLoginCommand = new NavigateLoginCommand(this,
-                                   new LayoutNavigationService<DashboardViewModel>(navigateStore,
-                                   () => new DashboardViewModel(navigateStore,this._mStudent,this._dbManager), 
-                                   navigationBar));
+                                       new LayoutNavigationService<DashboardViewModel>(navigateStore,
+                                       () => new DashboardViewModel(navigateStore,this._mStudent,this._dbManager,this._dbName), 
+                                       navigationBar),this._dbManager,this._mUser,this._dbName);
             this.RegisterCommand = new DelegateCommand(ExecuteRegister, CanExecute);
             this.UserResetCommand = new DelegateCommand(ExecuteUserReset, CanExecute);
         }
 
         private void ExecuteUserReset(object obj)
         {
-            this.UserResetView = new UserResetView(this);
+            this._mUser.Id = this.username;
+            //sql-Befehle zusammensetzen.
+           string strQueryLogin = String.Format("SELECT {1} FROM {0} WHERE {2}='{3}'",
+                                           this._dbName.StrTBL_User,
+                                           this._dbName.StrEmail,
+                                           this._dbName.StrId,
+                                           this._mUser.Id);
+
+            this._UserResetView = new UserResetView();
             this.UserResetEnabled = false;
-            this.UserResetView.DataContext = new UserResetViewModel();
-            this.UserResetView.Show(); 
+            this._vmUserReset.SetEmail = this._dbManager.GetEmail(this._mUser, strQueryLogin);
+            this._UserResetView.DataContext = this._vmUserReset;
+            this._UserResetView.Show(); 
             
         }
 
@@ -132,7 +143,7 @@ namespace EngineeringToolsCV_1.ViewModels
         {
             this.register = new RegisterView(this);
             this.SetActivedWindow = false;
-            this.register.DataContext = new RegisterViewModel(this, this.mUser);
+            this.register.DataContext = new RegisterViewModel(this, this._mUser, this._dbManager);
             this.register.Show();               
            
         }

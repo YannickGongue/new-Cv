@@ -3,7 +3,6 @@ using EngineeringToolsCV_1.DatabaseManager;
 using EngineeringToolsCV_1.Models;
 using EngineeringToolsCV_1.Repositories;
 using EngineeringToolsCV_1.Store;
-using EngineeringToolsCV_1.Style;
 using EngineeringToolsCV_1.Views;
 using System;
 using System.Collections.Generic;
@@ -16,7 +15,7 @@ namespace EngineeringToolsCV_1.ViewModels
     {
         private DbManager _dbManager;
         private MessageDialog dialogMessage;
-        private DBName DbName;
+        private DBName _dbName;
         
         private NavigationStore navigationStore;
         private NavigationBarViewModel navigationBar;
@@ -209,12 +208,13 @@ namespace EngineeringToolsCV_1.ViewModels
 
         public BerufViewModel(NavigationStore navigationStore, 
                               MStudentInformations mStudentInfos,
-                              DbManager dbManager)
+                              DbManager dbManager,
+                              DBName dbName)
         {
             this.navigationStore = navigationStore;
             this._mStudentInfos = mStudentInfos;
             this._dbManager = dbManager;
-            this.DbName = new DBName();
+            this._dbName = dbName;
             this.StrStartDate = new DateTime();
             this.StrEndDate = new DateTime();
 
@@ -222,7 +222,7 @@ namespace EngineeringToolsCV_1.ViewModels
            this.navigationBar = new NavigationBarViewModel("Home -> Dashboard");
            this.NavigateReturnCommand = new NavigateCommand<DashboardViewModel>(
                new LayoutNavigationService<DashboardViewModel>(navigationStore,
-               () => new DashboardViewModel(navigationStore, this._mStudentInfos, this._dbManager), navigationBar));
+               () => new DashboardViewModel(navigationStore, this._mStudentInfos, this._dbManager,this._dbName), navigationBar));
 
            this.SaveCommand = new DelegateCommand(ExecuteSaveMethod, CanExecute);
            this.deleteCommand = new DelegateCommand(ExecuteDeleteMethod, CanExecute);
@@ -257,11 +257,11 @@ namespace EngineeringToolsCV_1.ViewModels
             int iCount;
             string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3},{4},{5},{6},{7},{8},{9},{10}) " +
                                             "VALUES ('{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}')",
-                                            DbName.strTBL_Beruf, DbName.strTitel,
-                                            DbName.strBerufEmail, DbName.strSkills,
-                                            DbName.strFirma, DbName.strStartDatum,
-                                            DbName.strEndDatum, DbName.strStandOrt,
-                                            DbName.strOrtsTyp, DbName.strAufgabe, DbName.strArbeitArt,
+                                            this._dbName.strTBL_Beruf, this._dbName.strTitel,
+                                            this._dbName.strBerufEmail, this._dbName.strSkills,
+                                            this._dbName.strFirma, this._dbName.strStartDatum,
+                                            this._dbName.strEndDatum, this._dbName.strStandOrt,
+                                            this._dbName.strOrtsTyp, this._dbName.strAufgabe, this._dbName.strArbeitArt,
                                             this.StrTitel, this.StrEmail, this.StrSkills,
                                             this.StrUnternehmen, this.strStartDate.ToString("yyyy-MM-dd"),
                                             this.StrEndDate.ToString("yyyy-MM-dd"),

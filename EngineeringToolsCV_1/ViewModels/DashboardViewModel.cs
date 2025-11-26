@@ -17,6 +17,7 @@ namespace EngineeringToolsCV_1.ViewModels
     public class DashboardViewModel : ViewModelBase
     {
         private DbManager _dbManager;
+        private DBName _dbName;
 
         private InformationViewModel VmInfos;
         private BerufViewModel VmBeruf;
@@ -79,10 +80,12 @@ namespace EngineeringToolsCV_1.ViewModels
 
         public DashboardViewModel(NavigationStore navigationStore, 
                                   MStudentInformations mStudent,
-                                  DbManager dbManager)
+                                  DbManager dbManager,
+                                  DBName dbName)
         {
             this._mStudent = mStudent;
             this._dbManager = dbManager;
+            this._dbName = dbName;
             this.executeInfoCommand(navigationStore);
             this.executeBerufCommand(navigationStore);
             this.executeProjektCommand(navigationStore);
@@ -102,7 +105,7 @@ namespace EngineeringToolsCV_1.ViewModels
 
             InfoCommand = new NavigateCommand<InformationViewModel>(
                new LayoutNavigationService<InformationViewModel>(navigationStore,
-               () => new InformationViewModel(navigationStore,this._mStudent,this._dbManager), navigationBar));
+               () => new InformationViewModel(navigationStore,this._mStudent,this._dbManager,this._dbName), navigationBar));
         }
 
         private void executeBerufCommand(NavigationStore navigationStore)
@@ -111,7 +114,7 @@ namespace EngineeringToolsCV_1.ViewModels
 
             BerufCommand = new NavigateCommand<BerufViewModel>(
                new LayoutNavigationService<BerufViewModel>(navigationStore,
-               () => new BerufViewModel(navigationStore,this._mStudent, this._dbManager), navigationBar));
+               () => new BerufViewModel(navigationStore,this._mStudent, this._dbManager, this._dbName), navigationBar));
         }
 
         private void executeProjektCommand(NavigationStore navigationStore)

@@ -5,11 +5,18 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using System.Windows.Media;
+using EngineeringToolsCV_1.DatabaseManager;
+using EngineeringToolsCV_1.Models;
+using System.Data;
 
 namespace EngineeringToolsCV_1.ViewModels
 {
     public class UserResetViewModel : ViewModelBase
     {
+        private NewPassordViewModel _vmNewPassword;
+        private MUser _mUser;
+        private DbManager _dbManager;
+        private DBName _dbName;
         private NewPassword newPassword;
         private string setEmail;
         private bool setIsEnabled;
@@ -56,8 +63,12 @@ namespace EngineeringToolsCV_1.ViewModels
 
         public ICommand OnSearchCommand { get; }
 
-        public UserResetViewModel()
+        public UserResetViewModel(NewPassordViewModel vmNewPassword, DbManager dbManager, DBName dbName, MUser mUser)
         {
+            this._vmNewPassword = vmNewPassword;
+            this._dbManager = dbManager;
+            this._dbName = dbName;
+            this._mUser = mUser;
             this.SetBackground = Brushes.RoyalBlue;
             this.setIsEnabled = true;
             OnSearchCommand = new DelegateCommand(ExecuteSearchEmail, CanExecute);
@@ -70,9 +81,23 @@ namespace EngineeringToolsCV_1.ViewModels
 
         private void ExecuteSearchEmail(object obj)
         {
+            DataTable dtTable = new DataTable();
+            string strQueryLogin = String.Format("SELECT {1},{2} FROM {0} WHERE {1}= '{3}'",
+                                             this._dbName.StrTBL_User,
+                                             this._dbName.StrId,
+                                             this._dbName.StrPasswort,
+                                             this._mUser.Id);
+
             this.SetBackground = Brushes.AliceBlue;
             this.SetIsEnabled = false;
-            this.newPassword = new NewPassword(this);
+            dtTable = this._dbManager.SetLoginUser(this._mUser, strQueryLogin);
+            if (dtTable.Rows.Count > 0)
+            {
+                this._vmNewPassword.StrBenutzname = dtTable.Rows[0][this._dbName.StrId].ToString();
+                this._vmNewPassword.StrPassword = dtTable.Rows[0][this._dbName.StrPasswort].ToString();
+            }
+            this.newPassword = new NewPassword();
+            this.newPassword.DataContext = this._vmNewPassword;
             this.newPassword.Show();
             
         }

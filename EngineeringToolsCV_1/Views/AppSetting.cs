@@ -26,8 +26,6 @@ namespace EngineeringToolsCV_1.Views
             Config.ConnectionStrings.ConnectionStrings[Key].ProviderName="System.Data.SqlClient";
             Config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection(SectionName);
-           
-
         }
     }
 }

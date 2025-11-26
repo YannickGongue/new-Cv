@@ -18,18 +18,15 @@ namespace EngineeringToolsCV_1.Views
     /// </summary>
     public partial class UserResetView : Window
     {     
-        private LoginViewModel _vmLogin;      
        
-        public UserResetView( LoginViewModel vmLogin)
+        public UserResetView()
         {
-            this._vmLogin = vmLogin;       
             InitializeComponent();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {          
             this.Close();
-            this._vmLogin.UserResetEnabled = true;           
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
