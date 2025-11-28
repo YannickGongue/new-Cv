@@ -14,7 +14,6 @@ namespace EngineeringToolsCV_1.DatabaseManager
         {
             this._userRepository = userRepository;
             this._userWorkInfo = userWorkInfo;
-
         }
 
         public Task<DataTable> SearchStudentInfosAsync(string search)

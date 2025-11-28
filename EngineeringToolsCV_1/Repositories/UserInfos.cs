@@ -52,10 +52,14 @@ namespace EngineeringToolsCV_1.Repositories
                                                 this._dbName.StrPasswort);
 
             using var conn = _connectionFactory.Create();
-            using var cmd = new SqlCommand(strQueryLogin, conn);
+            using var cmd = new SqlCommand();
+            cmd.Connection = conn;
 
             cmd.Parameters.AddWithValue("@1", id);
             cmd.Parameters.AddWithValue("@2", password);
+
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = strQueryLogin;
 
             await conn.OpenAsync();
 
@@ -79,7 +83,8 @@ namespace EngineeringToolsCV_1.Repositories
                                                     this._dbName.strImageData, this._dbName.strFileName);
 
             using var conn = _connectionFactory.Create();
-            using var cmd = new SqlCommand( strQueryRegister, conn);
+            using var cmd = new SqlCommand();
+            cmd.Connection = conn;
 
             cmd.Parameters.AddWithValue("@1", info.Id);
             cmd.Parameters.AddWithValue("@2", info.Name);
@@ -94,11 +99,14 @@ namespace EngineeringToolsCV_1.Repositories
             cmd.Parameters.AddWithValue("@11", info.img);
             cmd.Parameters.AddWithValue("@12", info.FileName);
 
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = strQueryRegister;
+
             await conn.OpenAsync();
             return await cmd.ExecuteNonQueryAsync();
         }
 
-        public async Task< DataTable> SearchStudentInfosAsync(string search)
+        public async Task<DataTable> SearchStudentInfosAsync(string search)
         {
             var dt = new DataTable();
             string strQuery = String.Format("SELECT {1},{2},{3},{4},{5},{6},{7},{8},{9} FROM {0} WHERE {10}= '{11}'",
@@ -108,7 +116,6 @@ namespace EngineeringToolsCV_1.Repositories
                                              this._dbName.strPostleitzahl, this._dbName.strStadt,
                                              this._dbName.strDatum, this._dbName.strLand, this._dbName.StrId,
                                              search);
-
          
             using var conn = _connectionFactory.Create();
             using var cmd = new SqlCommand(strQuery, conn);
@@ -129,12 +136,15 @@ namespace EngineeringToolsCV_1.Repositories
                                                      this._dbName.StrId);
 
             using var conn = _connectionFactory.Create();
-            using var cmd = new SqlCommand(strQueryRegister, conn);
+            using var cmd = new SqlCommand();
+            cmd.Connection = conn;
 
             cmd.Parameters.AddWithValue("@1", info.Email);
             cmd.Parameters.AddWithValue("@2", info.Passwort);
             cmd.Parameters.AddWithValue("@3", info.Id);
-            
+
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = strQueryRegister;
             await conn.OpenAsync();
             return await cmd.ExecuteNonQueryAsync();
         }
