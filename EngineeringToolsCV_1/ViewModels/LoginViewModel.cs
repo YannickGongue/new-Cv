@@ -31,6 +31,8 @@ namespace EngineeringToolsCV_1.ViewModels
         private MStudentInformations _mStudent;
         private MUser _mUser;
         private NavigationBarViewModel navigationBar;
+        private MUserWorkInfo _mUserWorkInfo;
+
 
         public ViewModelCommand NavigateLoginCommand { get; }
         public ICommand RegisterCommand { get; set; }
@@ -97,7 +99,8 @@ namespace EngineeringToolsCV_1.ViewModels
                               MStudentInformations mStudent,
                               DbManager dbManager,
                               DBName dbName,
-                              ErrorMessageViewModel vmDialogMessage)
+                              ErrorMessageViewModel vmDialogMessage,
+                              MUserWorkInfo mUserWorkInfo)
         {
             this._vmUserReset = vmUserReset;
             this._mStudent = mStudent;
@@ -105,6 +108,7 @@ namespace EngineeringToolsCV_1.ViewModels
             this._dbManager = dbManager;
             this._dbName = dbName;
             this._vmDialogMessage = vmDialogMessage;
+            this._mUserWorkInfo = mUserWorkInfo;
             this.Username = "gonguego";
             this.Password = "dyna1605";
             this.navigationBar = new NavigationBarViewModel("Home -> Dashboard");
@@ -114,7 +118,7 @@ namespace EngineeringToolsCV_1.ViewModels
 
             this.NavigateLoginCommand = new NavigateLoginCommand(this,
                                        new LayoutNavigationService<DashboardViewModel>(navigateStore,
-                                       () => new DashboardViewModel(navigateStore,this._mStudent,this._dbManager,this._dbName,this._vmDialogMessage), navigationBar),
+                                       () => new DashboardViewModel(navigateStore,this._mStudent,this._dbManager,this._dbName,this._vmDialogMessage,this._mUserWorkInfo), navigationBar),
                                        this._dbManager,this._mUser,this._dbName,this._vmDialogMessage);
 
             this.RegisterCommand = new DelegateCommand(ExecuteRegister, CanExecute);
@@ -124,6 +128,7 @@ namespace EngineeringToolsCV_1.ViewModels
         private async void ExecuteUserReset(object obj)
         {
             this._mUser.Id = this.username;
+            this._mUser.Passwort = this.Password;
             //sql-Befehle zusammensetzen.
             //string strQueryLogin = String.Format("SELECT {1} FROM {0} WHERE {2}='{3}'",
             //                                      this._dbName.StrTBL_User,
@@ -131,7 +136,7 @@ namespace EngineeringToolsCV_1.ViewModels
             //                                      this._dbName.StrId,
             //                                      this._mUser.Id);
 
-            var dt = await this._dbManager.GetUserDataAsync(this._mUser.Id, this._mUser.Passwort);
+            var dt = await this._dbManager.GetUserInfoAsync(this._mUser.Id, this._mUser.Passwort);
 
             this._UserResetView = new UserResetView();
             this.UserResetEnabled = false;

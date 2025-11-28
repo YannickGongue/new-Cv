@@ -45,10 +45,11 @@ namespace EngineeringToolsCV_1.Repositories
 
         public async Task<DataTable> GetUserInfoAsync(string id, string password)
         {
+
             string strQueryLogin = String.Format("SELECT * FROM {0} WHERE {1}= @1 AND {2}= @2",
-                                                 this._dbName.StrTBL_User,
-                                                 this._dbName.StrId,
-                                                 this._dbName.StrPasswort);
+                                                this._dbName.StrTBL_User,
+                                                this._dbName.StrId,
+                                                this._dbName.StrPasswort);
 
             using var conn = _connectionFactory.Create();
             using var cmd = new SqlCommand(strQueryLogin, conn);
@@ -119,31 +120,23 @@ namespace EngineeringToolsCV_1.Repositories
             return dt;
         }
 
-        public async Task<int> UpdateStudentInfosAsync(MStudentInformations info)
+        public async Task<int> UpdateUserInfosAsync(MUser info)
         {
+            string strQueryRegister = string.Format("UPDATE {0} SET {1}= @1, {2}=@2 WHERE {3} = @3 ",
+                                                     this._dbName.StrTBL_User,                                                     
+                                                     this._dbName.StrEmail,
+                                                     this._dbName.StrPasswort,
+                                                     this._dbName.StrId);
+
             using var conn = _connectionFactory.Create();
-            using var cmd = new SqlCommand(@"
-        UPDATE TBLStudentsDaten
-        SET 
-            Name = @Name,
-            Vorname = @Vorname,
-            Email = @Email,
-            Stadt = @Stadt,
-            Datum = @Datum
-        WHERE Id = @Id
-    ", conn);
+            using var cmd = new SqlCommand(strQueryRegister, conn);
 
-            cmd.Parameters.AddWithValue("@Id", info.Id);
-            cmd.Parameters.AddWithValue("@Name", info.Name);
-            cmd.Parameters.AddWithValue("@Vorname", info.Vorname);
-            cmd.Parameters.AddWithValue("@Email", info.Email);
-            cmd.Parameters.AddWithValue("@Stadt", info.Stadt);
-            cmd.Parameters.AddWithValue("@Datum", info.Datum);
-
+            cmd.Parameters.AddWithValue("@1", info.Email);
+            cmd.Parameters.AddWithValue("@2", info.Passwort);
+            cmd.Parameters.AddWithValue("@3", info.Id);
+            
             await conn.OpenAsync();
             return await cmd.ExecuteNonQueryAsync();
         }
-
-
     }
 }

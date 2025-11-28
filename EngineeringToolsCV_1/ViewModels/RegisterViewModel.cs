@@ -100,27 +100,20 @@ namespace EngineeringToolsCV_1.ViewModels
 
         }
 
-        private void regExecut(object obj)
+        private async void regExecut(object obj)
         {                 
             this.mUser.Id = this.Username;
             this.mUser.Email = this.EmailAdress;
             this.mUser.Passwort = this.Password;
             this.mUser.ConfirmPasswort = this.ConfirmPassword;
 
-            string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3}) VALUES('{4}','{5}','{6}')",
-                                                     this._dbname.StrTBL_User,
-                                                     this._dbname.StrId,
-                                                     this._dbname.StrEmail,
-                                                     this._dbname.StrPasswort,
-                                                     this.mUser.Id,
-                                                     this.mUser.Email,
-                                                     this.mUser.Passwort);
+            
 
             // Bestätigung der Passwort.
             if (mUser.Passwort == mUser.ConfirmPasswort)
             {
                 //sind die Datensätze eingefügt?
-                if (this._DbManager.SetDataToDB(strQueryRegister) == 1)
+                if (await this._DbManager.UpdateStudentInfosAsync(this.mUser) == 1)
                 {
                     this.dialogMessage.SetErrorMessage = "die Einträgen wurden erfolgreich in die Datenbank hinzugefügt";
                     this._DialogView.DataContext = this.dialogMessage;

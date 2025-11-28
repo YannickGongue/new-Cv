@@ -21,19 +21,20 @@ namespace EngineeringToolsCV_1.ViewModels
         private NavigationStore navigationStore;
         private NavigationBarViewModel navigationBar;
         private MStudentInformations _mStudentInfos;
+        private MUserWorkInfo _mUserWorkInfo;
 
         //Tabelle Berufserfahrung
-        public string strTBL_Beruf = "TBLBerufsErfahrung";
-        public string strDBAufgabe = "Aufgabe";
-        public string strDBTitel = "Titel";
-        public string strSBSkills = "Skills";
-        public string strDBFirma = "Firma";
-        public string strDBStartDatum = "StartDatum";
-        public string strDBEndDatum = "EndDatum";
-        public string strDBStandOrt = "Standort";
-        public string strDBOrtsTyp = "OrtsTyp";
-        public string strDBArbeitArt = "ArbeitsArt";
-        public string strDBBerufEmail = "Email";
+        //public string strTBL_Beruf = "TBLBerufsErfahrung";
+        //public string strDBAufgabe = "Aufgabe";
+        //public string strDBTitel = "Titel";
+        //public string strSBSkills = "Skills";
+        //public string strDBFirma = "Firma";
+        //public string strDBStartDatum = "StartDatum";
+        //public string strDBEndDatum = "EndDatum";
+        //public string strDBStandOrt = "Standort";
+        //public string strDBOrtsTyp = "OrtsTyp";
+        //public string strDBArbeitArt = "ArbeitsArt";
+        //public string strDBBerufEmail = "Email";
 
         private string strTitel;
         private string strEmail;
@@ -211,13 +212,15 @@ namespace EngineeringToolsCV_1.ViewModels
                               MStudentInformations mStudentInfos,
                               DbManager dbManager,
                               DBName dbName,
-                              ErrorMessageViewModel vmDialogMessage)
+                              ErrorMessageViewModel vmDialogMessage,
+                              MUserWorkInfo mUserWorkInfo)
         {
             this.navigationStore = navigationStore;
             this._mStudentInfos = mStudentInfos;
             this._dbManager = dbManager;
             this._dbName = dbName;
             this._vmDialogMessage = vmDialogMessage;
+            this._mUserWorkInfo = mUserWorkInfo;
             this.StrStartDate = new DateTime();
             this.StrEndDate = new DateTime();
 
@@ -225,7 +228,7 @@ namespace EngineeringToolsCV_1.ViewModels
            this.navigationBar = new NavigationBarViewModel("Home -> Dashboard");
            this.NavigateReturnCommand = new NavigateCommand<DashboardViewModel>(
                new LayoutNavigationService<DashboardViewModel>(navigationStore,
-               () => new DashboardViewModel(navigationStore, this._mStudentInfos, this._dbManager,this._dbName,this._vmDialogMessage), navigationBar));
+               () => new DashboardViewModel(navigationStore, this._mStudentInfos, this._dbManager,this._dbName,this._vmDialogMessage, this._mUserWorkInfo), navigationBar));
 
            this.SaveCommand = new DelegateCommand(ExecuteSaveMethod, CanExecute);
            this.deleteCommand = new DelegateCommand(ExecuteDeleteMethod, CanExecute);
@@ -255,22 +258,10 @@ namespace EngineeringToolsCV_1.ViewModels
             throw new NotImplementedException();
         }     
 
-        private  void ExecuteSaveMethod(object obj)
+        private async void ExecuteSaveMethod(object obj)
         {
             int iCount;
-            string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3},{4},{5},{6},{7},{8},{9},{10}) " +
-                                                    "VALUES ('{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}')",
-                                                    this._dbName.strTBL_Beruf, this._dbName.strTitel,
-                                                    this._dbName.strBerufEmail, this._dbName.strSkills,
-                                                    this._dbName.strFirma, this._dbName.strStartDatum,
-                                                    this._dbName.strEndDatum, this._dbName.strStandOrt,
-                                                    this._dbName.strOrtsTyp, this._dbName.strAufgabe, this._dbName.strArbeitArt,
-                                                    this.StrTitel, this.StrEmail, this.StrSkills,
-                                                    this.StrUnternehmen, this.strStartDate.ToString("yyyy-MM-dd"),
-                                                    this.StrEndDate.ToString("yyyy-MM-dd"),
-                                                    this.StrStandOrt, this.SelOrtTyp, this.StrBeschreibung, this.SelAufgabe);
-
-            this.dialogMessage = new MessageDialog();
+           
             try
             {
                 //if (string.IsNullOrEmpty(StrTitel) || string.IsNullOrEmpty(StrEmail) ||
@@ -293,7 +284,19 @@ namespace EngineeringToolsCV_1.ViewModels
                 //}
                 //else
                 //{
-                    iCount = this._dbManager.SetDataToDB(strQueryRegister);
+
+                this._mUserWorkInfo.Titel = this.StrTitel;
+                this._mUserWorkInfo.Email = this.StrEmail;
+                this._mUserWorkInfo.Firma = this.StrUnternehmen;
+                this._mUserWorkInfo.StartDatum = this.StrStartDate.ToString();
+                this._mUserWorkInfo.EndDatum = this.StrEndDate.ToString();
+                this._mUserWorkInfo.Aufgabe = this.SelAufgabe;
+                this._mUserWorkInfo.OrtType = this.StrOrtTyp;
+                this._mUserWorkInfo.Standort = this.StrStandOrt;
+                this._mUserWorkInfo.Skills = this.StrSkills;
+                this._mUserWorkInfo.ArbeitsArt = this.StrBeschäftigung;
+
+                    iCount = await this._dbManager.AddWorkInfosAsync(this._mUserWorkInfo);
                     if (iCount == 1)
                     {
                         this._vmDialogMessage.SetErrorMessage= "die Einträgen wurden erfolgreich in die Datenbank hinzugefügt";

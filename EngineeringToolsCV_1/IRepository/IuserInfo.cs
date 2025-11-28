@@ -15,7 +15,7 @@ namespace EngineeringToolsCV_1.Models
 
         Task<int> AddStudentInfosAsync(MStudentInformations info);
 
-        Task<int> UpdateStudentInfosAsync(MStudentInformations info);
+        Task<int> UpdateUserInfosAsync(MUser info);
 
         Task<int> RemoveStudentInfosAsync(string studentId);
 

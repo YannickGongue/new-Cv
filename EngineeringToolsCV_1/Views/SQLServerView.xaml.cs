@@ -38,6 +38,8 @@ namespace EngineeringToolsCV_1.Views
         private NavigationBarViewModel _NavigationBar;
         private SQLServerViewModel ServerViewModel;
         private ErrorMessageViewModel _vmDialogMessage;
+        private MUserWorkInfo _mUserWorkInfo;
+
         SqlConnection con = new SqlConnection();
         SqlCommand com = new SqlCommand();
         SqlDataReader dr;
@@ -48,7 +50,8 @@ namespace EngineeringToolsCV_1.Views
                              MUser mUser,
                              DbManager dbManager,
                              DBName dbName,
-                             ErrorMessageViewModel vmDialogMessage)
+                             ErrorMessageViewModel vmDialogMessage,
+                             MUserWorkInfo mUserWork )
         {
             InitializeComponent();
             this._userRegister = userRegister;
@@ -58,6 +61,7 @@ namespace EngineeringToolsCV_1.Views
             this._dbManager = dbManager;
             this._dbName = dbName;
             this._vmDialogMessage = vmDialogMessage;
+            this._mUserWorkInfo = mUserWork;
             this.navigationStore = new NavigationStore();
             this.mainWindow = new MainWindow();
             this._NavigationBar = new NavigationBarViewModel("Home");
@@ -185,9 +189,9 @@ namespace EngineeringToolsCV_1.Views
         private void CreateHomeView()
         {
             INavigateService<HomeViewModel> homeNavigationService = new LayoutNavigationService<HomeViewModel>(navigationStore,
-                        () => new HomeViewModel(navigationStore,this._userRegister,this._vmUserReset,this._mStudent, this._mUser,this._dbManager,this._dbName,this._vmDialogMessage), _NavigationBar);
+                        () => new HomeViewModel(navigationStore,this._userRegister,this._vmUserReset,this._mStudent, this._mUser,this._dbManager,this._dbName,this._vmDialogMessage,this._mUserWorkInfo), _NavigationBar);
             homeNavigationService.Navigate();
-            mainWindow.DataContext = new mainViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent,this._mUser,this._dbManager,this._dbName,this._vmDialogMessage);
+            mainWindow.DataContext = new mainViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent,this._mUser,this._dbManager,this._dbName,this._vmDialogMessage,this._mUserWorkInfo);
             mainWindow.Show();
         }
 

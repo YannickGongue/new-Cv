@@ -29,6 +29,8 @@ namespace EngineeringToolsCV_1.ViewModels
         private MUser _mUser;
         private DbManager _dbManager;
         private DBName _dbName;
+        private MUserWorkInfo _mUserWorkInfo;
+
 
         //add a SelectedCulture property
         public Culture SelectedCulture
@@ -81,7 +83,8 @@ namespace EngineeringToolsCV_1.ViewModels
                              MUser mUser,
                              DbManager dbManager,
                              DBName dbName,
-                             ErrorMessageViewModel vmDialogMessage)
+                             ErrorMessageViewModel vmDialogMessage,
+                             MUserWorkInfo mUserWorkInfo)
         {
             this._navigationstore = navigationStore;
             this._userRegister = userRegister;
@@ -91,6 +94,7 @@ namespace EngineeringToolsCV_1.ViewModels
             this._dbManager = dbManager;
             this._dbName = dbName;
             this._vmDialogMessage = vmDialogMessage;
+            this._mUserWorkInfo = mUserWorkInfo;
 
             this.executeCommand(navigationStore);
 
@@ -120,7 +124,7 @@ namespace EngineeringToolsCV_1.ViewModels
                 this.SetEnable = true;
                 HomeNavigationCommand = new NavigateCommand<HomeViewModel>(
                                         new LayoutNavigationService<HomeViewModel>(navigationStore,
-                                        () => new HomeViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent, this._mUser,this._dbManager,this._dbName,this._vmDialogMessage), _NavigationBar));
+                                        () => new HomeViewModel(navigationStore, this._userRegister,this._vmUserReset,this._mStudent, this._mUser,this._dbManager,this._dbName,this._vmDialogMessage,this._mUserWorkInfo), _NavigationBar));
             }
            
         }

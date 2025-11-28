@@ -32,6 +32,8 @@ namespace EngineeringToolsCV_1.ViewModels
         private MessageDialog _DialogView;
         private DBName _dbName;
         private DataTable dtTable;
+        private MUserWorkInfo _mUserWorkInfo;
+
         private string strTitle;
         private string strName;
         private string strVorname;
@@ -366,13 +368,14 @@ namespace EngineeringToolsCV_1.ViewModels
                                     MStudentInformations mStudentInfos,
                                     DbManager dbManager,
                                     DBName dbName,
-                                    ErrorMessageViewModel dialogMessage)
+                                    ErrorMessageViewModel dialogMessage,
+                                    MUserWorkInfo mUserWorkInfo)
         {
             this._mStudentInfos = mStudentInfos;
             this._dbManager = dbManager;
             this._dbName =  dbName;
             this._dialogMessage = dialogMessage;
-
+            this._mUserWorkInfo = mUserWorkInfo;
             this._DialogView = new MessageDialog();
             this.strDate = new DateTime();
             this.dtTable = new DataTable();
@@ -398,18 +401,11 @@ namespace EngineeringToolsCV_1.ViewModels
             this.NavigateSearchCommand = new DelegateCommand(ExecuteSearchMethod, CanExecute);
         }
 
-        private void ExecuteSearchMethod(object obj)
-        {
-            string strQuery = String.Format("SELECT {1},{2},{3},{4},{5},{6},{7},{8},{9} FROM {0} WHERE {10}= '{11}'",
-                                             this._dbName.strTBL_StudentsInfo, this._dbName.strName,
-                                             this._dbName.strVorname, this._dbName.StrEmail,
-                                             this._dbName.strStraße, this._dbName.strNummer,
-                                             this._dbName.strPostleitzahl, this._dbName.strStadt,
-                                             this._dbName.strDatum, this._dbName.strLand,this._dbName.StrId,
-                                             this.Strsearch);
+        private async void ExecuteSearchMethod(object obj)
+        {          
             DataRow drRow;
 
-            this.dtTable = this._dbManager.(strQuery);
+            var dtTable = await this._dbManager.SearchStudentInfosAsync(this.Strsearch);
 
             if (this.dtTable.Rows.Count > 0)
             {
@@ -423,9 +419,7 @@ namespace EngineeringToolsCV_1.ViewModels
                 this.SelectedCity = drRow[this._dbName.strStadt].ToString();
                 //this.StrDate = Convert.ToDateTime(drRow[this._dbName.strDatum].ToString());
                 this.strLand = drRow[this._dbName.strLand].ToString();
-
             }
-
         }
 
         public ImageSource Foto()
@@ -486,7 +480,7 @@ namespace EngineeringToolsCV_1.ViewModels
 
             NavigateCancelCommand = new NavigateCommand<DashboardViewModel>(
                new LayoutNavigationService<DashboardViewModel>(navigationStore,
-               () => new DashboardViewModel(navigationStore,this._mStudentInfos,this._dbManager,this._dbName,this._dialogMessage), navigationBar));
+               () => new DashboardViewModel(navigationStore,this._mStudentInfos,this._dbManager,this._dbName,this._dialogMessage,this._mUserWorkInfo), navigationBar));
           
         }
 

@@ -8,12 +8,12 @@ namespace EngineeringToolsCV_1.DatabaseManager
     public class DbManager
     {
         private readonly IUserInfo _userRepository;
-        private readonly IUser _user;
+        private readonly IUserWorkInfo _userWorkInfo;
 
-        public DbManager(IUserInfo userRepository, IUser user)
+        public DbManager(IUserInfo userRepository, IUserWorkInfo userWorkInfo)
         {
             this._userRepository = userRepository;
-            this._user = user;
+            this._userWorkInfo = userWorkInfo;
 
         }
 
@@ -22,14 +22,9 @@ namespace EngineeringToolsCV_1.DatabaseManager
             return _userRepository.SearchStudentInfosAsync(search);
         }
 
-        public Task<DataTable> GetUserInfoAsync(string email, string password)
+        public Task<DataTable> GetUserInfoAsync(string id, string password)
         {
-            return _userRepository.GetUserInfoAsync(email, password);
-        }
-
-        public Task<DataTable> GetUserDataAsync(string email, string password)
-        {
-            return _user.GetUserDataAsync(email, password);
+            return _userRepository.GetUserInfoAsync(id, password);
         }
 
         public Task<int> AddStudentInfosAsync(MStudentInformations info)
@@ -37,9 +32,14 @@ namespace EngineeringToolsCV_1.DatabaseManager
             return _userRepository.AddStudentInfosAsync(info);
         }
 
-        public Task<int> UpdateStudentInfosAsync(MStudentInformations info)
+        public Task<int> AddWorkInfosAsync(MUserWorkInfo info)
         {
-            return _userRepository.UpdateStudentInfosAsync(info);
+            return _userWorkInfo.AddWorkInfosAsync(info);
+        }
+
+        public Task<int> UpdateStudentInfosAsync(MUser info)
+        {
+            return _userRepository.UpdateUserInfosAsync(info);
         }
 
         public Task<int> RemoveStudentInfosAsync(string id)
