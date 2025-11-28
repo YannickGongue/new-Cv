@@ -114,25 +114,28 @@ namespace EngineeringToolsCV_1.ViewModels
 
             this.NavigateLoginCommand = new NavigateLoginCommand(this,
                                        new LayoutNavigationService<DashboardViewModel>(navigateStore,
-                                       () => new DashboardViewModel(navigateStore,this._mStudent,this._dbManager,this._dbName,this._vmDialogMessage), 
-                                       navigationBar),this._dbManager,this._mUser,this._dbName);
+                                       () => new DashboardViewModel(navigateStore,this._mStudent,this._dbManager,this._dbName,this._vmDialogMessage), navigationBar),
+                                       this._dbManager,this._mUser,this._dbName,this._vmDialogMessage);
+
             this.RegisterCommand = new DelegateCommand(ExecuteRegister, CanExecute);
             this.UserResetCommand = new DelegateCommand(ExecuteUserReset, CanExecute);
         }
 
-        private void ExecuteUserReset(object obj)
+        private async void ExecuteUserReset(object obj)
         {
             this._mUser.Id = this.username;
             //sql-Befehle zusammensetzen.
-           string strQueryLogin = String.Format("SELECT {1} FROM {0} WHERE {2}='{3}'",
-                                                 this._dbName.StrTBL_User,
-                                                 this._dbName.StrEmail,
-                                                 this._dbName.StrId,
-                                                 this._mUser.Id);
+            //string strQueryLogin = String.Format("SELECT {1} FROM {0} WHERE {2}='{3}'",
+            //                                      this._dbName.StrTBL_User,
+            //                                      this._dbName.StrEmail,
+            //                                      this._dbName.StrId,
+            //                                      this._mUser.Id);
+
+            var dt = await this._dbManager.GetUserDataAsync(this._mUser.Id, this._mUser.Passwort);
 
             this._UserResetView = new UserResetView();
             this.UserResetEnabled = false;
-            this._vmUserReset.SetEmail = this._dbManager.GetUserDataFromDB( strQueryLogin).Rows[0][0].ToString();
+            this._vmUserReset.SetEmail = dt.Rows[0][this._dbName.StrEmail].ToString();
             this._UserResetView.DataContext = this._vmUserReset;
             this._UserResetView.Show(); 
             

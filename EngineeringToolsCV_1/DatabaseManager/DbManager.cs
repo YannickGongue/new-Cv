@@ -1,35 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
-using System.Threading.Tasks;
-using EngineeringToolsCV_1.IRepository;
+﻿using EngineeringToolsCV_1.IRepository;
 using EngineeringToolsCV_1.Models;
-
-
+using System.Data;
+using System.Threading.Tasks;
 
 namespace EngineeringToolsCV_1.DatabaseManager
 {
     public class DbManager
     {
-        private IUserInfo _iUserInfo;
-        private IConnectionFactory _IConn;
+        private readonly IUserInfo _userRepository;
+        private readonly IUser _user;
 
-        public DbManager(IUserInfo iUserInfo, IConnectionFactory iConn)
+        public DbManager(IUserInfo userRepository, IUser user)
         {
-            this._iUserInfo = iUserInfo;
-            this._IConn = iConn;
+            this._userRepository = userRepository;
+            this._user = user;
+
         }
 
-        public int SetDataToDB(string strQuery)
+        public Task<DataTable> SearchStudentInfosAsync(string search)
         {
-            return this._iUserInfo.SaveData(strQuery, this._IConn.Create());
+            return _userRepository.SearchStudentInfosAsync(search);
         }
 
-        public DataTable GetUserDataFromDB(string strQuery)
-        {         
-            return this._iUserInfo.GetUserData(this._IConn.Create(), strQuery);
-        }     
-        
+        public Task<DataTable> GetUserInfoAsync(string email, string password)
+        {
+            return _userRepository.GetUserInfoAsync(email, password);
+        }
+
+        public Task<DataTable> GetUserDataAsync(string email, string password)
+        {
+            return _user.GetUserDataAsync(email, password);
+        }
+
+        public Task<int> AddStudentInfosAsync(MStudentInformations info)
+        {
+            return _userRepository.AddStudentInfosAsync(info);
+        }
+
+        public Task<int> UpdateStudentInfosAsync(MStudentInformations info)
+        {
+            return _userRepository.UpdateStudentInfosAsync(info);
+        }
+
+        public Task<int> RemoveStudentInfosAsync(string id)
+        {
+            return _userRepository.RemoveStudentInfosAsync(id);
+        }
+
+
     }
 }

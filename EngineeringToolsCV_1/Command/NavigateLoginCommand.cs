@@ -21,41 +21,48 @@ namespace EngineeringToolsCV_1.Command
         private INavigateService<DashboardViewModel> _navigateService;
         private DbManager _dbManager;
         private DBName _dbName;
+        private ErrorMessageViewModel _vmdialogMessage;
 
         public NavigateLoginCommand(LoginViewModel loginviewModel, 
                                     INavigateService<DashboardViewModel> navigateService,
                                     DbManager dbManager,
                                     MUser mUser,
-                                    DBName dbName)
+                                    DBName dbName,
+                                    ErrorMessageViewModel vmdialogMessage)
         {
             this._ViewModel = loginviewModel;
             this._navigateService = navigateService;
             this._dbManager = dbManager;
             this._mUser = mUser;
             this._dbName = dbName;
+            this._vmdialogMessage = vmdialogMessage;
+
+            this.dialogMessage = new MessageDialog();
         }
 
-        public override void Execute(object parameter)
+        public async override void Execute(object parameter)
         {
-            this.dialogMessage = new MessageDialog();
-           
-          
-            this._mUser.Id = _ViewModel.Username;
-            this._mUser.Passwort = _ViewModel.Password;
-            string strQueryLogin = String.Format("SELECT {1},{2} FROM {0} WHERE {1}= '{3}' AND {2}= '{4}'",
-                                              this._dbName.StrTBL_User,
-                                              this._dbName.StrId,
-                                              this._dbName.StrPasswort,
-                                              this._mUser.Id,
-                                              this._mUser.Passwort);
+                              
+            try
+            {
 
-            if (this._dbManager.GetUserDataFromDB(strQueryLogin).Rows.Count==1)
-            {
-                this._navigateService.Navigate();
+                var table = await _dbManager.GetUserInfoAsync(_ViewModel.Username, _ViewModel.Password);
+
+                if (table.Rows.Count == 1)
+                {
+                    this._navigateService.Navigate();
+                }
+                else
+                {
+                    this._vmdialogMessage.SetErrorMessage = "die Username und passwort sind nicht verfügbar";
+                    this.dialogMessage.DataContext = this._vmdialogMessage;
+                    this.dialogMessage.Show();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                this.dialogMessage.ErrorMessage.Text = "die Username und passwort sind nicht verfügbar";
+                this._vmdialogMessage.SetErrorMessage = $"Fehler beim Login:\n{ex.Message}";
+                this.dialogMessage.DataContext = this._vmdialogMessage;
                 this.dialogMessage.Show();
             }
         }

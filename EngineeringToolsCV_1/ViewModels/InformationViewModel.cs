@@ -401,15 +401,15 @@ namespace EngineeringToolsCV_1.ViewModels
         private void ExecuteSearchMethod(object obj)
         {
             string strQuery = String.Format("SELECT {1},{2},{3},{4},{5},{6},{7},{8},{9} FROM {0} WHERE {10}= '{11}'",
-                                                 this._dbName.strTBL_StudentsInfo, this._dbName.strName,
-                                                 this._dbName.strVorname, this._dbName.StrEmail,
-                                                 this._dbName.strStraße, this._dbName.strNummer,
-                                                 this._dbName.strPostleitzahl, this._dbName.strStadt,
-                                                 this._dbName.strDatum, this._dbName.strLand,this._dbName.StrId,
-                                                 this.Strsearch);
+                                             this._dbName.strTBL_StudentsInfo, this._dbName.strName,
+                                             this._dbName.strVorname, this._dbName.StrEmail,
+                                             this._dbName.strStraße, this._dbName.strNummer,
+                                             this._dbName.strPostleitzahl, this._dbName.strStadt,
+                                             this._dbName.strDatum, this._dbName.strLand,this._dbName.StrId,
+                                             this.Strsearch);
             DataRow drRow;
 
-            this.dtTable = this._dbManager.GetUserDataFromDB(strQuery);
+            this.dtTable = this._dbManager.(strQuery);
 
             if (this.dtTable.Rows.Count > 0)
             {
@@ -495,26 +495,25 @@ namespace EngineeringToolsCV_1.ViewModels
             return true;
         }
 
-        private void ExecuteSaveMethod(object obj)
+        private async void ExecuteSaveMethod(object obj)
         {
             int iCount;
            
             string filename = Path.GetFileName(ImagePath);
             string hexData = ByteArrayToHexString(File.ReadAllBytes(ImagePath));
-            //this._UserInfo = new UserInfos();
-            string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11})" +
-                                                     "VALUES('{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}')",
-                                                     this._dbName.strTBL_StudentsInfo,this._dbName.strName,
-                                                     this._dbName.strVorname, this._dbName.StrEmail,
-                                                     this._dbName.strStraße, this._dbName.strNummer,
-                                                     this._dbName.strPostleitzahl,this._dbName.strStadt,
-                                                     this._dbName.strDatum,this._dbName.strLand,
-                                                     this._dbName.strImageData,this._dbName.strFileName,
-                                                     this.StrName, this.StrVorname, this.StrEmail,
-                                                     this.StrStraße, this.StrNummer, 
-                                                     this.StrPostleitzahl, this.SelectedCity, 
-                                                     this.StrDate.ToString("yyyy-MM-dd"), this.StrBirthPlace,
-                                                     hexData, filename );
+           
+                                                  
+            this._mStudentInfos.Id = this.StrTitle;
+            this._mStudentInfos.Name = this.StrName;
+            this._mStudentInfos.Vorname = this.StrVorname;
+            this._mStudentInfos.Straße = this.StrStraße;
+            this._mStudentInfos.Straßenummer = this.StrNummer;
+            this._mStudentInfos.Postleitzahl = this.StrPostleitzahl;
+            this._mStudentInfos.Stadt = this.SelectedCity;
+            this._mStudentInfos.Land = this.StrBirthPlace;
+            this._mStudentInfos.Datum = this.StrDate.ToString("yyyy-MM-dd");
+            this._mStudentInfos.FileName = filename;
+            this._mStudentInfos.ImageToByte = hexData;
 
            try
             {
@@ -584,8 +583,7 @@ namespace EngineeringToolsCV_1.ViewModels
                 }
                 else
                 {
-                    iCount = this._dbManager.SetDataToDB(strQueryRegister);
-                    if (iCount == 1)
+                    if (await this._dbManager.AddStudentInfosAsync(this._mStudentInfos) == 1)
                     {
                         this._dialogMessage.SetErrorMessage = "die Einträgen wurden erfolgreich in die Datenbank hinzugefügt";
                         this._DialogView.DataContext = this._dialogMessage;

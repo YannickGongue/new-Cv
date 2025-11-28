@@ -15,6 +15,7 @@ using System.Windows;
 using System.Globalization;
 using Haley.Utils;
 using EngineeringToolsCV_1.Repositories;
+using EngineeringToolsCV_1.IRepository;
 
 namespace EngineeringToolsCV_1
 {
@@ -49,12 +50,13 @@ namespace EngineeringToolsCV_1
         {
             string strConnectionString = ConfigurationManager
                                          .ConnectionStrings["ConnectionString"]
-                                          .ConnectionString;
+                                         .ConnectionString;
+
             this._vmDialogMessage = new ErrorMessageViewModel();
             this.dbName = new DBName();
             this.sqlcon = new SqlConnectionFactory(strConnectionString);
-            this._userInfo = new UserInfos();
-            this.dbManager = new DbManager(this._userInfo, this.sqlcon);
+            this._userInfo = new UserInfos(this.sqlcon, this.dbName);
+            this.dbManager = new DbManager(this._userInfo);
             this.mUser = new MUser();
             this._vmNewPassword = new NewPassordViewModel();
             this.VmLogin = new LoginViewModel(this.navigationStore, this.mUser, this._vmUserReset, this._mStudent, this.dbManager, this.dbName,this._vmDialogMessage);
@@ -94,7 +96,6 @@ namespace EngineeringToolsCV_1
             homeNavigationService.Navigate();
             this.mainWindow.DataContext = new mainViewModel(this.navigationStore, this._vmRegister,this._vmUserReset,this._mStudent,this.mUser,this.dbManager,this.dbName,this._vmDialogMessage);
             this.mainWindow.Show();
-        }
-        
+        }        
     }
 }

@@ -11,12 +11,15 @@ namespace EngineeringToolsCV_1.Models
 {
     public interface IUserInfo
     {
-        public void UpdateStudentInfos(MStudentInformations mStudentInformations);
-        public int SaveData( string strQuery, SqlConnection sqlcon);
-        public DataTable GetUserData(SqlConnection sqlcon, string strQueryLogin);   
-        public void AddStudentInfos( SqlConnection sqlCon, string strQueryRegister);
-        public void RemoveStudentInfos(MStudentInformations mStudentInformations);
-        //public ImageSource Foto();
-        //public Byte[] ConvertImageToByte(Image img);
+        Task<DataTable> GetUserInfoAsync(string id, string password);
+
+        Task<int> AddStudentInfosAsync(MStudentInformations info);
+
+        Task<int> UpdateStudentInfosAsync(MStudentInformations info);
+
+        Task<int> RemoveStudentInfosAsync(string studentId);
+
+        Task<DataTable> SearchStudentInfosAsync(string search);
+       
     }
 }

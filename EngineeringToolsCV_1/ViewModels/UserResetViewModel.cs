@@ -79,9 +79,8 @@ namespace EngineeringToolsCV_1.ViewModels
             return true;
         }
 
-        private void ExecuteSearchEmail(object obj)
+        private async void ExecuteSearchEmail(object obj)
         {
-            DataTable dtTable = new DataTable();
             string strQueryLogin = String.Format("SELECT {1},{2} FROM {0} WHERE {1}= '{3}'",
                                              this._dbName.StrTBL_User,
                                              this._dbName.StrId,
@@ -90,7 +89,7 @@ namespace EngineeringToolsCV_1.ViewModels
 
             this.SetBackground = Brushes.AliceBlue;
             this.SetIsEnabled = false;
-            dtTable = this._dbManager.GetUserDataFromDB(strQueryLogin);
+            var dtTable = await this._dbManager.SearchStudentInfosAsync(this.SetEmail);
             if (dtTable.Rows.Count > 0)
             {
                 this._vmNewPassword.StrBenutzname = dtTable.Rows[0][this._dbName.StrId].ToString();

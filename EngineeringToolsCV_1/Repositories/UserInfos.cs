@@ -12,81 +12,138 @@ using System.Text;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Threading.Tasks;
+using EngineeringToolsCV_1.IRepository;
+using EngineeringToolsCV_1.DatabaseManager;
 
 namespace EngineeringToolsCV_1.Repositories
 {
     public class UserInfos : IUserInfo
     {
-        private SqlCommand sqlcmdManager;
-        private SqlDataAdapter sqladDataAdapter;
-        private DataTable dtDatatable;
+        private DBName _dbName;
+        private readonly IConnectionFactory _connectionFactory;
 
-        public void AddStudentInfos(SqlConnection sqlCon, string strQueryRegister)
+        public UserInfos(IConnectionFactory connectionFactory, DBName dbName)
         {
-            throw new NotImplementedException();
+            this._connectionFactory = connectionFactory;
+            this._dbName = dbName;
         }
 
-
-        public DataTable GetUserData(SqlConnection sqlcon, string strQueryLogin)
+  
+        public async Task<int> RemoveStudentInfosAsync(string studentId)
         {
-            //Tabelle erzeugen.
-            this.dtDatatable = new DataTable();
+            using var conn = _connectionFactory.Create();
+            using var cmd = new SqlCommand(@"
+                DELETE FROM TBLStudentsDaten 
+                WHERE Id = @Id
+            ", conn);
+
+            cmd.Parameters.AddWithValue("@Id", studentId);
+
+            await conn.OpenAsync();
+            return await cmd.ExecuteNonQueryAsync();
+        }
+
+        public async Task<DataTable> GetUserInfoAsync(string id, string password)
+        {
+            string strQueryLogin = String.Format("SELECT * FROM {0} WHERE {1}= @1 AND {2}= @2",
+                                                 this._dbName.StrTBL_User,
+                                                 this._dbName.StrId,
+                                                 this._dbName.StrPasswort);
+
+            using var conn = _connectionFactory.Create();
+            using var cmd = new SqlCommand(strQueryLogin, conn);
+
+            cmd.Parameters.AddWithValue("@1", id);
+            cmd.Parameters.AddWithValue("@2", password);
+
+            await conn.OpenAsync();
+
+            var dt = new DataTable();
+            using var adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(dt);
+
+            return dt;
+        }
+
+        public async Task<int> AddStudentInfosAsync(MStudentInformations info)
+        {
+            string strQueryRegister = string.Format("INSERT INTO {0} ({1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12})" +
+                                                    "VALUES(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11.@12)",
+                                                    this._dbName.strTBL_StudentsInfo, this._dbName.StrId,
+                                                    this._dbName.strName,
+                                                    this._dbName.strVorname, this._dbName.StrEmail,
+                                                    this._dbName.strStraße, this._dbName.strNummer,
+                                                    this._dbName.strPostleitzahl, this._dbName.strStadt,
+                                                    this._dbName.strDatum, this._dbName.strLand,
+                                                    this._dbName.strImageData, this._dbName.strFileName);
+
+            using var conn = _connectionFactory.Create();
+            using var cmd = new SqlCommand( strQueryRegister, conn);
+
+            cmd.Parameters.AddWithValue("@1", info.Id);
+            cmd.Parameters.AddWithValue("@2", info.Name);
+            cmd.Parameters.AddWithValue("@3", info.Vorname);
+            cmd.Parameters.AddWithValue("@4", info.Email);
+            cmd.Parameters.AddWithValue("@5", info.Straße);
+            cmd.Parameters.AddWithValue("@6", info.Straßenummer);
+            cmd.Parameters.AddWithValue("@7", info.Postleitzahl);
+            cmd.Parameters.AddWithValue("@8", info.Stadt);
+            cmd.Parameters.AddWithValue("@9", info.Datum);
+            cmd.Parameters.AddWithValue("@10", info.Land);
+            cmd.Parameters.AddWithValue("@11", info.img);
+            cmd.Parameters.AddWithValue("@12", info.FileName);
+
+            await conn.OpenAsync();
+            return await cmd.ExecuteNonQueryAsync();
+        }
+
+        public async Task< DataTable> SearchStudentInfosAsync(string search)
+        {
+            var dt = new DataTable();
+            string strQuery = String.Format("SELECT {1},{2},{3},{4},{5},{6},{7},{8},{9} FROM {0} WHERE {10}= '{11}'",
+                                             this._dbName.strTBL_StudentsInfo, this._dbName.strName,
+                                             this._dbName.strVorname, this._dbName.StrEmail,
+                                             this._dbName.strStraße, this._dbName.strNummer,
+                                             this._dbName.strPostleitzahl, this._dbName.strStadt,
+                                             this._dbName.strDatum, this._dbName.strLand, this._dbName.StrId,
+                                             search);
+
+         
+            using var conn = _connectionFactory.Create();
+            using var cmd = new SqlCommand(strQuery, conn);
+            var adapter = new SqlDataAdapter(cmd);
             
-            //Sql-Command zuweisen.
-            this.sqlcmdManager = new SqlCommand(strQueryLogin, sqlcon);
-            this.sqladDataAdapter = new SqlDataAdapter(sqlcmdManager);
-            //Verbindung öffnen.
-            sqlcon.Open();
-
-            //Sql-Abfrage festlegen.
-            this.sqlcmdManager.CommandType = CommandType.Text;
-            this.sqlcmdManager.CommandText = strQueryLogin;
-
-            //Tabelle einer Datenbank füllen.
-            this.sqladDataAdapter.Fill(dtDatatable);
-
-            //Die Verbindung schließen.
-            sqlcon.Close();
-            sqlcon.Dispose();
-            //Objekt freigegen.
-            this.sqlcmdManager.Dispose();
-            this.sqladDataAdapter.Dispose();
-            
-            return this.dtDatatable;
+             await conn.OpenAsync();
+             adapter.Fill(dt);
+                     
+            return dt;
         }
 
-
-        public void RemoveStudentInfos(MStudentInformations mStudentInformations)
+        public async Task<int> UpdateStudentInfosAsync(MStudentInformations info)
         {
-            throw new NotImplementedException();
+            using var conn = _connectionFactory.Create();
+            using var cmd = new SqlCommand(@"
+        UPDATE TBLStudentsDaten
+        SET 
+            Name = @Name,
+            Vorname = @Vorname,
+            Email = @Email,
+            Stadt = @Stadt,
+            Datum = @Datum
+        WHERE Id = @Id
+    ", conn);
+
+            cmd.Parameters.AddWithValue("@Id", info.Id);
+            cmd.Parameters.AddWithValue("@Name", info.Name);
+            cmd.Parameters.AddWithValue("@Vorname", info.Vorname);
+            cmd.Parameters.AddWithValue("@Email", info.Email);
+            cmd.Parameters.AddWithValue("@Stadt", info.Stadt);
+            cmd.Parameters.AddWithValue("@Datum", info.Datum);
+
+            await conn.OpenAsync();
+            return await cmd.ExecuteNonQueryAsync();
         }
 
-        public int SaveData(string strQueryRegister, SqlConnection sqlcon)
-        {
-            int iCount;                              
-            //Sql-command Objekt instanzieren.
-            sqlcmdManager = new SqlCommand(strQueryRegister, sqlcon);
-                       
-             //Verbindung öffnen.
-            sqlcon.Open();               
 
-            //Sql-Abfrage festlegen.
-            this.sqlcmdManager.CommandType = CommandType.Text;
-            this.sqlcmdManager.CommandText = strQueryRegister;
-                    
-            //sql-Befehle ausführen.
-            iCount = sqlcmdManager.ExecuteNonQuery();
-               
-            //Die Verbindung schließen.
-            sqlcon.Close();
-
-            return iCount;
-          
-        }
-
-        public void UpdateStudentInfos(MStudentInformations mStudentInformations)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
